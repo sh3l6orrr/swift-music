@@ -8,7 +8,7 @@
 import XCTest
 import MusicTheoryKit
 
-final class TestNoteAndInterval: XCTestCase {
+final class TestNote: XCTestCase {
     
     func testNoteAddInterval() throws {
         XCTAssertEqual(Note.C + Interval.m2, Note.Db)
