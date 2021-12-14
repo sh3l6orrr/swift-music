@@ -1,5 +1,5 @@
 //
-//  TestNoteAndInterval.swift
+//  TestNote.swift
 //  MusicTheoryKit
 //
 //  Created by Jin Zhang on 12/13/21.

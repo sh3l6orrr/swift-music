@@ -27,4 +27,10 @@ final class TestChord: XCTestCase {
         let chord4 = Chord(notes: notes4, root: Note.Gb)
         XCTAssertEqual(chord4!.name, "Gb7sus4")
     }
+    
+    func testCreationFail() throws {
+        let notes1 = Set([Note.E, Note.Ab, Note.F])
+        let chord1 = Chord(notes: notes1, root: Note.E)
+        XCTAssertNil(chord1)
+    }
 }
