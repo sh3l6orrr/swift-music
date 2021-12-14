@@ -5,7 +5,11 @@
 //  Created by Jin Zhang on 12/13/21.
 //
 
+/// A custom musical chord.
+///
+/// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
 public struct Chord {
+    /// Create a chord based on its component notes and the root note.
     public init?(notes: Set<Note>, root: Note) {
         
         self.root = root
@@ -25,11 +29,18 @@ public struct Chord {
         self.intervals = intervals
         self.quality = quality
     }
-    
+    /// The name of a chord.
+    ///
+    /// The following code generate a chord with name "Esus4"
+    /// ```swift
+    /// let root = Note.E
+    /// let notes = Set<Note>([Note.E, Note.A, Note.B])
+    /// let chord = Chord(notes: notes, root: root)?
+    /// ```
     public var name: String {
         root.rawValue + quality
     }
-    
+    /// Describe the chord.
     public var description: String {
         "This is a chord with root note \(root), and notes" +
         intervals.map{ $0.wholeName }.joined(separator: ",") +
