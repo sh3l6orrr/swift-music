@@ -4,7 +4,7 @@
 
 ### Introduction
 
-MusicTheoryKit is a swift module that provides an easy-to-use API for most commonly used music terms.
+MusicTheoryKit is a Swift framework that provides an easy-to-use API for most commonly used music terms.
 
 ### Installation
 
