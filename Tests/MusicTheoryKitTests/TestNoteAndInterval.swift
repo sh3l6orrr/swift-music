@@ -1,7 +1,14 @@
-import XCTest
-@testable import MusicTheoryKit
+//
+//  TestNoteAndInterval.swift
+//  MusicTheoryKit
+//
+//  Created by Jin Zhang on 12/13/21.
+//
 
-final class MusicTheoryKitTests: XCTestCase {
+import XCTest
+import MusicTheoryKit
+
+final class TestNoteAndInterval: XCTestCase {
     
     func testNoteAddInterval() throws {
         XCTAssertEqual(Note.C + Interval.m2, Note.Db)

@@ -49,7 +49,7 @@ public struct Chord {
         
         [Interval.p5] : "5",
             
-        [Interval.m2, Interval.p5]: "sus2",
+        [Interval.M2, Interval.p5]: "sus2",
         [Interval.m3, Interval.tritone]: "dim",
         [Interval.m3, Interval.p5]: "m",
         [Interval.M3, Interval.p5]: "",
