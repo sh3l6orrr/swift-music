@@ -18,6 +18,11 @@ public enum Note {
         return Note(difference > 0 ? difference : difference + 12)!
     }
     
+    public static func - (_ lhs: Note, _ rhs: Note) -> Interval {
+        let difference = lhs.num - rhs.num
+        return Interval(semitone: difference > 0 ? difference : difference + 12)!
+    }
+    
     //------------------- Not Part of API --------------------------//
     private init?(_ num: Int) {
         guard let note = Note.intToNote[num] else {
