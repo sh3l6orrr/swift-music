@@ -13,6 +13,11 @@ public enum Note {
         return Note(sum <= 12 ? sum : sum - 12)!
     }
     
+    public static func - (_ lhs: Note, _ rhs: Interval) -> Note {
+        let difference = lhs.num - rhs.num
+        return Note(difference > 0 ? difference : difference + 12)!
+    }
+    
     //------------------- Not Part of API --------------------------//
     private init?(_ num: Int) {
         guard let note = Note.intToNote[num] else {
