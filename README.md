@@ -1,4 +1,4 @@
-## Music Theory Kit
+# MusicTheoryKit
 
 [![CI](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml)
 
@@ -9,23 +9,26 @@ MusicTheoryKit is a swift module that provides an easy-to-use API for most commo
 ### Installation
 
 - Xcode 
-File - Add Packages - https://github.com/sh3l6orrr/music-theory-kit.git
+
+> File - Add Packages - https://github.com/sh3l6orrr/music-theory-kit.git
 
 - Swift Package Manager 
-Inside Package.swift, add the following:
+
+Inside Package.swift, add the followings:
 
 ```
-import PackageDescription
-
-let package = Package(
-
-    // Some parameters
-
     dependencies: [
-        .package(path: https://github.com/sh3l6orrr/music-theory-kit.git)
-    ],
-
-    // Some other parameters
-)
+        .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", from: "1.0.0")
+    ]
+```
+```
+    targets: [
+        .target(
+            name: "YourTarget",
+            dependencies: [
+                .product(name: "MusicTheoryKit", package: "music-theory-kit")
+            ]
+        )
+    ]
 ```
 
