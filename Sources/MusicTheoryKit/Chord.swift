@@ -42,7 +42,7 @@ public struct Chord {
     }
     /// Describe the chord.
     public var description: String {
-        "This is a chord with root note \(root), and notes" +
+        "This is a chord named \(name), with root note \(root), and notes" +
         intervals.map{ $0.wholeName }.joined(separator: ",") +
         "above it."
     }
