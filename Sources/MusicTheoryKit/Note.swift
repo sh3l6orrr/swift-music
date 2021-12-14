@@ -5,7 +5,7 @@
 //  Created by Jin Zhang on 12/11/21.
 //
 
-public enum Note: String {
+public enum Note: String, CaseIterable {
     case C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
     
     public static func + (_ lhs: Note, _ rhs: Interval) -> Note {
