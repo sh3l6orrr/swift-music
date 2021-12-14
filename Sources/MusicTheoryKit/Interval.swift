@@ -5,7 +5,7 @@
 //  Created by Jin Zhang on 12/12/21.
 //
 
-public enum Interval {
+public enum Interval: Comparable {
     case m2, M2, m3, M3, p4, tritone, p5, m6, M6, m7, M7, p8
     
     public init?(semitone: Int) {
