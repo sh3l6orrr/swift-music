@@ -33,4 +33,17 @@ final class TestChord: XCTestCase {
         let chord1 = Chord(notes: notes1, root: Note.E)
         XCTAssertNil(chord1)
     }
+    
+    func testSlashChord() throws {
+        let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
+        XCTAssertEqual(chord!.name, "Fsus2/Bb")
+    }
+    
+    func testDescrition() throws {
+        let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
+        debugPrint(chord!.description)
+        
+        let chord2 = Chord(notes: Set<Note>([.F, .G, .C]), root: .F)
+        debugPrint(chord2!.description)
+    }
 }

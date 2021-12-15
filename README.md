@@ -8,10 +8,10 @@ MusicTheoryKit is a Swift framework that provides an easy-to-use API for most co
 
 Create notes, assemble chords, do maths on notes, and many more to come.
 ```swift
-let chord = Chord(notes: Set<Note>([.C, .E, .G, .A]), root: .C)
+let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
 print(chord.description) 
-// "This is a chord named C6 with root note C, 
-// and notes major third, perfect fifth, major sixth above it.""
+//"This is a slash chord named Fsus2/Bb over Bb, with root note F, and notes G, C,
+// which are respectively major second, perfect fifth above the root."
 ```
 
 ## Installation

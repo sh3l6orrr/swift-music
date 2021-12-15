@@ -42,7 +42,12 @@ public struct Chord {
     }
     /// Describe the chord.
     public var description: String {
-        "This is a \(slash != nil ? "slash" : "") chord named \(name)\(slash != nil ? "over \(slash!.rawValue)" : ""), with root note \(root), and notes" + intervals.map { root + $0 }.joined(separater: ",") + intervals.map{ $0.wholeName }.joined(separator: ",") + "above it."
+        let ifSlashDescription = slash != nil ? "slash" : ""
+        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
+        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+        
+        return "This is a \(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
     }
     
     //------------------- Not Part of API --------------------------//
