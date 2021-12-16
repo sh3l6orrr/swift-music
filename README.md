@@ -1,4 +1,4 @@
-# MusicTheoryKit
+# 🎼 MusicTheoryKit
 
 [![CI](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml)
 
@@ -8,14 +8,18 @@ MusicTheoryKit is a Swift framework that provides an easy-to-use API for most co
 
 Create notes, assemble chords, do maths on notes, and many more to come.
 ```swift
+import MusicTheoryKit
+
 let chord = Chord("Cmaj9/G")!
 print(myChord.description)
 // This is a slash chord named Cmaj9/G over G, with root note C, and component notes D, E, G, B, 
 // which are respectively major second, major third, perfect fifth, major seventh above the root. 
 ```
 ```swift
+import MusicTheoryKit
+
 Note.D - Note.E 
-// Evaluates to Interval.m7
+// Interval.m7
 ```
 
 ## Installation

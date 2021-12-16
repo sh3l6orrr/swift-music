@@ -22,6 +22,6 @@ let package = Package(
                 "MusicTheoryKit",
                 .product(name: "Rainbow", package: "Rainbow")
             ]
-        ),
+        )
     ]
 )

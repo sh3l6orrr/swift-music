@@ -58,6 +58,12 @@ public struct Chord {
         let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
         self.init(root, quality, over: slash)
     }
+    /// The root of this chord.
+    public let root: Note
+    /// Set of notes in the chord.
+    public let notes: Set<Note>
+    /// The note this chord is over.
+    public let slash: Note?
     /// The name of a chord.
     ///
     /// The following code generate a chord with name "Esus4"
@@ -84,9 +90,6 @@ public struct Chord {
     }
     
     //------------------- Not Part of API --------------------------//
-    private let root: Note
-    private let notes: Set<Note>
-    private let slash: Note?
     private let intervals: [Interval]
     private let quality: String
     
