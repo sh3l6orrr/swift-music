@@ -31,10 +31,25 @@ final class TestChord: XCTestCase {
         XCTAssertEqual(TestChord.slashChord2.name, "Fsus2")
     }
     
+    func testNameInit() throws {
+        XCTAssertEqual(Chord("C13")?.description, TestChord.chord6.description)
+        XCTAssertEqual(Chord("Bm7b5")?.description, TestChord.chord4.description)
+        XCTAssertEqual(Chord("Fsus2/Bb")?.description, TestChord.slashChord1.description)
+        XCTAssertEqual(Chord("Fsus2")?.description, TestChord.slashChord2.description)
+    }
+    
+    func testNameInitFailure() throws {
+        XCTAssertNil(Chord("/"))
+        XCTAssertNil(Chord("5"))
+        XCTAssertNil(Chord("C/F/D"))
+        XCTAssertNil(Chord("/Csus2/F/"))
+    }
+    
     func testDescrition() throws {
         print("*** Description of chord1. *** \n \(TestChord.chord1.description.green) \n *** End of description. ***\n")
         print("*** Description of chord2. *** \n \(TestChord.chord2.description.green) \n *** End of description. ***\n")
-        print("*** Description of slahChord1. *** \n \(TestChord.slashChord1.description.green) \n *** End of description. ***\n")
+        print("*** Description of slashChord1. *** \n \(TestChord.slashChord1.description.green) \n *** End of description. ***\n")
+        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description.green) \n *** End of description. ***\n")
     }
     
     private static let chord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]))!

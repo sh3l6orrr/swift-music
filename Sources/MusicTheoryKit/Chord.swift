@@ -8,8 +8,21 @@
 /// A custom musical chord.
 ///
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
+/// Create a chord by using it's name directly is the most conveinient way!
+/// ```swift
+/// let myChord = Chord("Cmaj9/G")!
+/// print(myChord.description)
+/// // This is a slash chord named Cmaj9/G over G, with root note C,
+/// // and component notes D, E, G, B, which are respectively major second,
+/// // major third, perfect fifth, major seventh above the root.
+/// ```
 public struct Chord {
-    /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chrod.
+    /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chord.
+    ///
+    /// ```swift
+    /// let chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)
+    /// ```
+    /// For full reference of available chords, go to <doc:Chords-Reference>
     public init?(root: Note, notes: Set<Note>, slash: Note? = nil) {
         var intervals = [Interval]()
         for note in notes {
@@ -24,6 +37,26 @@ public struct Chord {
         if slash == root { self.slash = nil } else { self.slash = slash }
         self.intervals = intervals
         self.quality = quality
+    }
+    /// Create a chord directly from it's name.
+    ///
+    /// ```swift
+    /// let chord = Chord("Cmaj9/G")
+    /// ```
+    /// For full reference of available chords, go to <doc:Chords-Reference>
+    public init?(_ name: String) {
+        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false)
+        guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
+        guard !splitedName.contains("") else { return nil }
+        var rootAndQuality = String(splitedName[splitedName.startIndex])
+        var root = String(rootAndQuality.remove(at: rootAndQuality.startIndex))
+        if rootAndQuality.count > 1 && rootAndQuality[rootAndQuality.startIndex] == "b" {
+            root += String(rootAndQuality[rootAndQuality.startIndex])
+            rootAndQuality.remove(at: rootAndQuality.startIndex)
+        }
+        let quality = rootAndQuality
+        let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
+        self.init(root, quality, over: slash)
     }
     /// The name of a chord.
     ///
@@ -51,11 +84,26 @@ public struct Chord {
     }
     
     //------------------- Not Part of API --------------------------//
-    private let notes: Set<Note>
     private let root: Note
+    private let notes: Set<Note>
     private let slash: Note?
     private let intervals: [Interval]
     private let quality: String
+    
+    private init?(_ root: String, _ quality: String, over slash: String? = nil) {
+        
+        guard let root = Note(rawValue: root) else { return nil }
+        guard let intervals = Chord.semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
+        if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }
+        let notes = intervals.map{ root + $0 }
+        let doNotCreateSlash = slash == nil || Note(rawValue: slash!) == root
+        
+        self.notes = Set(notes)
+        self.root = root
+        self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
+        self.intervals = intervals
+        self.quality = quality
+    }
     
     private static let semitonesToQuality: [[Interval] : String] = [
         [Interval.p5] : "5",
