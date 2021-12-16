@@ -9,17 +9,25 @@
 /// value, and velocity.
 public struct MusicNote {
     /// Create a note by specifying pitch, value, and velocity.
-    public init(_ note: Note, octave: Int, value: Value, velocity: Int) {
-        var newOctave = octave
-        var newVelocity = velocity
-        if octave < 0 { newOctave = 0 }
-        if octave > 8 { newOctave = 8 }
-        if velocity < 0 { newVelocity = 0 }
-        if velocity > 127 { newVelocity = 127 }
+    ///
+    /// To create a valid Music note, the pitch must be in the range A0 - C8,
+    /// and the velocity must be in the range 0...127.
+    /// For example:
+    /// ```swift
+    /// let note = MusicNote(.C, octave: 8, value: ._4, velocity: 64)! // OK
+    /// let note = MusicNote(.D, octave: 8, value: ._4, velocity: 128)? // Returns nil
+    /// ```
+    /// If no value and velocity is specified, they will be default to
+    /// quarter note and 64 respectively.
+    public init?(_ note: Note, octave: Int, value: Value = ._64, velocity: Int = 64) {
+        guard octave >= 0 && octave <= 8 else { return nil }
+        guard velocity >= 0 && velocity <= 127 else { return nil }
+        if octave == 0 { guard note == .A || note == .Bb || note == .B else { return nil }}
+        if octave == 8 { guard note == .C else { return nil }}
         self.note = note
-        self.octave = newOctave
+        self.octave = octave
         self.value = value
-        self.velocity = newVelocity
+        self.velocity = velocity
     }
     /// The underlying note.
     public let note: Note

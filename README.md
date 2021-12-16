@@ -1,4 +1,4 @@
-# 🎼 MusicTheoryKit
+# 🎼  MusicTheoryKit
 
 [![CI](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml)
 
