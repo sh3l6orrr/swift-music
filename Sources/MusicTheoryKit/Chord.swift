@@ -10,7 +10,7 @@
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
 public struct Chord {
     /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chrod.
-    public init?(notes: Set<Note>, root: Note, slash: Note? = nil) {
+    public init?(root: Note, notes: Set<Note>, slash: Note? = nil) {
         var intervals = [Interval]()
         for note in notes {
             if (note == root || note == slash) { continue }
@@ -29,9 +29,9 @@ public struct Chord {
     ///
     /// The following code generate a chord with name "Esus4"
     /// ```swift
-    /// let root = Note.E
-    /// let notes = Set<Note>([Note.E, Note.A, Note.B])
-    /// let chord = Chord(notes: notes, root: root)?
+    /// let root: Note = .E
+    /// let notes: Set<Note> = Set([.E, .A, .B])
+    /// let chord = Chord(root: root, notes: notes)?
     /// ```
     public var name: String {
         if let slash = slash {

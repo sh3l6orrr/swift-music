@@ -37,17 +37,17 @@ final class TestChord: XCTestCase {
         print("*** Description of slahChord1. *** \n \(TestChord.slashChord1.description.green) \n *** End of description. ***\n")
     }
     
-    private static let chord1: Chord = Chord(notes: Set([.F, .G, .C]), root: .F)!
-    private static let chord2: Chord = Chord(notes: Set([.E, .Db, .Gb, .B]), root: .Gb)!
-    private static let chord3: Chord = Chord(notes: Set([.A, .F, .D, .B]), root: .B)!
-    private static let chord4: Chord = Chord(notes: Set([.A, .F, .D, .F, .B]), root: .B)!
-    private static let chord5: Chord = Chord(notes: Set([.C, .D, .E, .F, .G, .Bb]), root: .C)!
-    private static let chord6: Chord = Chord(notes: Set([.C, .D, .E, .F, .G, .Bb, .A]), root: .C)!
+    private static let chord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]))!
+    private static let chord2: Chord = Chord(root: .Gb, notes: Set([.E, .Db, .Gb, .B]))!
+    private static let chord3: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .B]))!
+    private static let chord4: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .F, .B]))!
+    private static let chord5: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb]))!
+    private static let chord6: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb, .A]))!
     
-    private static let slashChord1: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .Bb)!
-    private static let slashChord2: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .F)!
+    private static let slashChord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)!
+    private static let slashChord2: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .F)!
     
-    private static let nilChord1: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E)
-    private static let nilChord2: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E, slash: .B)
-    private static let nilChord3: Chord? = Chord(notes: Set([.E, .E, .F]), root: .C, slash: .B)
+    private static let nilChord1: Chord? = Chord(root: .E, notes: Set([.E, .Ab, .F]))
+    private static let nilChord2: Chord? = Chord(root: .E, notes: Set([.E, .Ab, .F]), slash: .B)
+    private static let nilChord3: Chord? = Chord(root: .C, notes: Set([.E, .E, .F]), slash: .B)
 }

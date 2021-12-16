@@ -17,6 +17,6 @@ let anotherNewNote = myNote + myAnotherInterval
 ```
 Then, you can form a ``Chord`` with these notes:
 ```swift
-let myChord = Chord(notes: Set<Note>([myNote, newNote, anotherNewNote]), root: myNote)
+let myChord = Chord(root: myNote, notes: Set([myNote, newNote, anotherNewNote]))
 myChord.name == "Csus4"
 ```
