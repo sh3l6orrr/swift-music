@@ -12,14 +12,14 @@ import MusicTheoryKit
 
 let chord = Chord("Cmaj9/G")!
 print(myChord.description)
+
 // This is a slash chord named Cmaj9/G over G, with root note C, and component notes D, E, G, B, 
 // which are respectively major second, major third, perfect fifth, major seventh above the root. 
 ```
 ```swift
 import MusicTheoryKit
 
-Note.D - Note.E 
-// Interval.m7
+Note.D - Note.E  // Interval.m7
 ```
 
 ## Installation
