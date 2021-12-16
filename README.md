@@ -8,10 +8,9 @@ MusicTheoryKit is a Swift framework that provides an easy-to-use API for most co
 
 Create notes, assemble chords, do maths on notes, and many more to come.
 ```swift
-let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
+let chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .Bb)
 print(chord.description) 
-//"This is a slash chord named Fsus2/Bb over Bb, with root note F, and notes G, C,
-// which are respectively major second, perfect fifth above the root."
+\\ This is a slash chord named Fsus2/Bb over Bb, with root note F, and component notes G, C, which are respectively major second, perfect fifth above the root. 
 ```
 
 ## Installation
@@ -26,7 +25,7 @@ Inside Package.swift, add the followings:
 
 ```
 dependencies: [
-    .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", from: "1.0.0")
+    .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 ```

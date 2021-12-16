@@ -6,44 +6,42 @@
 //
 
 import XCTest
+import Rainbow
 import MusicTheoryKit
 
 final class TestChord: XCTestCase {
     
     func testChordQuality() throws {
-        let notes1 = Set([Note.E, Note.Ab, Note.B])
-        let chord1 = Chord(notes: notes1, root: Note.E)
-        XCTAssertEqual(chord1!.name, "E")
-        
-        let notes2 = Set([Note.E, Note.Gb, Note.B])
-        let chord2 = Chord(notes: notes2, root: Note.E)
-        XCTAssertEqual(chord2!.name, "Esus2")
-        
-        let notes3 = Set([Note.Db, Note.Gb, Note.B])
-        let chord3 = Chord(notes: notes3, root: Note.Gb)
-        XCTAssertEqual(chord3!.name, "Gbsus4")
-        
-        let notes4 = Set([Note.E, Note.Db, Note.Gb, Note.B])
-        let chord4 = Chord(notes: notes4, root: Note.Gb)
-        XCTAssertEqual(chord4!.name, "Gb7sus4")
+        XCTAssertEqual(TestChord.chord1.name, "Fsus2")
+        XCTAssertEqual(TestChord.chord2.name, "Gb7sus4")
+        XCTAssertEqual(TestChord.chord3.name, "Bm7b5")
+        XCTAssertEqual(TestChord.chord4.name, "Bm7b5")
     }
     
     func testCreationFail() throws {
-        let notes1 = Set([Note.E, Note.Ab, Note.F])
-        let chord1 = Chord(notes: notes1, root: Note.E)
-        XCTAssertNil(chord1)
+        XCTAssertNil(TestChord.nilChord1)
+        XCTAssertNil(TestChord.nilChord2)
+        XCTAssertNil(TestChord.nilChord3)
     }
     
     func testSlashChord() throws {
-        let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
-        XCTAssertEqual(chord!.name, "Fsus2/Bb")
+        XCTAssertEqual(TestChord.slashChord1.name, "Fsus2/Bb")
+        XCTAssertEqual(TestChord.slashChord2.name, "Fsus2")
     }
     
     func testDescrition() throws {
-        let chord = Chord(notes: Set<Note>([.F, .G, .C]), root: .F, slash: .Bb)
-        debugPrint(chord!.description)
-        
-        let chord2 = Chord(notes: Set<Note>([.F, .G, .C]), root: .F)
-        debugPrint(chord2!.description)
+        print("*** Description of chord1. *** \n \(TestChord.chord1.description.green) \n *** End of description. ***\n")
+        print("*** Description of chord2. *** \n \(TestChord.chord2.description.green) \n *** End of description. ***\n")
+        print("*** Description of slahChord1. *** \n \(TestChord.slashChord1.description.green) \n *** End of description. ***\n")
     }
+    
+    private static let chord1: Chord = Chord(notes: Set([.F, .G, .C]), root: .F)!
+    private static let chord2: Chord = Chord(notes: Set([.E, .Db, .Gb, .B]), root: .Gb)!
+    private static let chord3: Chord = Chord(notes: Set([.A, .F, .D, .B]), root: .B)!
+    private static let chord4: Chord = Chord(notes: Set([.A, .F, .D, .F, .B]), root: .B)!
+    private static let slashChord1: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .Bb)!
+    private static let slashChord2: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .F)!
+    private static let nilChord1: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E)
+    private static let nilChord2: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E, slash: .B)
+    private static let nilChord3: Chord? = Chord(notes: Set([.E, .E, .F]), root: .C, slash: .B)
 }

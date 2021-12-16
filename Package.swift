@@ -9,12 +9,19 @@ let package = Package(
             name: "MusicTheoryKit",
             targets: ["MusicTheoryKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/onevcat/Rainbow.git", .upToNextMajor(from: "4.0.0"))
+    ],
     targets: [
         .target(
             name: "MusicTheoryKit",
             dependencies: []),
         .testTarget(
             name: "MusicTheoryKitTests",
-            dependencies: ["MusicTheoryKit"]),
+            dependencies: [
+                "MusicTheoryKit",
+                .product(name: "Rainbow", package: "Rainbow")
+            ]
+        ),
     ]
 )
