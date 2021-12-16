@@ -16,6 +16,8 @@ final class TestChord: XCTestCase {
         XCTAssertEqual(TestChord.chord2.name, "Gb7sus4")
         XCTAssertEqual(TestChord.chord3.name, "Bm7b5")
         XCTAssertEqual(TestChord.chord4.name, "Bm7b5")
+        XCTAssertEqual(TestChord.chord5.name, "C11")
+        XCTAssertEqual(TestChord.chord6.name, "C13")
     }
     
     func testCreationFail() throws {
@@ -39,8 +41,12 @@ final class TestChord: XCTestCase {
     private static let chord2: Chord = Chord(notes: Set([.E, .Db, .Gb, .B]), root: .Gb)!
     private static let chord3: Chord = Chord(notes: Set([.A, .F, .D, .B]), root: .B)!
     private static let chord4: Chord = Chord(notes: Set([.A, .F, .D, .F, .B]), root: .B)!
+    private static let chord5: Chord = Chord(notes: Set([.C, .D, .E, .F, .G, .Bb]), root: .C)!
+    private static let chord6: Chord = Chord(notes: Set([.C, .D, .E, .F, .G, .Bb, .A]), root: .C)!
+    
     private static let slashChord1: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .Bb)!
     private static let slashChord2: Chord = Chord(notes: Set([.F, .G, .C]), root: .F, slash: .F)!
+    
     private static let nilChord1: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E)
     private static let nilChord2: Chord? = Chord(notes: Set([.E, .Ab, .F]), root: .E, slash: .B)
     private static let nilChord3: Chord? = Chord(notes: Set([.E, .E, .F]), root: .C, slash: .B)

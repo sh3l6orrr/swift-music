@@ -65,28 +65,35 @@ public struct Chord {
         [Interval.M3, Interval.p5]: "",
         [Interval.M3, Interval.m6]: "aug",
         [Interval.p4, Interval.p5]: "sus4",
-        [Interval.M2, Interval.M3, Interval.p5]: "add9",
+        
         [Interval.m3, Interval.tritone, Interval.M6]: "dim7",
         [Interval.m3, Interval.tritone, Interval.m7]: "m7b5",
+        [Interval.M3, Interval.tritone, Interval.m7]: "7-5",
+        
         [Interval.m3, Interval.p5, Interval.M6]: "m6",
-        [Interval.m3, Interval.p5, Interval.m7]: "m7",
-        //        [3, 7, 11]: "mM",
-        //        [4, 5, 7]: "add11",
-        //        [4, 6, 10]: "7-5",
         [Interval.M3, Interval.p5, Interval.M6]: "6",
-        [Interval.M3, Interval.p5, Interval.m7]: "7",
-        [Interval.M3, Interval.p5, Interval.M7]: "maj7",
-        //        [4, 8, 10]: "aug7",
+        
+        [Interval.m3, Interval.p5, Interval.M7]: "mMaj7",
+        [Interval.M3, Interval.m6, Interval.m7]: "aug7",
         [Interval.p4, Interval.p5, Interval.m7]: "7sus4",
         
-        //        [2, 3, 7, 10]: "m9",
-        //        [2, 4, 7, 10]: "9",
-        //        [2, 4, 7, 11]: "maj9",
-        //
-        //        [2, 3, 5, 7, 10]: "m11",
-        //        [2, 4, 5, 7, 10]: "11",
-        //
-        //        [2, 3, 5, 7, 9, 10]: "m13",
-        //        [2, 4, 5, 7, 9, 10]: "13"
+        [Interval.M2, Interval.M3, Interval.p5]: "add9",
+        [Interval.M3, Interval.p4, Interval.p5]: "add11",
+        
+        [Interval.m3, Interval.p5, Interval.m7]: "m7",
+        [Interval.M3, Interval.p5, Interval.m7]: "7",
+        [Interval.M3, Interval.p5, Interval.M7]: "maj7",
+        
+        [Interval.M2, Interval.m3, Interval.p5, Interval.m7]: "m9",
+        [Interval.M2, Interval.M3, Interval.p5, Interval.m7]: "9",
+        [Interval.M2, Interval.M3, Interval.p5, Interval.M7]: "maj9",
+        
+        [Interval.M2, Interval.m3, Interval.p4, Interval.p5, Interval.m7]: "m11",
+        [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.m7]: "11",
+        [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M7]: "maj11",
+        
+        [Interval.M2, Interval.m3, Interval.p4, Interval.p5, Interval.M6, Interval.m7]: "m13",
+        [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M6, Interval.m7]: "13",
+        [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M6, Interval.M7]: "maj13",
     ]
 }
