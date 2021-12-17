@@ -19,15 +19,13 @@ public struct MusicNote: MelodyElement {
     /// ```
     /// If no value and velocity is specified, they will be default to
     /// quarter note and 64 respectively.
-    public init?(_ note: Note, octave: Int, value: Value = ._64, velocity: Int = 64) {
+    public init?(_ note: Note, octave: Int, value: Value = ._64) {
         guard octave >= 0 && octave <= 8 else { return nil }
-        guard velocity >= 0 && velocity <= 127 else { return nil }
         if octave == 0 { guard note == .A || note == .Bb || note == .B else { return nil }}
         if octave == 8 { guard note == .C else { return nil }}
         self.note = note
         self.octave = octave
         self.value = value
-        self.velocity = velocity
     }
     /// The underlying note.
     public let note: Note
@@ -37,6 +35,4 @@ public struct MusicNote: MelodyElement {
     public var pitch: String { note.rawValue + String(octave) }
     /// The value of the note.
     public let value: Value
-    /// The velociy of the note.
-    public let velocity: Int
 }

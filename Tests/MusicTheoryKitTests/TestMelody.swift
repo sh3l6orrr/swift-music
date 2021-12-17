@@ -16,7 +16,7 @@ final class TestMelody: XCTestCase {
     }
     
     private static let musicNote1 = MusicNote(.C, octave: 4, value: ._4)!
-    private static let musicNote2 = MusicNote(.C, octave: 8, value: ._1, velocity: 0)!
+    private static let musicNote2 = MusicNote(.C, octave: 8, value: ._1)!
     private static let pause1 = Pause(._4)
     private static let pause2 = Pause(._2)
     private static var melody1: Melody {
