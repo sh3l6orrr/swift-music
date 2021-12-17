@@ -6,6 +6,7 @@
 //
 
 /// Element in a monophonic melody.
-protocol MelodyElement {
+public protocol MelodyElement {
+    //------------------- Not Part of API --------------------------//
     var value: Value { get }
 }

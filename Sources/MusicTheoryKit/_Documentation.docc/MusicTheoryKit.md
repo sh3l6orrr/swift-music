@@ -20,11 +20,28 @@ print(myChord.description)
 ### Essentials
 
 - <doc:Getting-Started>
-- ``Note``
-- ``Chord``
 - <doc:Chords-Reference>
 
-### Note Arithmetics
+### Foundamentals
 
+- ``Note``
 - ``Interval``
-- ``Note/-(_:_:)-779fi``
+- ``Chord``
+
+### Music Essentials
+
+- ``MusicNote``
+- ``Pause``
+- ``Value``
+- ``Beats``
+
+### Creating Melody
+
+- ``Melody``
+- ``MelodyElement``
+
+### Playing Music
+
+- ``Synth``
+- ``Instrument``
+- ``Playable``

@@ -5,6 +5,7 @@
 //  Created by Jin Zhang on 12/16/21.
 //
 
-protocol Playable {
+/// Something that is playable by a instrument.
+public protocol Playable {
     
 }
