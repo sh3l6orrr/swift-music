@@ -37,11 +37,6 @@ print(myChord.description)
 
 ### Creating Melody
 
+- ``Playable``
 - ``Melody``
 - ``MelodyElement``
-
-### Playing Music
-
-- ``Synth``
-- ``Instrument``
-- ``Playable``
