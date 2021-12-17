@@ -18,6 +18,7 @@ Note.D - Note.E  // Interval.m7
 ```swift
 let chord = Chord("Cmaj9/G")!
 myChord.description
+
 // This is a slash chord named Cmaj9/G over G, with root note C, and component 
 // notes D, E, G, B, which are respectively major second, major third, perfect
 // fifth, major seventh above the root. 
@@ -48,13 +49,13 @@ melody.visualization // To be implemented
 
 ### Analyze Music
 ```swift
-/ To be implemented
+// To be implemented
 ```
 
 ### Customization
 ```swift
 extension MusicNote {
-
+    // To be implemented
 }
 ```
 
