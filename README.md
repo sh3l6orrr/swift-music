@@ -71,7 +71,7 @@ Inside Package.swift, add the followings:
 
 ```
 dependencies: [
-    .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", .upToNextMajor(from: "0.2.0"))
 ]
 ```
 ```
