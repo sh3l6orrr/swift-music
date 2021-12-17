@@ -6,7 +6,7 @@
 //
 
 /// A musical Pause.
-public struct Pause {
+public struct Pause: MelodyElement {
     /// Create a pause with specified value.
     public init(_ value: Value) {
         self.value = value

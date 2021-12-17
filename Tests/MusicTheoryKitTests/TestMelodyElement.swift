@@ -11,8 +11,8 @@ import MusicTheoryKit
 final class TestMelodyElement: XCTestCase {
     
     func testValue() throws {
-        XCTAssertEqual(MelodyElement.musicNote(TestMelodyElement.musicNote1).value +
-                       MelodyElement.pause(TestMelodyElement.pause1).value
+        XCTAssertEqual(TestMelodyElement.musicNote1.value +
+                       TestMelodyElement.pause1.value
                        , Value._2)
     }
     
