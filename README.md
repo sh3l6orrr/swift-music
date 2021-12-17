@@ -27,11 +27,11 @@ myChord.description
 ### Compose a Melody
 ```swift
 var melody = Melody()
-melody.add(MusicNote(.E), octave: 4, value: ._2)
-melody.add(MusicNote(.D), octave: 4, value: ._2)
+melody.add(MusicNote(.E, octave: 4, value: ._2))
+melody.add(MusicNote(.D, octave: 4, value: ._2))
 melody.add(Pause(._2))
-melody.add(MusicNote(.E), octave: 4, value: ._2)
-melody.add(MusicNote(.C), octave: 4, value: ._1)
+melody.add(MusicNote(.E, octave: 4, value: ._2))
+melody.add(MusicNote(.C, octave: 4, value: ._1))
 
 melody.length // 3 Beats
 melody.visualization // To be implemented
