@@ -22,9 +22,7 @@ public class Melody: Playable {
         return length
     }
     /// What does this melody contain?
-    public func display() {
-        for element in content { print(element) }
-    }
+    public var elements: [MelodyElement] { content }
     //------------------- Not Part of API --------------------------//
     var content: [MelodyElement]
 }

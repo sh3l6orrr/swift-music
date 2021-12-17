@@ -8,5 +8,5 @@
 /// Element in a monophonic melody.
 public protocol MelodyElement {
     //------------------- Not Part of API --------------------------//
-    var value: Value { get }
+    public var value: Value { get }
 }
