@@ -6,7 +6,7 @@
 //
 
 /// A custom musical interval.
-public enum Interval: Comparable, CaseIterable {
+public enum Interval : Comparable, CaseIterable {
     /// Musical interval.
     case octave, m2, M2, m3, M3, p4, tritone, p5, m6, M6, m7, M7
     /// Create interval based on the number of semitones contained in it.

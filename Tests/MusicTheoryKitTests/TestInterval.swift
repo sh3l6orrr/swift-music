@@ -8,7 +8,7 @@
 import XCTest
 import MusicTheoryKit
 
-final class TestInterval: XCTestCase {
+final class TestInterval : XCTestCase {
     
     func testIntervalWholeName() throws {
         XCTAssertEqual(Interval.octave.wholeName, "octave")

@@ -6,7 +6,7 @@
 //
 
 /// Representation of value of a note in a music context.
-public enum Value: Double {
+public enum Value : Double {
     /// A hunderd-twenty-eighth note.
     case _128 = 0.0078125
     /// A sixty-fourth note.

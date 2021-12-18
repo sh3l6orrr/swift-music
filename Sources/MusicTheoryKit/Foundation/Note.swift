@@ -16,7 +16,7 @@
 /// Note.Bb
 /// ```
 /// > Only flats are currently supported. For example, the note above C is Db, instead of C#.
-public enum Note: String, CaseIterable {
+public enum Note : String, CaseIterable {
     /// Musical note.
     case C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
     /// Compute the note a certain Interval above it.

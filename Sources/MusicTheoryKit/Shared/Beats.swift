@@ -7,3 +7,4 @@
 
 /// A time unit in music.
 public typealias Beats = Double
+

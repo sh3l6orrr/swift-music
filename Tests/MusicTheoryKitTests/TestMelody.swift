@@ -8,7 +8,7 @@
 import XCTest
 import MusicTheoryKit
 
-final class TestMelody: XCTestCase {
+final class TestMelody : XCTestCase {
     
     func testMusicNote() throws {
         XCTAssertEqual(TestMelody.musicNote1.octave, 4)

@@ -9,7 +9,7 @@ import XCTest
 import Rainbow
 import MusicTheoryKit
 
-final class TestChord: XCTestCase {
+final class TestChord : XCTestCase {
     
     func testChordQuality() throws {
         XCTAssertEqual(TestChord.chord1.name, "Fsus2")

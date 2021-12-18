@@ -8,7 +8,7 @@
 import Foundation
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
-public struct MusicNote: MelodyElement {
+public struct MusicNote : MelodyElement {
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
@@ -37,7 +37,7 @@ public struct MusicNote: MelodyElement {
     /// The octave this note is in.
     public let octave: Int
     /// The pitch of the note.
-    public var pitch: String
+    public let pitch: String
     /// The frequency of the nore.
     public var frequency: Float {
         let relative = Float(Note.noteToInt[self.note]! - 10 + 12 * (octave - 4))

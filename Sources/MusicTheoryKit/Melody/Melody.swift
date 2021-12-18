@@ -6,23 +6,23 @@
 //
 
 /// Monophonic melody.
-public class Melody: Playable {
+public class Melody : Playable, Collection {
     /// Create an empty melody with 0 beats.
     public init() {
-        self.content = []
+        self.elements = []
     }
     /// Add an element, either a music note or pause to this melody.
     public func add(_ element: MelodyElement) {
-        content.append(element)
+        elements.append(element)
     }
     /// The leagth of the melody measured in beats.
     public var length: Beats {
         var length = 0.0
-        for element in content { length += element.value.rawValue }
+        for element in elements { length += element.value.rawValue }
         return length
     }
-    /// What does this melody contain?
-    public var elements: [MelodyElement] { content }
+    
     //------------------- Not Part of API --------------------------//
-    var content: [MelodyElement]
+    private var elements: [MelodyElement]
+    
 }
