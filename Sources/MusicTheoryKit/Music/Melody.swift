@@ -46,6 +46,4 @@ public struct Melody : Playable, Sequence {
     
     //------------------- Not Part of API --------------------------//
     private var elements: [MelodyElement]
-    
-    
 }
