@@ -10,16 +10,16 @@ import MusicTheoryKit
 
 final class TestMelody : XCTestCase {
     
-    func testMusicNote() throws {
-        XCTAssertEqual(TestMelody.musicNote1.octave, 4)
-        XCTAssertEqual(TestMelody.musicNote2.note, Note.C)
-        XCTAssertEqual(TestMelody.musicNote3.frequency, 440)
-        XCTAssertEqual(Int(TestMelody.musicNote1.frequency), Int(261.63))
+    func testLength() throws {
+        XCTAssertEqual(TestMelody.melody1.length, 2)
     }
     
-    func testLength() throws {
-        XCTAssertEqual(TestMelody.musicNote1.value + TestMelody.pause1.value, Value._2)
-        XCTAssertEqual(TestMelody.melody1.length, 2)
+    func testIteration() throws {
+        print("*** Elements in this melody ***".lightBlue)
+        for musicElement in TestMelody.melody1 {
+            print(musicElement)
+        }
+        print("*** Elements in this melody ***".lightBlue)
     }
     
     private static let musicNote1 = MusicNote("C4", value: ._4)!
@@ -28,7 +28,7 @@ final class TestMelody : XCTestCase {
     private static let pause1 = Pause(._4)
     private static let pause2 = Pause(._2)
     private static var melody1: Melody {
-        let melody = Melody()
+        var melody = Melody()
         melody.add(musicNote1)
         melody.add(pause1)
         melody.add(pause2)

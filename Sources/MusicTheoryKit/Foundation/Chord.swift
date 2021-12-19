@@ -16,7 +16,7 @@
 /// // and component notes D, E, G, B, which are respectively major second,
 /// // major third, perfect fifth, major seventh above the root.
 /// ```
-public struct Chord {
+public struct Chord : CustomStringConvertible {
     /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chord.
     ///
     /// ```swift
@@ -49,7 +49,7 @@ public struct Chord {
         guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
         guard !splitedName.contains("") else { return nil }
         var rootAndQuality = String(splitedName[splitedName.startIndex])
-        var root = String(rootAndQuality.remove(at: rootAndQuality.startIndex))
+        var root = String(rootAndQuality.removeFirst())
         if rootAndQuality.count > 1 && rootAndQuality[rootAndQuality.startIndex] == "b" {
             root += String(rootAndQuality[rootAndQuality.startIndex])
             rootAndQuality.remove(at: rootAndQuality.startIndex)
