@@ -41,7 +41,7 @@ public struct MusicNote : MelodyElement {
     public let pitch: String
     /// The frequency of the nore.
     public var frequency: Float {
-        let relative = Float(Note.noteToInt[self.note]! - 10 + 12 * (octave - 4))
+        let relative = Float(noteToInt[self.note]! - 10 + 12 * (octave - 4))
         return Float(Float(440) * pow(Float(2),(relative/Float(12))))
     }
     /// The value of the note.

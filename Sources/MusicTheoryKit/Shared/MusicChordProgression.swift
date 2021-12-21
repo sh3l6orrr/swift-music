@@ -19,18 +19,18 @@ public struct MusicChordProgression : ChordProgressionElement {
     /// ```
     /// If no value and velocity is specified, they will be default to
     /// quarter ChordProgression and 64 respectively.
-    public init?(_ pitch: String, value: Value = ._64) {
-        guard pitch.count == 2 else { return nil }
-        guard let ChordProgression = ChordProgression(rawValue: pitch[0]) else { return nil }
-        guard let octave = Int(pitch[1]) else { return nil }
-        guard octave >= 0 && octave <= 8 else { return nil }
-        if octave == 0 { guard ChordProgression == .A || ChordProgression == .Bb || ChordProgression == .B else { return nil }}
-        if octave == 8 { guard ChordProgression == .C else { return nil }}
-        self.chordProgression = ChordProgression
-        self.octave = octave
-        self.value = value
-        self.pitch = pitch
-    }
+//    public init?(_ pitch: String, value: Value = ._64) {
+//        guard pitch.count == 2 else { return nil }
+//        guard let ChordProgression = ChordProgression(rawValue: pitch[0]) else { return nil }
+//        guard let octave = Int(pitch[1]) else { return nil }
+//        guard octave >= 0 && octave <= 8 else { return nil }
+//        if octave == 0 { guard ChordProgression == .A || ChordProgression == .Bb || ChordProgression == .B else { return nil }}
+//        if octave == 8 { guard ChordProgression == .C else { return nil }}
+//        self.chordProgression = ChordProgression
+//        self.octave = octave
+//        self.value = value
+//        self.pitch = pitch
+//    }
     /// The underlying ChordProgression.
     public let chordProgression: ChordProgression
     /// The octave this ChordProgression is in.
@@ -38,10 +38,7 @@ public struct MusicChordProgression : ChordProgressionElement {
     /// The pitch of the ChordProgression.
     public let pitch: String
     /// The frequency of the nore.
-    public var frequency: Float {
-        let relative = Float(ChordProgression.ChordProgressionToInt[self.ChordProgression]! - 10 + 12 * (octave - 4))
-        return Float(Float(440) * pow(Float(2),(relative/Float(12))))
-    }
+
     /// The value of the ChordProgression.
     public let value: Value
 }
