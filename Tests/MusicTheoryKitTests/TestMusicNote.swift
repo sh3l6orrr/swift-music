@@ -11,16 +11,16 @@ import MusicTheoryKit
 final class TestMusicNote : XCTestCase {
     
     func testCreation() throws {
-        XCTAssertEqual(TestMusicNote.musicNote1.octave, 4)
-        XCTAssertEqual(TestMusicNote.musicNote2.note, Note.C)
+        XCTAssertEqual(musicNote1.octave, 4)
+        XCTAssertEqual(musicNote2.note, Note.C)
     }
     
     func testFrequency() throws {
-        XCTAssertEqual(TestMusicNote.musicNote3.frequency, 440)
-        XCTAssertEqual(Int(TestMusicNote.musicNote1.frequency), Int(261.63))
+        XCTAssertEqual(musicNote3.frequency, 440)
+        XCTAssertEqual(Int(musicNote1.frequency), Int(261.63))
     }
     
-    private static let musicNote1 = MusicNote("C4", value: ._4)!
-    private static let musicNote2 = MusicNote("C8", value: ._1)!
-    private static let musicNote3 = MusicNote("A4", value: ._1)!
+    let musicNote1 = MusicNote("C4", value: ._4)!
+    let musicNote2 = MusicNote("C8", value: ._1)!
+    let musicNote3 = MusicNote("A4", value: ._1)!
 }

@@ -21,3 +21,4 @@ final class TestInterval : XCTestCase {
     }
     
 }
+
