@@ -7,28 +7,21 @@
 
 /// Monophonic melody.
 public struct Melody : Playable, Sequence {
-    //------------------- Not Part of API --------------------------//
-    private var elements: [MelodyElement]
-}
-
-public extension Melody {
+    /// Create an empty melody with 0 beats.
+    public init() {
+        self.elements = []
+    }
     /// The leagth of the melody measured in beats.
-    var length: Beats {
+    public var length: Beats {
         var length = 0.0
         for element in elements { length += element.value.rawValue }
         return length
-    }
-}
-
-public extension Melody {
-    /// Create an empty melody with 0 beats.
-    init() {
-        self.elements = []
     }
     //------------------- Not Part of API --------------------------//
     private init(_ elements: [MelodyElement]) {
         self.elements = elements
     }
+    private var elements: [MelodyElement]
 }
 
 public extension Melody {
@@ -50,16 +43,18 @@ public extension Melody {
     struct Iterator : IteratorProtocol {
         /// Create an iterator of a melody.
         /// - Parameter melody: The melody to be iterated.
-        public init(_ melody: Melody) {
+        init(_ melody: Melody) {
             self.melody = melody
         }
-        /// Returns the next element in melody not iterated.
-        /// - Returns: The next element in melody not iterated.
-        public mutating func next() -> MelodyElement? {
-            return self.melody.elements.count != 0 ? self.melody.elements.removeFirst() : nil
-        }
-        
         //------------------- Not Part of API --------------------------//
         private var melody: Melody
+    }
+}
+
+public extension Melody.Iterator {
+    /// Returns the next element in melody not iterated.
+    /// - Returns: The next element in melody not iterated.
+    mutating func next() -> MelodyElement? {
+        return self.melody.elements.count != 0 ? self.melody.elements.removeFirst() : nil
     }
 }

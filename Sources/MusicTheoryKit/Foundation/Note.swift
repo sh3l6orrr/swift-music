@@ -19,9 +19,6 @@
 public enum Note : String, CaseIterable {
     /// Musical note.
     case C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
-}
-
-public extension Note {
     //------------------- Not Part of API --------------------------//
     private init?(_ num: Int) {
         guard let note = intToNote[num] else {

@@ -17,52 +17,13 @@
 /// // major third, perfect fifth, major seventh above the root.
 /// ```
 public struct Chord : CustomStringConvertible {
-    /// The root of this chord.
-    public let root: Note
-    /// Set of notes in the chord.
-    public let notes: Set<Note>
-    /// The note this chord is over.
-    public let slash: Note?
-    //------------------- Not Part of API --------------------------//
-    private let intervals: [Interval]
-    private let quality: String
-}
-
-public extension Chord {
-    /// The name of a chord.
-    ///
-    /// The following code generate a chord with name "Esus4"
-    /// ```swift
-    /// let root: Note = .E
-    /// let notes: Set<Note> = Set([.E, .A, .B])
-    /// let chord = Chord(root: root, notes: notes)?
-    /// ```
-    var name: String {
-        if let slash = slash {
-            return root.rawValue + quality + "/" + slash.rawValue
-        } else {
-            return root.rawValue + quality
-        }
-    }
-    /// Describe the chord.
-    var description: String {
-        let ifSlashDescription = slash != nil ? " slash" : ""
-        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
-        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
-        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
-        
-        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
-    }
-}
-
-public extension Chord {
     /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chord.
     ///
     /// ```swift
     /// let chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)
     /// ```
     /// For full reference of available chords, go to <doc:Chords-Reference>
-    init?(root: Note, notes: Set<Note>, slash: Note? = nil) {
+    public init?(root: Note, notes: Set<Note>, slash: Note? = nil) {
         var intervals = [Interval]()
         for note in notes {
             if (note == root || note == slash) { continue }
@@ -83,7 +44,7 @@ public extension Chord {
     /// let chord = Chord("Cmaj9/G")
     /// ```
     /// For full reference of available chords, go to <doc:Chords-Reference>
-    init?(_ name: String) {
+    public init?(_ name: String) {
         let splitedName = name.split(separator: "/", omittingEmptySubsequences: false)
         guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
         guard !splitedName.contains("") else { return nil }
@@ -96,6 +57,36 @@ public extension Chord {
         let quality = rootAndQuality
         let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
         self.init(root, quality, over: slash)
+    }
+    /// The root of this chord.
+    public let root: Note
+    /// Set of notes in the chord.
+    public let notes: Set<Note>
+    /// The note this chord is over.
+    public let slash: Note?
+    /// The name of a chord.
+    ///
+    /// The following code generate a chord with name "Esus4"
+    /// ```swift
+    /// let root: Note = .E
+    /// let notes: Set<Note> = Set([.E, .A, .B])
+    /// let chord = Chord(root: root, notes: notes)?
+    /// ```
+    public var name: String {
+        if let slash = slash {
+            return root.rawValue + quality + "/" + slash.rawValue
+        } else {
+            return root.rawValue + quality
+        }
+    }
+    /// Describe the chord.
+    public var description: String {
+        let ifSlashDescription = slash != nil ? " slash" : ""
+        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
+        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+        
+        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
     }
     //------------------- Not Part of API --------------------------//
     private init?(_ root: String, _ quality: String, over slash: String? = nil) {
@@ -111,4 +102,6 @@ public extension Chord {
         self.intervals = intervals
         self.quality = quality
     }
+    private let intervals: [Interval]
+    private let quality: String
 }
