@@ -18,15 +18,41 @@
 /// ```
 public struct Chord : CustomStringConvertible {
     /// The root of this chord.
-    let root: Note
+    public let root: Note
     /// Set of notes in the chord.
-    let notes: Set<Note>
+    public let notes: Set<Note>
     /// The note this chord is over.
-    let slash: Note?
-    /// The intervals contained in this chord.
-    let intervals: [Interval]
-    /// The quality of this chord.
-    let quality: String
+    public let slash: Note?
+    //------------------- Not Part of API --------------------------//
+    private let intervals: [Interval]
+    private let quality: String
+}
+
+public extension Chord {
+    /// The name of a chord.
+    ///
+    /// The following code generate a chord with name "Esus4"
+    /// ```swift
+    /// let root: Note = .E
+    /// let notes: Set<Note> = Set([.E, .A, .B])
+    /// let chord = Chord(root: root, notes: notes)?
+    /// ```
+    var name: String {
+        if let slash = slash {
+            return root.rawValue + quality + "/" + slash.rawValue
+        } else {
+            return root.rawValue + quality
+        }
+    }
+    /// Describe the chord.
+    var description: String {
+        let ifSlashDescription = slash != nil ? " slash" : ""
+        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
+        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+        
+        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
+    }
 }
 
 public extension Chord {
@@ -71,35 +97,8 @@ public extension Chord {
         let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
         self.init(root, quality, over: slash)
     }
-    /// The name of a chord.
-    ///
-    /// The following code generate a chord with name "Esus4"
-    /// ```swift
-    /// let root: Note = .E
-    /// let notes: Set<Note> = Set([.E, .A, .B])
-    /// let chord = Chord(root: root, notes: notes)?
-    /// ```
-    var name: String {
-        if let slash = slash {
-            return root.rawValue + quality + "/" + slash.rawValue
-        } else {
-            return root.rawValue + quality
-        }
-    }
-    /// Describe the chord.
-    var description: String {
-        let ifSlashDescription = slash != nil ? " slash" : ""
-        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
-        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
-        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
-        
-        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
-    }
-}
-
-private extension Chord {
-    init?(_ root: String, _ quality: String, over slash: String? = nil) {
-        
+    //------------------- Not Part of API --------------------------//
+    private init?(_ root: String, _ quality: String, over slash: String? = nil) {
         guard let root = Note(rawValue: root) else { return nil }
         guard let intervals = semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
         if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }

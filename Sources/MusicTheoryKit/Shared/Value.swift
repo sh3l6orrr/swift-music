@@ -36,7 +36,10 @@ public enum Value : Double {
     /// A long.
     case v_4 = 4
     /// Adding two values.
-    public static func + (_ lhs: Value, _ rhs: Value) -> Value? {
+}
+
+public extension Value {
+    static func + (_ lhs: Value, _ rhs: Value) -> Value? {
         return Value(rawValue: lhs.rawValue + rhs.rawValue)
     }
 }

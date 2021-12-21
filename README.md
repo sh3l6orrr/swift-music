@@ -26,12 +26,12 @@ myChord.description
 
 ### Compose a Melody
 ```swift
-var melody = Melody()
-melody.add(MusicNote("E4", value: ._2))
-melody.add(MusicNote("D4", value: ._2))
-melody.add(Pause(._2))
-melody.add(MusicNote("E4", value: ._2))
-melody.add(MusicNote("C4", value: ._1))
+let melody = Melody()
+    .add(MusicNote("E4", value: ._2))
+    .add(MusicNote("D4", value: ._2))
+    .add(Pause(._2))
+    .add(MusicNote("E4", value: ._2))
+    .add(MusicNote("C4", value: ._1))
 
 melody.length // 3 Beats
 melody.visualization // To be implemented

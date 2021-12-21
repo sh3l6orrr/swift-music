@@ -12,6 +12,12 @@ public enum Interval : Comparable, CaseIterable {
 }
 
 public extension Interval {
+    /// Whole name of the interval.
+    var wholeName: String {
+        intervalToWholeName[self]!
+    }
+}
+public extension Interval {
     /// Create interval based on the number of semitones contained in it.
     init?(semitone: Int) {
         guard semitone >= 0 else {
@@ -21,10 +27,6 @@ public extension Interval {
             return nil
         }
         self = interval
-    }
-    /// Whole name of the interval.
-    var wholeName: String {
-        intervalToWholeName[self]!
     }
 }
 

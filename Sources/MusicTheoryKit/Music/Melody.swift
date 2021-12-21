@@ -7,28 +7,47 @@
 
 /// Monophonic melody.
 public struct Melody : Playable, Sequence {
-    /// Create an empty melody with 0 beats.
-    public init() {
-        self.elements = []
-    }
+    //------------------- Not Part of API --------------------------//
+    private var elements: [MelodyElement]
+}
+
+public extension Melody {
     /// The leagth of the melody measured in beats.
-    public var length: Beats {
+    var length: Beats {
         var length = 0.0
         for element in elements { length += element.value.rawValue }
         return length
     }
+}
+
+public extension Melody {
+    /// Create an empty melody with 0 beats.
+    init() {
+        self.elements = []
+    }
+    //------------------- Not Part of API --------------------------//
+    private init(_ elements: [MelodyElement]) {
+        self.elements = elements
+    }
+}
+
+public extension Melody {
     /// Add an element, either a music note or pause to this melody.
     /// - Parameter element: A music note or a pause.
-    public mutating func add(_ element: MelodyElement) {
-        elements.append(element)
+    func add(_ element: MelodyElement) -> Melody {
+        Melody(elements + [element])
     }
     /// Get an iterator of this melody.
     /// - Returns: An iterator of this melody.
-    public func makeIterator() -> Iterator {
-        return Iterator(self)
+    func makeIterator() -> Iterator {
+        Iterator(self)
     }
+
+}
+
+public extension Melody {
     /// Iterator of a melody.
-    public struct Iterator : IteratorProtocol {
+    struct Iterator : IteratorProtocol {
         /// Create an iterator of a melody.
         /// - Parameter melody: The melody to be iterated.
         public init(_ melody: Melody) {
@@ -43,7 +62,4 @@ public struct Melody : Playable, Sequence {
         //------------------- Not Part of API --------------------------//
         private var melody: Melody
     }
-    
-    //------------------- Not Part of API --------------------------//
-    private var elements: [MelodyElement]
 }

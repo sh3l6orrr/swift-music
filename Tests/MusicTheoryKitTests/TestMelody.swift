@@ -28,11 +28,10 @@ final class TestMelody : XCTestCase {
     private static let pause1 = Pause(._4)
     private static let pause2 = Pause(._2)
     private static var melody1: Melody {
-        var melody = Melody()
-        melody.add(musicNote1)
-        melody.add(pause1)
-        melody.add(pause2)
-        melody.add(musicNote2)
-        return melody
+        Melody()
+            .add(musicNote1)
+            .add(pause1)
+            .add(pause2)
+            .add(musicNote2)
     }
 }

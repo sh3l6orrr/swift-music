@@ -22,6 +22,16 @@ public enum Note : String, CaseIterable {
 }
 
 public extension Note {
+    //------------------- Not Part of API --------------------------//
+    private init?(_ num: Int) {
+        guard let note = intToNote[num] else {
+            return nil
+        }
+        self = note
+    }
+}
+
+public extension Note {
     /// Compute the note a certain Interval above it.
     ///
     /// - Parameters:
@@ -58,11 +68,3 @@ public extension Note {
     }
 }
 
-private extension Note {
-    init?(_ num: Int) {
-        guard let note = intToNote[num] else {
-            return nil
-        }
-        self = note
-    }
-}

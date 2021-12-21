@@ -10,6 +10,25 @@ import Foundation
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
 public struct MusicNote : MelodyElement {
+    /// The underlying note.
+    public let note: Note
+    /// The octave this note is in.
+    public let octave: Int
+    /// The pitch of the note.
+    public let pitch: String
+    /// The value of the note.
+    public let value: Value
+}
+
+public extension MusicNote {
+    /// The frequency of the nore.
+    var frequency: Float {
+        let relative = Float(noteToInt[self.note]! - 10 + 12 * (octave - 4))
+        return Float(Float(440) * pow(Float(2),(relative/Float(12))))
+    }
+}
+
+public extension MusicNote {
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
@@ -21,7 +40,7 @@ public struct MusicNote : MelodyElement {
     /// ```
     /// If no value and velocity is specified, they will be default to
     /// quarter note and 64 respectively.
-    public init?(_ pitch: String, value: Value = ._64) {
+    init?(_ pitch: String, value: Value = ._64) {
         guard pitch.count == 2 else { return nil }
         guard let note = Note(rawValue: pitch[0]) else { return nil }
         guard let octave = Int(pitch[1]) else { return nil }
@@ -33,17 +52,4 @@ public struct MusicNote : MelodyElement {
         self.value = value
         self.pitch = pitch
     }
-    /// The underlying note.
-    public let note: Note
-    /// The octave this note is in.
-    public let octave: Int
-    /// The pitch of the note.
-    public let pitch: String
-    /// The frequency of the nore.
-    public var frequency: Float {
-        let relative = Float(noteToInt[self.note]! - 10 + 12 * (octave - 4))
-        return Float(Float(440) * pow(Float(2),(relative/Float(12))))
-    }
-    /// The value of the note.
-    public let value: Value
 }
