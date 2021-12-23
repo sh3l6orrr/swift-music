@@ -7,8 +7,8 @@
 
 /// Monophonic melody.
 public struct Melody : Playable, Sequence {
-    /// Elements in the melody.
-    public var elements: [MelodyElement]
+    // Elements in the melody.
+    var elements: [MelodyElement]
 }
 
 extension Melody {

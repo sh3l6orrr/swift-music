@@ -19,14 +19,8 @@ public struct Chord : CustomStringConvertible {
 }
 
 extension Chord {
-    /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chord.
-    ///
-    /// ```swift
-    /// let chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)
-    /// ```
-    /// For full reference of available chords, go to <doc:Chords-Reference>
-    ///
-    public init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
+    // For testing convenience.
+    init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
         self.root = root
         self.notes = notes
         self.slash = slash
@@ -42,34 +36,32 @@ extension Chord {
     /// // major third, perfect fifth, major seventh above the root.
     /// ```
     /// For full reference of available chords, go to <doc:Chords-Reference>
-//    public init?(_ name: String) {
-//        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false)
-//        guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
-//        guard !splitedName.contains("") else { return nil }
-//        var rootAndQuality = String(splitedName[splitedName.startIndex])
-//        var root = String(rootAndQuality.removeFirst())
-//        if rootAndQuality.count > 1 && rootAndQuality[rootAndQuality.startIndex] == "b" {
-//            root += String(rootAndQuality[rootAndQuality.startIndex])
-//            rootAndQuality.remove(at: rootAndQuality.startIndex)
-//        }
-//        let quality = rootAndQuality
-//        let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
-//        self.init(root, quality, over: slash)
-//    }
-    //------------------- Not Part of API --------------------------//
-//    private init?(_ root: String, _ quality: String, over slash: String? = nil) {
-//        guard let root = Note(rawValue: root) else { return nil }
-//        guard let intervals = semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
-//        if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }
-//        let notes = intervals.map{ root + $0 }
-//        let doNotCreateSlash = slash == nil || Note(rawValue: slash!) == root
-//
-//        self.notes = Set(notes)
-//        self.root = root
-//        self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
-//        self.intervals = intervals
-//        self.quality = quality
-//    }
+    public init?(_ name: String) {
+        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false)
+        guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
+        guard !splitedName.contains("") else { return nil }
+        var rootAndQuality = String(splitedName[splitedName.startIndex])
+        var root = String(rootAndQuality.removeFirst())
+        if rootAndQuality.count > 1 && rootAndQuality[rootAndQuality.startIndex] == "b" {
+            root += String(rootAndQuality[rootAndQuality.startIndex])
+            rootAndQuality.remove(at: rootAndQuality.startIndex)
+        }
+        let quality = rootAndQuality
+        let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
+        self.init(root, quality, over: slash)
+    }
+    // For the convience of the previous initializer.
+    private init?(_ root: String, _ quality: String, over slash: String? = nil) {
+        guard let root = Note(rawValue: root) else { return nil }
+        guard let intervals = semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
+        if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }
+        let notes = intervals.map{ root + $0 }
+        let doNotCreateSlash = slash == nil || Note(rawValue: slash!) == root
+
+        self.notes = Set(notes)
+        self.root = root
+        self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
+    }
     // Intervals in the chord.
     private var intervals: [Interval] {
         var intervals = [Interval]()

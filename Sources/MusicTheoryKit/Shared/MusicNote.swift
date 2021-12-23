@@ -12,9 +12,9 @@ import StringSubscripts
 /// value, and velocity.
 public struct MusicNote : MelodyElement {
     /// The underlying note.
-    public let note: Note
+    let note: Note
     /// The octave this note is in.
-    public let octave: Int
+    let octave: Int
     /// The pitch of the note.
     let pitch: String
     /// The value of the note.

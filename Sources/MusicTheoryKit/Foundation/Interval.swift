@@ -36,12 +36,8 @@ public enum Interval : Comparable {
 extension Interval {
     /// Create interval based on the number of semitones contained in it.
     public init?(semitone: Int) {
-        guard semitone >= 0 else {
-            return nil
-        }
-        guard let interval = intToInterval[semitone % 12] else {
-            return nil
-        }
+        guard semitone >= 0 else { return nil }
+        guard let interval = intToInterval[semitone % 12] else { return nil }
         self = interval
     }
     /// Whole name of the interval.

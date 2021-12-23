@@ -15,18 +15,10 @@ public enum Value {
     case _32
     /// A sixteenth note.
     case _16
-//    /// Half a quintuplet.
-//    case _10 = 0.1
     /// An eighth note.
     case _8
-    /// Half a triplet.
-//    case _6 = 0.166666666666666
-//    /// A quintuplet.
-//    case _5 = 0.2
     /// A quarter note.
     case _4
-//    /// A triplet.
-//    case _3 = 0.333333333333333
     /// A half note.
     case _2
     /// A whole note.
