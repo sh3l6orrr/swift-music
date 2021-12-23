@@ -20,7 +20,7 @@ public struct MusicNote {
     public let value: Value
 }
 
-extension MusicNote : MelodyElement {
+extension MusicNote {
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
@@ -50,3 +50,5 @@ extension MusicNote : MelodyElement {
         return Float(Float(440) * pow(Float(2),(relative/Float(12))))
     }
 }
+
+extension MusicNote : MelodyElement {}

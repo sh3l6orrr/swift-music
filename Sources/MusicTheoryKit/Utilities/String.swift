@@ -6,16 +6,16 @@
 //
 
 extension String {
-    public subscript (i: Int) -> String {
+    subscript (i: Int) -> String {
         return self[i ..< i + 1]
     }
-    public func substring(fromIndex: Int) -> String {
+    func substring(fromIndex: Int) -> String {
         return self[min(fromIndex, count) ..< count]
     }
-    public func substring(toIndex: Int) -> String {
+    func substring(toIndex: Int) -> String {
         return self[0 ..< max(0, toIndex)]
     }
-    public subscript (r: Range<Int>) -> String {
+    subscript (r: Range<Int>) -> String {
         let range = Range(uncheckedBounds: (lower: max(0, min(count, r.lowerBound)),
                                             upper: min(count, max(0, r.upperBound))))
         let start = index(startIndex, offsetBy: range.lowerBound)

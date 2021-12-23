@@ -11,10 +11,12 @@ public struct Pause {
     public let value: Value
 }
 
-extension Pause : MelodyElement {
+extension Pause {
     /// Create a pause with specified value.
     /// - Parameter value: Value of this pause.
     public init(_ value: Value) {
         self.value = value
     }
 }
+
+extension Pause : MelodyElement {}

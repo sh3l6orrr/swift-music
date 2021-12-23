@@ -18,9 +18,7 @@ extension Melody {
     }
     /// The leagth of the melody measured in beats.
     public var beats: Double {
-        var beats = 0.0
-        for element in elements { beats += element.value.beats }
-        return beats
+        elements.map { element in element.value.beats }.reduce(0, +)
     }
     /// Add an element, either a music note or pause to this melody.
     /// - Parameter element: A music note or a pause.
@@ -45,7 +43,9 @@ extension Melody : Sequence {
         /// Returns the next element in melody not iterated.
         /// - Returns: The next element in melody not iterated.
         public mutating func next() -> MelodyElement? {
-            return self.melody.elements.count != 0 ? self.melody.elements.removeFirst() : nil
+            self.melody.elements.count != 0
+                ? self.melody.elements.removeFirst()
+                : nil
         }
         private var melody: Melody
     }

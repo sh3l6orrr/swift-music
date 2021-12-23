@@ -33,7 +33,7 @@ public enum Interval {
     case M7
 }
 
-extension Interval : Comparable {
+extension Interval {
     /// Create interval based on the number of semitones contained in it.
     public init?(semitone: Int) {
         guard semitone >= 0 else { return nil }
@@ -45,3 +45,5 @@ extension Interval : Comparable {
         intervalToWholeName[self]!
     }
 }
+
+extension Interval : Comparable {}

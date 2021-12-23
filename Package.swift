@@ -10,12 +10,12 @@ let package = Package(
             targets: ["MusicTheoryKit"]),
     ],
     dependencies: [
-        .package(name: "swift-parsing", url: "https://github.com/pointfreeco/swift-parsing.git", from: "0.4.0")
+        
     ],
     targets: [
         .target(name: "MusicTheoryKit",
-                dependencies: [
-                    .product(name: "Parsing", package: "swift-parsing")]
+                dependencies: []
+                    
                ),
         .testTarget(
             name: "MusicTheoryKitTests",

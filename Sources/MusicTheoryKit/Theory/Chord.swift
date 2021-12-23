@@ -5,8 +5,6 @@
 //  Created by Jin Zhang on 12/13/21.
 //
 
-import Parsing
-
 /// A custom musical chord.
 ///
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
@@ -44,32 +42,29 @@ extension Chord {
         }
         let quality = rootAndQuality
         let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
-        self.init(root, quality, over: slash)
-    }
-    // For the convience of the previous initializer.
-    private init?(_ root: String, _ quality: String, over slash: String? = nil) {
         guard let root = Note(rawValue: root) else { return nil }
         guard let intervals = semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
         if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }
         let notes = intervals.map{ root + $0 }
         let doNotCreateSlash = slash == nil || Note(rawValue: slash!) == root
-
+        
         self.notes = Set(notes)
         self.root = root
         self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
     }
+    
     // Intervals in the chord.
     private var intervals: [Interval] {
-        var intervals = [Interval]()
-        for note in notes {
-            if (note == root || note == slash) { continue }
-            intervals.append(note - root)
+        notes.compactMap { note in
+            note == root || note == slash
+            ? nil
+            : note - self.root
         }
-        return intervals.sorted()
+        .sorted()
     }
     // Quality of the chord.
-    private var quality: String {
-        semitonesToQuality[intervals] ?? "Not identified"
+    private var quality: String? {
+        semitonesToQuality[intervals]
     }
     /// The name of a chord.
     ///
@@ -80,18 +75,30 @@ extension Chord {
     /// let chord = Chord(root: root, notes: notes)?
     /// ```
     public var name: String {
-        if slash != nil && slash != root {
-            return root.rawValue + quality + "/" + slash!.rawValue
+        if let quality = quality {
+            return slash != nil && slash != root
+            ? root.rawValue + quality + "/" + slash!.rawValue
+            : root.rawValue + quality
         } else {
-            return root.rawValue + quality
+            return "Not Identified"
         }
     }
     /// Describe the chord.
     public var description: String {
-        let ifSlashDescription = slash != nil && slash != root ? " slash" : ""
-        let slashDescription = slash != nil && slash != root ? " over \(slash!.rawValue)" : ""
-        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
-        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
-        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
+        if quality != nil {
+            let ifSlashDescription = slash != nil && slash != root ? " slash" : ""
+            let slashDescription = slash != nil && slash != root ? " over \(slash!.rawValue)" : ""
+            let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+            let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+            return """
+                This is a\(ifSlashDescription) chord named \(name)\(slashDescription),
+                with root note \(root),
+                and component notes \(notesDescription),
+                which are respectively \(intervalsDescription) above the root.
+            """
+        } else {
+            return "This chord is not identified."
+        }
+        
     }
 }
