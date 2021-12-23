@@ -13,12 +13,7 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Rainbow.git", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
-        .target(
-            name: "MusicTheoryKit",
-            dependencies: ["StringSubscripts"]),
-        .target(
-            name: "StringSubscripts",
-            dependencies: []),
+        .target(name: "MusicTheoryKit"),
         .testTarget(
             name: "MusicTheoryKitTests",
             dependencies: [

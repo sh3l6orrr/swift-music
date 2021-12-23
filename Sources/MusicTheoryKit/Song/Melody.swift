@@ -6,7 +6,7 @@
 //
 
 /// Monophonic melody.
-public struct Melody : Playable, Sequence {
+public struct Melody {
     // Elements in the melody.
     var elements: [MelodyElement]
 }
@@ -27,16 +27,14 @@ extension Melody {
     public func add(_ element: MelodyElement) -> Melody {
         Melody(elements: elements + [element])
     }
+}
+
+extension Melody : Sequence {
     /// Get an iterator of this melody.
     /// - Returns: An iterator of this melody.
     public func makeIterator() -> Iterator {
         Iterator(self)
     }
-
-}
-
-/// Nested Type.
-extension Melody {
     /// Iterator of a melody.
     public struct Iterator : IteratorProtocol {
         /// Create an iterator of a melody.
@@ -44,14 +42,11 @@ extension Melody {
         public init(_ melody: Melody) {
             self.melody = melody
         }
+        /// Returns the next element in melody not iterated.
+        /// - Returns: The next element in melody not iterated.
+        public mutating func next() -> MelodyElement? {
+            return self.melody.elements.count != 0 ? self.melody.elements.removeFirst() : nil
+        }
         private var melody: Melody
-    }
-}
-
-extension Melody.Iterator {
-    /// Returns the next element in melody not iterated.
-    /// - Returns: The next element in melody not iterated.
-    public mutating func next() -> MelodyElement? {
-        return self.melody.elements.count != 0 ? self.melody.elements.removeFirst() : nil
     }
 }

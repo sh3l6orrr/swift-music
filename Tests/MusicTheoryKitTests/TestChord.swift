@@ -19,7 +19,7 @@ final class TestChord : XCTestCase {
         XCTAssertEqual(chord5.name, "C11")
         XCTAssertEqual(chord6.name, "C13")
     }
-    
+
     func testSlashChord() throws {
         XCTAssertEqual(slashChord1.name, "Fsus2/Bb")
         XCTAssertEqual(slashChord2.name, "Fsus2")

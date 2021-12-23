@@ -9,7 +9,7 @@
 ///
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
 ///
-public struct Chord : CustomStringConvertible {
+public struct Chord {
     // The root of this chord.
     let root: Note
     // Set of notes in the chord.
@@ -84,16 +84,16 @@ extension Chord {
     /// let chord = Chord(root: root, notes: notes)?
     /// ```
     public var name: String {
-        if let slash = slash {
-            return root.rawValue + quality + "/" + slash.rawValue
+        if slash != nil && slash != root {
+            return root.rawValue + quality + "/" + slash!.rawValue
         } else {
             return root.rawValue + quality
         }
     }
     /// Describe the chord.
     public var description: String {
-        let ifSlashDescription = slash != nil ? " slash" : ""
-        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
+        let ifSlashDescription = slash != nil && slash != root ? " slash" : ""
+        let slashDescription = slash != nil && slash != root ? " over \(slash!.rawValue)" : ""
         let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
         let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
         return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."

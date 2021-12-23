@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import StringSubscripts
 
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
-public struct MusicNote : MelodyElement {
+public struct MusicNote {
     /// The underlying note.
     let note: Note
     /// The octave this note is in.
@@ -21,7 +20,7 @@ public struct MusicNote : MelodyElement {
     public let value: Value
 }
 
-extension MusicNote {
+extension MusicNote : MelodyElement {
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
