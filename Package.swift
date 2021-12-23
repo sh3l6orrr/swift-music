@@ -10,15 +10,17 @@ let package = Package(
             targets: ["MusicTheoryKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/onevcat/Rainbow.git", .upToNextMajor(from: "4.0.0"))
+        .package(name: "swift-parsing", url: "https://github.com/pointfreeco/swift-parsing.git", from: "0.4.0")
     ],
     targets: [
-        .target(name: "MusicTheoryKit"),
+        .target(name: "MusicTheoryKit",
+                dependencies: [
+                    .product(name: "Parsing", package: "swift-parsing")]
+               ),
         .testTarget(
             name: "MusicTheoryKitTests",
             dependencies: [
-                "MusicTheoryKit",
-                .product(name: "Rainbow", package: "Rainbow")
+                "MusicTheoryKit"
             ]
         )
     ]

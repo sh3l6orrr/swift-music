@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Rainbow
 @testable import MusicTheoryKit
 
 final class TestChord : XCTestCase {
@@ -40,21 +39,21 @@ final class TestChord : XCTestCase {
     }
 
     func testDescrition() throws {
-        print("*** Description of chord1. *** \n \(chord1.description.green) \n *** End of description. ***\n")
-        print("*** Description of chord2. *** \n \(chord2.description.green) \n *** End of description. ***\n")
-        print("*** Description of slashChord1. *** \n \(slashChord1.description.green) \n *** End of description. ***\n")
-        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description.green) \n *** End of description. ***\n")
+        print("*** Description of chord1. *** \n \(chord1.description) \n *** End of description. ***\n")
+        print("*** Description of chord2. *** \n \(chord2.description) \n *** End of description. ***\n")
+        print("*** Description of slashChord1. *** \n \(slashChord1.description) \n *** End of description. ***\n")
+        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description) \n *** End of description. ***\n")
     }
     
-    let chord1: Chord = Chord(.F, Set([.F, .G, .C]))
-    let chord2: Chord = Chord(.Gb, Set([.E, .Db, .Gb, .B]))
-    let chord3: Chord = Chord(.B, Set([.A, .F, .D, .B]))
-    let chord4: Chord = Chord(.B, Set([.A, .F, .D, .F, .B]))
-    let chord5: Chord = Chord(.C, Set([.C, .D, .E, .F, .G, .Bb]))
-    let chord6: Chord = Chord(.C, Set([.C, .D, .E, .F, .G, .Bb, .A]))
+    let chord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: nil)
+    let chord2: Chord = Chord(root: .Gb, notes: Set([.E, .Db, .Gb, .B]), slash: nil)
+    let chord3: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .B]), slash: nil)
+    let chord4: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .F, .B]), slash: nil)
+    let chord5: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb]), slash: nil)
+    let chord6: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb, .A]), slash: nil)
     
-    let slashChord1: Chord = Chord(.F, Set([.F, .G, .C]), over: .Bb)
-    let slashChord2: Chord = Chord(.F, Set([.F, .G, .C]), over: .F)
+    let slashChord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)
+    let slashChord2: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .F)
     
 }
 

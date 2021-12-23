@@ -5,6 +5,8 @@
 //  Created by Jin Zhang on 12/13/21.
 //
 
+import Parsing
+
 /// A custom musical chord.
 ///
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
@@ -19,12 +21,6 @@ public struct Chord {
 }
 
 extension Chord {
-    // For testing convenience.
-    init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
-        self.root = root
-        self.notes = notes
-        self.slash = slash
-    }
     /// Create a chord directly from it's name.
     ///
     /// Create a chord by using it's name directly is the most conveinient way!

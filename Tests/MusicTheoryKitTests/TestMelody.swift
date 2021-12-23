@@ -15,11 +15,11 @@ final class TestMelody : XCTestCase {
     }
     
     func testIteration() throws {
-        print("*** Elements in this melody ***".lightBlue)
+        print("*** Elements in this melody ***")
         for musicElement in melody1 {
             print(musicElement)
         }
-        print("*** Elements in this melody ***".lightBlue)
+        print("*** Elements in this melody ***")
     }
     
     let musicNote1 = MusicNote("C4", value: ._4)!

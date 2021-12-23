@@ -33,10 +33,8 @@ print(myChord.description)
 - ``MusicNote``
 - ``Pause``
 - ``Value``
-- ``Beats``
 
 ### Creating Melody
 
-- ``Playable``
 - ``Melody``
 - ``MelodyElement``
