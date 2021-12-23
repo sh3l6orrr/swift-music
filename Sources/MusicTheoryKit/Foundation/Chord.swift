@@ -10,6 +10,15 @@
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
 ///
 public struct Chord : CustomStringConvertible {
+    // The root of this chord.
+    let root: Note
+    // Set of notes in the chord.
+    let notes: Set<Note>
+    // The note this chord is over.
+    let slash: Note?
+}
+
+extension Chord {
     /// Create a chord based on its component notes and the root note. Optionally, specify a slash root if it's a slash chord.
     ///
     /// ```swift
@@ -22,51 +31,6 @@ public struct Chord : CustomStringConvertible {
         self.notes = notes
         self.slash = slash
     }
-    /// The root of this chord.
-    public let root: Note
-    /// Set of notes in the chord.
-    public let notes: Set<Note>
-    /// The note this chord is over.
-    public let slash: Note?
-    /// Intervals in the chord.
-    public var intervals: [Interval] {
-        var intervals = [Interval]()
-        for note in notes {
-            if (note == root || note == slash) { continue }
-            intervals.append(note - root)
-        }
-        return intervals.sorted()
-    }
-    /// Quality of the chord.
-    public var quality: String {
-        semitonesToQuality[intervals] ?? "Not identified"
-    }
-    /// The name of a chord.
-    ///
-    /// The following code generate a chord with name "Esus4"
-    /// ```swift
-    /// let root: Note = .E
-    /// let notes: Set<Note> = Set([.E, .A, .B])
-    /// let chord = Chord(root: root, notes: notes)?
-    /// ```
-    public var name: String {
-        if let slash = slash {
-            return root.rawValue + quality + "/" + slash.rawValue
-        } else {
-            return root.rawValue + quality
-        }
-    }
-    /// Describe the chord.
-    public var description: String {
-        let ifSlashDescription = slash != nil ? " slash" : ""
-        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
-        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
-        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
-        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
-    }
-}
-
-extension Chord {
     /// Create a chord directly from it's name.
     ///
     /// Create a chord by using it's name directly is the most conveinient way!
@@ -106,4 +70,40 @@ extension Chord {
 //        self.intervals = intervals
 //        self.quality = quality
 //    }
+    // Intervals in the chord.
+    private var intervals: [Interval] {
+        var intervals = [Interval]()
+        for note in notes {
+            if (note == root || note == slash) { continue }
+            intervals.append(note - root)
+        }
+        return intervals.sorted()
+    }
+    // Quality of the chord.
+    private var quality: String {
+        semitonesToQuality[intervals] ?? "Not identified"
+    }
+    /// The name of a chord.
+    ///
+    /// The following code generate a chord with name "Esus4"
+    /// ```swift
+    /// let root: Note = .E
+    /// let notes: Set<Note> = Set([.E, .A, .B])
+    /// let chord = Chord(root: root, notes: notes)?
+    /// ```
+    public var name: String {
+        if let slash = slash {
+            return root.rawValue + quality + "/" + slash.rawValue
+        } else {
+            return root.rawValue + quality
+        }
+    }
+    /// Describe the chord.
+    public var description: String {
+        let ifSlashDescription = slash != nil ? " slash" : ""
+        let slashDescription = slash != nil ? " over \(slash!.rawValue)" : ""
+        let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+        let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+        return "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), with root note \(root), and component notes \(notesDescription), which are respectively \(intervalsDescription) above the root."
+    }
 }

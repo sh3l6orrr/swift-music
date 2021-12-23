@@ -16,7 +16,7 @@
 /// Note.Bb
 /// ```
 /// > Only flats are currently supported. For example, the note above C is Db, instead of C#.
-public enum Note : String, CaseIterable {
+public enum Note : String {
     /// The musical note C.
     case C
     /// The musical note Db.
@@ -43,16 +43,13 @@ public enum Note : String, CaseIterable {
     case B
 }
 
+
 extension Note {
-    //------------------- Not Part of API --------------------------//
+    // For helping note arithemetics.
     private init?(_ num: Int) {
-        guard let note = intToNote[num] else {
-            return nil
-        }
+        guard let note = intToNote[num] else { return nil }
         self = note
     }
-}
-extension Note {
     /// Compute the note a certain Interval above it.
     ///
     /// - Parameters:
@@ -88,4 +85,3 @@ extension Note {
         return Interval(semitone: difference > 0 ? difference : difference + 12)!
     }
 }
-

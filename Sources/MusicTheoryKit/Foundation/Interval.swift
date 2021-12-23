@@ -6,7 +6,7 @@
 //
 
 /// A custom musical interval.
-public enum Interval : Comparable, CaseIterable {
+public enum Interval : Comparable {
     /// A musical interval that contains 0 or 12 semitones.
     case octave
     /// A musical interval that contains 1 semitones.
@@ -31,10 +31,6 @@ public enum Interval : Comparable, CaseIterable {
     case m7
     /// A musical interval that contains 11 semitones.
     case M7
-    /// Whole name of the interval.
-    public var wholeName: String {
-        intervalToWholeName[self]!
-    }
 }
 
 extension Interval {
@@ -47,5 +43,9 @@ extension Interval {
             return nil
         }
         self = interval
+    }
+    /// Whole name of the interval.
+    public var wholeName: String {
+        intervalToWholeName[self]!
     }
 }

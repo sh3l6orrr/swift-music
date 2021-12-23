@@ -7,25 +7,25 @@
 
 /// Monophonic melody.
 public struct Melody : Playable, Sequence {
-    /// Create a melody with an array of melody elements.
-    public init(_ elements: [MelodyElement] = []) {
-        self.elements = elements
-    }
     /// Elements in the melody.
     public var elements: [MelodyElement]
+}
+
+extension Melody {
+    /// Create a melody with an array of melody elements.
+    public init() {
+        self.elements = []
+    }
     /// The leagth of the melody measured in beats.
     public var beats: Double {
         var beats = 0.0
         for element in elements { beats += element.value.beats }
         return beats
     }
-}
-
-extension Melody {
     /// Add an element, either a music note or pause to this melody.
     /// - Parameter element: A music note or a pause.
     public func add(_ element: MelodyElement) -> Melody {
-        Melody(elements + [element])
+        Melody(elements: elements + [element])
     }
     /// Get an iterator of this melody.
     /// - Returns: An iterator of this melody.

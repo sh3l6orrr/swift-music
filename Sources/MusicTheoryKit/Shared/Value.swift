@@ -35,26 +35,20 @@ public enum Value {
     case v_2
     /// A long.
     case v_4
+}
+
+extension Value {
+    // This is for the purpose of converting beats and value.
+    private init?(_ beats: Double) {
+        guard let value = beatsToValue[beats] else { return nil }
+        self = value
+    }
     /// Beats correspondence of the value.
     public var beats: Double {
         valueToBeats[self]!
     }
-}
-
-extension Value {
-    private init(_ beats: Double) throws {
-        guard let value = beatsToValue[beats] else { throw ValueError.creationFailure }
-        self = value
-    }
-}
-
-extension Value {
     /// Adding two values.
-    public static func + (_ lhs: Value, _ rhs: Value) throws -> Value {
-        try Value(lhs.beats + rhs.beats)
+    public static func + (_ lhs: Value, _ rhs: Value) -> Value? {
+        Value(lhs.beats + rhs.beats)
     }
-}
-
-fileprivate enum ValueError: Error {
-    case creationFailure
 }
