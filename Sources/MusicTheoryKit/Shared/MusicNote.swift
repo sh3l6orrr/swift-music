@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StringSubscripts
 
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.

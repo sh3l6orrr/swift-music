@@ -38,8 +38,8 @@ public enum Value : Double {
     /// Adding two values.
 }
 
-public extension Value {
-    static func + (_ lhs: Value, _ rhs: Value) -> Value? {
+extension Value {
+    public static func + (_ lhs: Value, _ rhs: Value) -> Value? {
         return Value(rawValue: lhs.rawValue + rhs.rawValue)
     }
 }

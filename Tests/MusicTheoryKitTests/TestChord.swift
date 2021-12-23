@@ -20,49 +20,41 @@ final class TestChord : XCTestCase {
         XCTAssertEqual(chord6.name, "C13")
     }
     
-    func testCreationFail() throws {
-        XCTAssertNil(nilChord1)
-        XCTAssertNil(nilChord2)
-        XCTAssertNil(nilChord3)
-    }
-    
     func testSlashChord() throws {
         XCTAssertEqual(slashChord1.name, "Fsus2/Bb")
         XCTAssertEqual(slashChord2.name, "Fsus2")
     }
-    
-    func testNameInit() throws {
-        XCTAssertEqual(Chord("C13")?.description, chord6.description)
-        XCTAssertEqual(Chord("Bm7b5")?.description, chord4.description)
-        XCTAssertEqual(Chord("Fsus2/Bb")?.description, slashChord1.description)
-        XCTAssertEqual(Chord("Fsus2")?.description, slashChord2.description)
-    }
-    
-    func testNameInitFailure() throws {
-        XCTAssertNil(Chord("/"))
-        XCTAssertNil(Chord("5"))
-        XCTAssertNil(Chord("C/F/D"))
-        XCTAssertNil(Chord("/Csus2/F/"))
-    }
-    
+//
+//    func testNameInit() throws {
+//        XCTAssertEqual(Chord("C13")?.description, chord6.description)
+//        XCTAssertEqual(Chord("Bm7b5")?.description, chord4.description)
+//        XCTAssertEqual(Chord("Fsus2/Bb")?.description, slashChord1.description)
+//        XCTAssertEqual(Chord("Fsus2")?.description, slashChord2.description)
+//    }
+//
+//    func testNameInitFailure() throws {
+//        XCTAssertNil(Chord("/"))
+//        XCTAssertNil(Chord("5"))
+//        XCTAssertNil(Chord("C/F/D"))
+//        XCTAssertNil(Chord("/Csus2/F/"))
+//    }
+//
     func testDescrition() throws {
         print("*** Description of chord1. *** \n \(chord1.description.green) \n *** End of description. ***\n")
         print("*** Description of chord2. *** \n \(chord2.description.green) \n *** End of description. ***\n")
         print("*** Description of slashChord1. *** \n \(slashChord1.description.green) \n *** End of description. ***\n")
-        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description.green) \n *** End of description. ***\n")
+//        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description.green) \n *** End of description. ***\n")
     }
     
-    let chord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]))!
-    let chord2: Chord = Chord(root: .Gb, notes: Set([.E, .Db, .Gb, .B]))!
-    let chord3: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .B]))!
-    let chord4: Chord = Chord(root: .B, notes: Set([.A, .F, .D, .F, .B]))!
-    let chord5: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb]))!
-    let chord6: Chord = Chord(root: .C, notes: Set([.C, .D, .E, .F, .G, .Bb, .A]))!
+    let chord1: Chord = Chord(.F, Set([.F, .G, .C]))
+    let chord2: Chord = Chord(.Gb, Set([.E, .Db, .Gb, .B]))
+    let chord3: Chord = Chord(.B, Set([.A, .F, .D, .B]))
+    let chord4: Chord = Chord(.B, Set([.A, .F, .D, .F, .B]))
+    let chord5: Chord = Chord(.C, Set([.C, .D, .E, .F, .G, .Bb]))
+    let chord6: Chord = Chord(.C, Set([.C, .D, .E, .F, .G, .Bb, .A]))
     
-    let slashChord1: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .Bb)!
-    let slashChord2: Chord = Chord(root: .F, notes: Set([.F, .G, .C]), slash: .F)!
+    let slashChord1: Chord = Chord(.F, Set([.F, .G, .C]), over: .Bb)
+    let slashChord2: Chord = Chord(.F, Set([.F, .G, .C]), over: .F)
     
-    let nilChord1: Chord? = Chord(root: .E, notes: Set([.E, .Ab, .F]))
-    let nilChord2: Chord? = Chord(root: .E, notes: Set([.E, .Ab, .F]), slash: .B)
-    let nilChord3: Chord? = Chord(root: .C, notes: Set([.E, .E, .F]), slash: .B)
 }
+

@@ -15,6 +15,9 @@ let package = Package(
     targets: [
         .target(
             name: "MusicTheoryKit",
+            dependencies: ["StringSubscripts"]),
+        .target(
+            name: "StringSubscripts",
             dependencies: []),
         .testTarget(
             name: "MusicTheoryKitTests",
