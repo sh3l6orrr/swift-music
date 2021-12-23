@@ -8,26 +8,16 @@
 /// Monophonic melody.
 public struct Melody : Playable, Sequence {
     /// Create a melody with an array of melody elements.
-    public init(_ elements: [MelodyElement]) {
+    public init(_ elements: [MelodyElement] = []) {
         self.elements = elements
     }
     /// Elements in the melody.
     public var elements: [MelodyElement]
     /// The leagth of the melody measured in beats.
-    public var length: Beats {
-        var length = 0.0
-        for element in elements { length += element.value.rawValue }
-        return length
-    }
-}
-
-extension Melody {
-    /// Create an empty melody with 0 beats.
-    public init() {
-        self.elements = []
-    }
-    private init(_ elements: [MelodyElement]) {
-        self.elements = elements
+    public var beats: Double {
+        var beats = 0.0
+        for element in elements { beats += element.value.beats }
+        return beats
     }
 }
 

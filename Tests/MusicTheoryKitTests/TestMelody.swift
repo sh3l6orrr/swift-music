@@ -11,7 +11,7 @@ import MusicTheoryKit
 final class TestMelody : XCTestCase {
     
     func testLength() throws {
-        XCTAssertEqual(melody1.length, 2)
+        XCTAssertEqual(melody1.beats, 2)
     }
     
     func testIteration() throws {
