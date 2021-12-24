@@ -9,7 +9,15 @@ import Foundation
 
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
-public struct MusicNote {
+public struct MusicNote : MelodyElement {
+    /// The underlying note.
+    let note: Note
+    /// The octave this note is in.
+    let octave: Int
+    /// The pitch of the note.
+    let pitch: String
+    /// The value of the note.
+    public let value: Value
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
@@ -33,14 +41,6 @@ public struct MusicNote {
         self.value = value
         self.pitch = pitch
     }
-    /// The underlying note.
-    let note: Note
-    /// The octave this note is in.
-    let octave: Int
-    /// The pitch of the note.
-    let pitch: String
-    /// The value of the note.
-    public let value: Value
 }
 
 extension MusicNote {
@@ -50,5 +50,3 @@ extension MusicNote {
         return Float(Float(440) * pow(Float(2),(relative/Float(12))))
     }
 }
-
-extension MusicNote : MelodyElement {}

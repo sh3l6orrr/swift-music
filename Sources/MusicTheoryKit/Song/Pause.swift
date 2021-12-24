@@ -6,14 +6,12 @@
 //
 
 /// A musical Pause.
-public struct Pause {
+public struct Pause : MelodyElement {
+    /// Value of this pause.
+    public let value: Value
     /// Create a pause with specified value.
     /// - Parameter value: Value of this pause.
     public init(_ value: Value) {
         self.value = value
     }
-    /// Value of this pause.
-    public let value: Value
 }
-
-extension Pause : MelodyElement {}

@@ -7,12 +7,12 @@
 
 /// Monophonic melody.
 public struct Melody {
+    // Elements in the melody.
+    var elements: [MelodyElement]
     /// Create a melody with an array of melody elements.
     public init() {
         self.elements = []
     }
-    // Elements in the melody.
-    var elements: [MelodyElement]
 }
 
 extension Melody {

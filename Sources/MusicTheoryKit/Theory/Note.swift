@@ -17,11 +17,6 @@
 /// ```
 /// > Only flats are currently supported. For example, the note above C is Db, instead of C#.
 public enum Note : String {
-    // For helping note arithemetics.
-    private init?(_ num: Int) {
-        guard let note = intToNote[num] else { return nil }
-        self = note
-    }
     /// The musical note C.
     case C
     /// The musical note Db.
@@ -46,6 +41,11 @@ public enum Note : String {
     case Bb
     /// The musical note B.
     case B
+    // For helping note arithemetics.
+    private init?(_ num: Int) {
+        guard let note = intToNote[num] else { return nil }
+        self = note
+    }
 }
 
 
