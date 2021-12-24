@@ -10,17 +10,6 @@ import Foundation
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
 public struct MusicNote {
-    /// The underlying note.
-    let note: Note
-    /// The octave this note is in.
-    let octave: Int
-    /// The pitch of the note.
-    let pitch: String
-    /// The value of the note.
-    public let value: Value
-}
-
-extension MusicNote {
     /// Create a note by specifying pitch, value, and velocity.
     ///
     /// To create a valid Music note, the pitch must be in the range A0 - C8,
@@ -44,6 +33,17 @@ extension MusicNote {
         self.value = value
         self.pitch = pitch
     }
+    /// The underlying note.
+    let note: Note
+    /// The octave this note is in.
+    let octave: Int
+    /// The pitch of the note.
+    let pitch: String
+    /// The value of the note.
+    public let value: Value
+}
+
+extension MusicNote {
     /// The frequency of the nore.
     public var frequency: Float {
         let relative = Float(noteToInt[self.note]! - 10 + 12 * (octave - 4))

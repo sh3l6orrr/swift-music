@@ -7,15 +7,15 @@
 
 /// Monophonic melody.
 public struct Melody {
+    /// Create a melody with an array of melody elements.
+    public init() {
+        self.elements = []
+    }
     // Elements in the melody.
     var elements: [MelodyElement]
 }
 
 extension Melody {
-    /// Create a melody with an array of melody elements.
-    public init() {
-        self.elements = []
-    }
     /// The leagth of the melody measured in beats.
     public var beats: Double {
         elements.map { element in element.value.beats }.reduce(0, +)

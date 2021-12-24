@@ -7,6 +7,12 @@
 
 /// A custom musical interval.
 public enum Interval {
+    /// Create interval based on the number of semitones contained in it.
+    public init?(semitone: Int) {
+        guard semitone >= 0 else { return nil }
+        guard let interval = intToInterval[semitone % 12] else { return nil }
+        self = interval
+    }
     /// A musical interval that contains 0 or 12 semitones.
     case octave
     /// A musical interval that contains 1 semitones.
@@ -34,12 +40,6 @@ public enum Interval {
 }
 
 extension Interval {
-    /// Create interval based on the number of semitones contained in it.
-    public init?(semitone: Int) {
-        guard semitone >= 0 else { return nil }
-        guard let interval = intToInterval[semitone % 12] else { return nil }
-        self = interval
-    }
     /// Whole name of the interval.
     public var wholeName: String {
         intervalToWholeName[self]!

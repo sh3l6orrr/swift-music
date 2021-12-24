@@ -7,6 +7,11 @@
 
 /// Representation of value of a note in a music context.
 public enum Value {
+    // This is for the purpose of converting beats and value.
+    private init?(_ beats: Double) {
+        guard let value = beatsToValue[beats] else { return nil }
+        self = value
+    }
     /// A hunderd-twenty-eighth note.
     case _128
     /// A sixty-fourth note.
@@ -30,11 +35,6 @@ public enum Value {
 }
 
 extension Value {
-    // This is for the purpose of converting beats and value.
-    private init?(_ beats: Double) {
-        guard let value = beatsToValue[beats] else { return nil }
-        self = value
-    }
     /// Beats correspondence of the value.
     public var beats: Double {
         valueToBeats[self]!

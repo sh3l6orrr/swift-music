@@ -10,15 +10,6 @@
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.
 ///
 public struct Chord {
-    // The root of this chord.
-    let root: Note
-    // Set of notes in the chord.
-    let notes: Set<Note>
-    // The note this chord is over.
-    let slash: Note?
-}
-
-extension Chord {
     /// Create a chord directly from it's name.
     ///
     /// Create a chord by using it's name directly is the most conveinient way!
@@ -58,6 +49,15 @@ extension Chord {
         self.notes = notes
         self.slash = slash
     }
+    // The root of this chord.
+    let root: Note
+    // Set of notes in the chord.
+    let notes: Set<Note>
+    // The note this chord is over.
+    let slash: Note?
+}
+
+extension Chord {
     // Intervals in the chord.
     private var intervals: [Interval] {
         notes.compactMap { note in
@@ -104,6 +104,5 @@ extension Chord {
         } else {
             return "This chord is not identified."
         }
-        
     }
 }
