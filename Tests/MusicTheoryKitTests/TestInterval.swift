@@ -8,17 +8,16 @@
 import XCTest
 import MusicTheoryKit
 
-final class TestInterval : XCTestCase {
-    
+final class TestInterval : XCTestCase {}
+
+extension TestInterval {
     func testIntervalWholeName() throws {
         XCTAssertEqual(Interval.octave.wholeName, "octave")
         XCTAssertEqual(Interval.m6.wholeName, "minor sixth")
     }
-    
     func testCreation() throws {
         XCTAssertNotNil(Interval(semitone: 9031))
         XCTAssertNil(Interval(semitone: -4))
     }
-    
 }
 

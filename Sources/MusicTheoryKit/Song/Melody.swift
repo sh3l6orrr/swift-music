@@ -13,6 +13,9 @@ public struct Melody {
     public init() {
         self.elements = []
     }
+    private init(_ elements: [MelodyElement]) {
+        self.elements = elements
+    }
 }
 
 extension Melody {
@@ -23,7 +26,7 @@ extension Melody {
     /// Add an element, either a music note or pause to this melody.
     /// - Parameter element: A music note or a pause.
     public func add(_ element: MelodyElement) -> Melody {
-        Melody(elements: elements + [element])
+        Melody(elements + [element])
     }
 }
 
