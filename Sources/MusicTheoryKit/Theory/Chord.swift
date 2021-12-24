@@ -52,7 +52,12 @@ extension Chord {
         self.root = root
         self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
     }
-    
+    /// Create a chord by specifying root, notes, and slash.
+    public init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
+        self.root = root
+        self.notes = notes
+        self.slash = slash
+    }
     // Intervals in the chord.
     private var intervals: [Interval] {
         notes.compactMap { note in

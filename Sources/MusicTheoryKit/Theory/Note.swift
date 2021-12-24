@@ -85,3 +85,5 @@ extension Note {
         return Interval(semitone: difference > 0 ? difference : difference + 12)!
     }
 }
+
+extension Note : CaseIterable {}
