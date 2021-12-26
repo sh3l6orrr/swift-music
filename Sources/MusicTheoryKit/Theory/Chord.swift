@@ -71,6 +71,9 @@ extension Chord {
     private var quality: String? {
         semitonesToQuality[intervals]
     }
+    public var isIn: (Scale) -> Bool {{ (_ scale: Scale) in
+        self.notes.isSubset(of: scale.notes)
+    }}
     /// The name of a chord.
     ///
     /// The following code generate a chord with name "Esus4"
@@ -106,3 +109,4 @@ extension Chord {
         }
     }
 }
+

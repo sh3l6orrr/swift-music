@@ -16,25 +16,32 @@ Note.D - Note.E  // Interval.m7
 
 ### Create a Chord
 ```swift
-let chord = Chord("Cmaj9/G")!
-myChord.description
+let Cmaj9/G = Chord("Cmaj9/G")!
+chord.description
 
 // This is a slash chord named Cmaj9/G over G, with root note C, and component 
 // notes D, E, G, B, which are respectively major second, major third, perfect
 // fifth, major seventh above the root. 
 ```
 
+### Is this chord in my scale?
+```swift
+let chord = Chord("Cmaj9/G")!
+let scale = Scale(.Cs, .major) // C♯ Major
+chord.isIn(scale) // True
+```
+
 ### Compose a Melody
 ```swift
-let melody = Melody()
+let 🎶 = Melody()
     .add(MusicNote("E4", value: ._2))
     .add(MusicNote("D4", value: ._2))
     .add(Pause(._2))
     .add(MusicNote("E4", value: ._2))
     .add(MusicNote("C4", value: ._1))
 
-melody.length // 3 Beats
-melody.visualization // To be implemented
+🎶.length // 3 Beats
+🎶.visualization // To be implemented
 ```
 
 ### Compose a Chord Progression

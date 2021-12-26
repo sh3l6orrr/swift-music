@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "music-theory-kit",
+    platforms: [.macOS(.v12)],
     products: [
         .library(
             name: "MusicTheoryKit",

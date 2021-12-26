@@ -7,12 +7,21 @@
 
 public enum Mode {
     case ionian
-    case dorian
-    case phrygian
-    case lydian
-    case mixolydian
+    public static let major = ionian
+//    case dorian
+//    case phrygian
+//    case lydian
+//    case mixolydian
     case aeolian
-    case locrian
-    case pentatonic
-    case blues
+    public static let minor = aeolian
+//    case locrian
+//    case pentatonic
+//    case blues
+}
+
+extension Mode {
+    // The intervals contained in this mode.
+    public var intervals: [Interval] {
+        modeToInterval[self]!
+    }
 }

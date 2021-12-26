@@ -6,42 +6,42 @@
 //
 
 let semitonesToQuality: [[Interval] : String] = [
-    [Interval.p5] : "5",
-    [Interval.M2, Interval.p5]: "sus2",
-    [Interval.m3, Interval.tritone]: "dim",
-    [Interval.m3, Interval.p5]: "m",
-    [Interval.M3, Interval.p5]: "",
-    [Interval.M3, Interval.m6]: "aug",
-    [Interval.p4, Interval.p5]: "sus4",
+    [.p5] : "5",
+    [.M2, .p5]: "sus2",
+    [.m3, .tritone]: "dim",
+    [.m3, .p5]: "m",
+    [.M3, .p5]: "",
+    [.M3, .m6]: "aug",
+    [.p4, .p5]: "sus4",
     
-    [Interval.m3, Interval.tritone, Interval.M6]: "dim7",
-    [Interval.m3, Interval.tritone, Interval.m7]: "m7b5",
-    [Interval.M3, Interval.tritone, Interval.m7]: "7-5",
+    [.m3, .tritone, .M6]: "dim7",
+    [.m3, .tritone, .m7]: "m7b5",
+    [.M3, .tritone, .m7]: "7-5",
     
-    [Interval.m3, Interval.p5, Interval.M6]: "m6",
-    [Interval.M3, Interval.p5, Interval.M6]: "6",
+    [.m3, .p5, .M6]: "m6",
+    [.M3, .p5, .M6]: "6",
     
-    [Interval.m3, Interval.p5, Interval.M7]: "mMaj7",
-    [Interval.M3, Interval.m6, Interval.m7]: "aug7",
-    [Interval.p4, Interval.p5, Interval.m7]: "7sus4",
+    [.m3, .p5, .M7]: "mMaj7",
+    [.M3, .m6, .m7]: "aug7",
+    [.p4, .p5, .m7]: "7sus4",
     
-    [Interval.M2, Interval.M3, Interval.p5]: "add9",
-    [Interval.M3, Interval.p4, Interval.p5]: "add11",
+    [.M2, .M3, .p5]: "add9",
+    [.M3, .p4, .p5]: "add11",
     
-    [Interval.m3, Interval.p5, Interval.m7]: "m7",
-    [Interval.M3, Interval.p5, Interval.m7]: "7",
-    [Interval.M3, Interval.p5, Interval.M7]: "maj7",
+    [.m3, .p5, .m7]: "m7",
+    [.M3, .p5, .m7]: "7",
+    [.M3, .p5, .M7]: "maj7",
     
-    [Interval.M2, Interval.m3, Interval.p5, Interval.m7]: "m9",
-    [Interval.M2, Interval.M3, Interval.p5, Interval.m7]: "9",
-    [Interval.M2, Interval.M3, Interval.p5, Interval.M7]: "maj9",
+    [.M2, .m3, .p5, .m7]: "m9",
+    [.M2, .M3, .p5, .m7]: "9",
+    [.M2, .M3, .p5, .M7]: "maj9",
     
-    [Interval.M2, Interval.m3, Interval.p4, Interval.p5, Interval.m7]: "m11",
-    [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.m7]: "11",
-    [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M7]: "maj11",
+    [.M2, .m3, .p4, .p5, .m7]: "m11",
+    [.M2, .M3, .p4, .p5, .m7]: "11",
+    [.M2, .M3, .p4, .p5, .M7]: "maj11",
     
-    [Interval.M2, Interval.m3, Interval.p4, Interval.p5, Interval.M6, Interval.m7]: "m13",
-    [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M6, Interval.m7]: "13",
-    [Interval.M2, Interval.M3, Interval.p4, Interval.p5, Interval.M6, Interval.M7]: "maj13",
+    [.M2, .m3, .p4, .p5, .M6, .m7]: "m13",
+    [.M2, .M3, .p4, .p5, .M6, .m7]: "13",
+    [.M2, .M3, .p4, .p5, .M6, .M7]: "maj13",
 ]
 
