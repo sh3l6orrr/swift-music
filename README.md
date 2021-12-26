@@ -16,7 +16,7 @@ Note.D - Note.E  // Interval.m7
 
 ### Create a Chord
 ```swift
-let Cmaj9/G = Chord("Cmaj9/G")!
+let chord = Chord("Cmaj9/G")!
 chord.description
 
 // This is a slash chord named Cmaj9/G over G, with root note C, and component 
