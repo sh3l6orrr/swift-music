@@ -39,10 +39,23 @@ public enum Interval {
     }
 }
 
-extension Interval {
-    /// Whole name of the interval.
-    public var wholeName: String {
-        intervalToWholeName[self]!
+extension Interval : CustomStringConvertible {
+    /// String representation of the interval.
+    public var description: String {
+        switch self {
+        case .octave: return "octave"
+        case .m2: return "minor second"
+        case .M2: return "major second"
+        case .m3: return "minor third"
+        case .M3: return "major third"
+        case .p4: return "perfect fourth"
+        case .tritone: return "tritone"
+        case .p5: return "perfect fifth"
+        case .m6: return "minor sixth"
+        case .M6: return "major sixth"
+        case .m7: return "minor seventh"
+        case .M7: return "major seventh"
+        }
     }
 }
 

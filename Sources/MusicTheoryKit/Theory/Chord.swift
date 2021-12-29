@@ -97,7 +97,7 @@ extension Chord {
             let ifSlashDescription = slash != nil && slash != root ? " slash" : ""
             let slashDescription = slash != nil && slash != root ? " over \(slash!.rawValue)" : ""
             let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
-            let intervalsDescription = intervals.map{ $0.wholeName }.joined(separator: ", ")
+            let intervalsDescription = intervals.map{ $0.description }.joined(separator: ", ")
             return 
                 "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), "
                 + "with root note \(root), "

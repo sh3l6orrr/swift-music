@@ -12,8 +12,8 @@ final class TestInterval : XCTestCase {}
 
 extension TestInterval {
     func testIntervalWholeName() throws {
-        XCTAssertEqual(Interval.octave.wholeName, "octave")
-        XCTAssertEqual(Interval.m6.wholeName, "minor sixth")
+        XCTAssertEqual(Interval.octave.description, "octave")
+        XCTAssertEqual(Interval.m6.description, "minor sixth")
     }
     func testCreation() throws {
         XCTAssertNotNil(Interval(semitone: 9031))

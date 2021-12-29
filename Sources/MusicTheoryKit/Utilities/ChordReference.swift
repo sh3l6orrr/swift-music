@@ -45,3 +45,10 @@ let semitonesToQuality: [[Interval] : String] = [
     [.M2, .M3, .p4, .p5, .M6, .M7]: "maj13",
 ]
 
+//extension Array where ele {
+//    var qualityFormed: Quality {
+//        switch self {
+//        case [.p5]: return ._5
+//        }
+//    }
+//}

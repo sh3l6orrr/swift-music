@@ -21,7 +21,10 @@ public enum Mode {
 
 extension Mode {
     // The intervals contained in this mode.
-    public var intervals: [Interval] {
-        modeToInterval[self]!
+    var intervalsContained: [Interval] {
+        switch self {
+        case .ionian: return [.octave, .M2, .M3, .p4, .p5, .M6, .M7]
+        case .aeolian: return [.octave, .M2, .m3, .p4, .p5, .m6, .m7]
+        }
     }
 }

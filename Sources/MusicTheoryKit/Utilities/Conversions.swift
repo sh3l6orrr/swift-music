@@ -15,13 +15,6 @@ let intToInterval: [Int : Interval] = [
     6: .tritone, 7: .p5, 8: .m6, 9: .M6, 10: .m7, 11: .M7
 ]
 
-let intervalToWholeName: [Interval : String] = [
-    .octave: "octave", .m2: "minor second", .M2: "major second",
-    .m3: "minor third", .M3: "major third", .p4: "perfect fourth",
-    .tritone: "tritone", .p5: "perfect fifth", .m6: "minor sixth",
-    .M6: "major sixth", .m7: "minor seventh", .M7: "major seventh"
-]
-
 let noteToInt: [Note : Int] = [
     .C: 1, .Db: 2, .D: 3, .Eb: 4, .E: 5, .F: 6,
     .Gb: 7, .G: 8, .Ab: 9, .A: 10, .Bb: 11, .B: 12

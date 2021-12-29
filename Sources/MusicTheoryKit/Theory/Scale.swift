@@ -17,7 +17,7 @@ public struct Scale {
 
 extension Scale {
     public var notes: [Note] {
-        modeToInterval[self.mode]!.map { interval in
+        self.mode.intervalsContained.map { interval in
             self.tonic + interval
         }
     }
