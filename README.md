@@ -13,15 +13,16 @@ There are four modules:
 
 The four modules are demonstrated below.
 
+### MusicTheory
 ```swift
 import MusicTheory
 ```
-### Interval Arithmetic
+#### Interval Arithmetic
 ```swift
 Note.D - Note.E  // Interval.m7
 ```
 
-### Create a Chord
+#### Create a Chord
 ```swift
 let chord = Chord("Cmaj9/G")!
 chord.description
@@ -31,14 +32,18 @@ chord.description
 // fifth, major seventh above the root. 
 ```
 
-### Is this chord in my scale?
+#### Is this chord in my scale?
 ```swift
 let chord = Chord("Cmaj9/G")!
 let scale = Scale(.Cs, .major) // C♯ Major
 chord.isIn(scale) // True
 ```
 
-### Compose a Melody
+### Songwriting
+```swift
+import SongWriting
+```
+#### Compose a Melody
 ```swift
 let 🎶 = Melody()
     .add(MusicNote("E4", value: ._2))
@@ -51,33 +56,31 @@ let 🎶 = Melody()
 🎶.visualization // To be implemented
 ```
 
-### Compose a Chord Progression
+#### Compose a Chord Progression
 ```swift
 // To be implemented
 ```
 
-### Compose a Piece of Music
+### Composition
+```swift
+import Composition
+```
+
+#### Compose a Piece of Music
 ```swift
 // To be implemented
 ```
 
-### Analyze Music
+#### Analyze Music
 ```swift
 // To be implemented
 ```
-
-### Customization
-```swift
-extension MusicNote {
-    // To be implemented
-}
-```
-
+### MusicPlay
 ```swift
 import MusicPlay
 ```
 
-### Play Synth
+#### Play Synth
 ```swift
 let wave = Wave.sine
 let oscillator = Oscillator(wave: wave)
