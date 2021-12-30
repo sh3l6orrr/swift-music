@@ -30,23 +30,35 @@ public struct Chord {
     /// ```
     /// For full reference of available chords, go to <doc:Chords-Reference>
     public init?(_ name: String) {
-        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false)
-        guard splitedName.count == 1 || splitedName.count == 2 else { return nil }
-        guard !splitedName.contains("") else { return nil }
-        var rootAndQuality = String(splitedName[splitedName.startIndex])
-        var root = String(rootAndQuality.removeFirst())
-        if rootAndQuality.count > 1 && rootAndQuality[rootAndQuality.startIndex] == "b" {
-            root += String(rootAndQuality[rootAndQuality.startIndex])
-            rootAndQuality.remove(at: rootAndQuality.startIndex)
-        }
-        let quality = rootAndQuality
-        let slash = splitedName.count == 2 ? String(splitedName[splitedName.index(splitedName.startIndex, offsetBy: 1)]) : nil
-        guard let root = Note(rawValue: root) else { return nil }
-        guard let intervals = semitonesToQuality.first(where: { $1 == quality })?.key else { return nil }
-        if let slash = slash { guard Note(rawValue: slash) != nil else { return nil } }
-        let notes = intervals.map{ root + $0 }
-        let doNotCreateSlash = slash == nil || Note(rawValue: slash!) == root
+        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false).map(String.init)
+        guard
+            (splitedName.count == 1
+            || splitedName.count == 2)
+            && !splitedName.contains("")
+        else { return nil }
         
+        var rootAndQuality = splitedName[0]
+        var root = rootAndQuality[0]
+        rootAndQuality.removeFirst()
+        
+        if rootAndQuality.count > 1 && rootAndQuality[0] == "b" {
+            root += rootAndQuality[0]
+            rootAndQuality.removeFirst()
+        }
+        
+        let quality = rootAndQuality.qualityDescribed
+        let slash = splitedName.count == 2 ? splitedName[1] : nil
+        
+        guard let root = Note(rawValue: root) else { return nil }
+        guard let intervals = quality?.intervalsFormed else { return nil }
+        if let slash = slash {
+            guard Note(rawValue: slash) != nil else { return nil }
+        }
+        let notes = intervals.map{ root + $0 }
+        
+        let doNotCreateSlash =
+            slash == nil
+            || Note(rawValue: slash!) == root
         self.notes = Set(notes)
         self.root = root
         self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
@@ -70,8 +82,8 @@ extension Chord {
         .sorted()
     }
     // Quality of the chord.
-    private var quality: String? {
-        semitonesToQuality[intervals]
+    private var quality: Quality? {
+        self.intervals.qualityFormed
     }
     public var isIn: (Scale) -> Bool {{ (_ scale: Scale) in
         self.notes.isSubset(of: scale.notes)
@@ -85,7 +97,7 @@ extension Chord {
     /// let chord = Chord(root: root, notes: notes)?
     /// ```
     public var name: String {
-        if let quality = quality {
+        if let quality = self.quality?.description {
             return slash != nil && slash != root
             ? root.rawValue + quality + "/" + slash!.rawValue
             : root.rawValue + quality

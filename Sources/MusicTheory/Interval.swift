@@ -6,7 +6,7 @@
 //
 
 /// A custom musical interval.
-public enum Interval {
+public enum Interval : Comparable {
     /// A musical interval that contains 0 or 12 semitones.
     case octave
     /// A musical interval that contains 1 semitones.
@@ -58,5 +58,3 @@ extension Interval : CustomStringConvertible {
         }
     }
 }
-
-extension Interval : Comparable {}

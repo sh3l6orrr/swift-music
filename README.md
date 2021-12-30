@@ -5,7 +5,8 @@
 ## Introduction
 
 swift-music is a swift package that provides an easy-to-use API for music related developments.
-There are four modules:
+
+There are four modules included:
 - MusicTheory: Notes, chords, scales.
 - Songwriting: Melody and chord progressions.
 - Composition: Tracks.
