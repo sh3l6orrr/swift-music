@@ -162,7 +162,7 @@ extension Note {
     ///   - rhs: Interval above the base note.
     /// - Returns: The note a specified interval above the base note.
     public static func + (_ lhs: Note, _ rhs: Interval) -> Note {
-        let sum = lhs.absolutePosition + IntervalToInt[rhs]!
+        let sum = lhs.absolutePosition + rhs.semitones
         return Note(sum <= 12 ? sum : sum - 12)!
     }
     /// Compute the note a certain Interval below it.
@@ -172,7 +172,7 @@ extension Note {
     ///   - rhs: Interval below the base note.
     /// - Returns: The note a specified interval below the base note.
     public static func - (_ lhs: Note, _ rhs: Interval) -> Note {
-        let difference = lhs.absolutePosition - IntervalToInt[rhs]!
+        let difference = lhs.absolutePosition - rhs.semitones
         return Note(difference > 0 ? difference : difference + 12)!
     }
     /// Compute the Interval between two notes within an octave.
