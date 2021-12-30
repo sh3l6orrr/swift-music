@@ -5,6 +5,8 @@
 //  Created by Jin Zhang on 12/13/21.
 //
 
+import StringHelper
+
 /// A custom musical chord.
 ///
 /// As someone familiar with music theory might expect, a custom chord has its component notes and a root note. The chord's quality is determined by these notes.

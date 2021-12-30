@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import MusicTheoryKit
+import MusicTheory
 
 final class TestNote : XCTestCase {}
 

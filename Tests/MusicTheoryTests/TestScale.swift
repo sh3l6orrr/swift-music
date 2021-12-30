@@ -1,12 +1,12 @@
 //
 //  TestScale.swift
-//  MusicTheoryKit
+//  MusicTheory
 //
 //  Created by Jin Zhang on 12/13/25.
 //
 
 import XCTest
-import MusicTheoryKit
+import MusicTheory
 
 final class TestScale : XCTestCase {}
 

@@ -1,12 +1,12 @@
 //
 //  TestMelody.swift
-//  MusicTheoryKit
+//  MusicTheory
 //
 //  Created by Jin Zhang on 12/13/21.
 //
 
 import XCTest
-import MusicTheoryKit
+import MusicTheory
 
 final class TestMelody : XCTestCase {}
 

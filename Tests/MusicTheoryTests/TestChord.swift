@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import MusicTheoryKit
+import MusicTheory
 
 final class TestChord : XCTestCase {}
 
@@ -64,24 +64,6 @@ extension TestChord {
         print("*** Description of chord2. *** \n \(chord2.description) \n *** End of description. ***\n")
         print("*** Description of slashChord1. *** \n \(slashChord1.description) \n *** End of description. ***\n")
         print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description) \n *** End of description. ***\n")
-    }
-    
-    func testx() async throws {
-        
-        struct Req {
-            let song: String
-            init() async throws {
-                let (s, _) = try await URLSession.shared.data(from: URL(string: "http://www.songsterr.com/a/ra/songs.xml?pattern=Marley")!)
-                self.song = String(data: s, encoding: .utf8)!
-            }
-            func fetch() {
-                
-            }
-        }
-        
-        print( try! await Req().song )
-        
-
     }
 }
 

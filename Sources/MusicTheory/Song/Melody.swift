@@ -5,11 +5,21 @@
 //  Created by Jin Zhang on 12/16/21.
 //
 
-/// Element in a monophonic melody.
-public protocol MelodyElement {
+/// Element that can be put into a piece of music.
+public protocol MusicElement {
     /// Value of such an element.
     var value: Value { get }
 }
+/// Element in a monophonic melody.
+public protocol MelodyElement : MusicElement {
+
+}
+
+/// Element in a chord progression.
+public protocol ChordProgressionElement : MusicElement {
+
+}
+
 
 public typealias Melody = [MelodyElement]
 
