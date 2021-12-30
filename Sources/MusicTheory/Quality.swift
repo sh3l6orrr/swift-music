@@ -114,7 +114,41 @@ extension Array where Element == Interval {
     }
 }
 
-extension Quality : CustomStringConvertible {
+extension Quality : LosslessStringConvertible {
+    init?(_ description: String) {
+        switch description {
+        case "5":       self = ._5
+        case "sus2":    self = .sus2
+        case "dim":     self = .dim
+        case "m":       self = .m
+        case "":        self = .maj
+        case "aug":     self = .aug
+        case "sus4":    self = .sus4
+        case "dim7":    self = .dim7
+        case "m7b5":    self = .m7b5
+        case "7-5":     self = ._7_5
+        case "m6":      self = .m6
+        case "6":       self = ._6
+        case "mMaj7":   self = .mMaj7
+        case "aug7":    self = .aug7
+        case "7sus4":   self = ._7sus4
+        case "add9":    self = .add9
+        case "add11":   self = .add11
+        case "m7":      self = .m7
+        case "7":       self = ._7
+        case "maj7":    self = .maj7
+        case "m9":      self = .m9
+        case "9":       self = ._9
+        case "maj9":    self = .maj9
+        case "m11":     self = .m11
+        case "11":      self = ._11
+        case "maj11":   self = .maj11
+        case "m13":     self = .m13
+        case "13":      self = ._13
+        case "maj13":   self = .maj13
+        default:        return nil
+        }
+    }
     var description: String {
         switch self {
         case ._5:       return "5"
@@ -149,41 +183,44 @@ extension Quality : CustomStringConvertible {
         }
     }
 }
+//
+//extension Quality : LosslessStringConvertible {
 
-extension String {
-    var qualityDescribed: Quality? {
-        switch self {
-        case "5":       return ._5
-        case "sus2":    return .sus2
-        case "dim":     return .dim
-        case "m":       return .m
-        case "":        return .maj
-        case "aug":     return .aug
-        case "sus4":    return .sus4
-        case "dim7":    return .dim7
-        case "m7b5":    return .m7b5
-        case "7-5":     return ._7_5
-        case "m6":      return .m6
-        case "6":       return ._6
-        case "mMaj7":   return .mMaj7
-        case "aug7":    return .aug7
-        case "7sus4":   return ._7sus4
-        case "add9":    return .add9
-        case "add11":   return .add11
-        case "m7":      return .m7
-        case "7":       return ._7
-        case "maj7":    return .maj7
-        case "m9":      return .m9
-        case "9":       return ._9
-        case "maj9":    return .maj9
-        case "m11":     return .m11
-        case "11":      return ._11
-        case "maj11":   return .maj11
-        case "m13":     return .m13
-        case "13":      return ._13
-        case "maj13":   return .maj13
-        default:        return nil
-        }
-    }
-}
-        
+//}
+//extension String {
+//    var qualityDescribed: Quality? {
+//        switch self {
+//        case "5":       return ._5
+//        case "sus2":    return .sus2
+//        case "dim":     return .dim
+//        case "m":       return .m
+//        case "":        return .maj
+//        case "aug":     return .aug
+//        case "sus4":    return .sus4
+//        case "dim7":    return .dim7
+//        case "m7b5":    return .m7b5
+//        case "7-5":     return ._7_5
+//        case "m6":      return .m6
+//        case "6":       return ._6
+//        case "mMaj7":   return .mMaj7
+//        case "aug7":    return .aug7
+//        case "7sus4":   return ._7sus4
+//        case "add9":    return .add9
+//        case "add11":   return .add11
+//        case "m7":      return .m7
+//        case "7":       return ._7
+//        case "maj7":    return .maj7
+//        case "m9":      return .m9
+//        case "9":       return ._9
+//        case "maj9":    return .maj9
+//        case "m11":     return .m11
+//        case "11":      return ._11
+//        case "maj11":   return .maj11
+//        case "m13":     return .m13
+//        case "13":      return ._13
+//        case "maj13":   return .maj13
+//        default:        return nil
+//        }
+//    }
+//}
+//

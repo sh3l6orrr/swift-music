@@ -5,7 +5,7 @@
 //  Created by Jin Zhang on 12/11/21.
 //
 
-/// A custom musical note.
+/// A custom  note.
 ///
 /// Create a Note either by using rawValue:
 /// ```swift
@@ -16,43 +16,139 @@
 /// Note.Bb
 /// ```
 /// > Only flats are currently supported. For example, the note above C is Db, instead of C#.
-public enum Note : String, CaseIterable  {
-    /// The musical note C.
+public enum Note : CaseIterable {
+    /// The note C.
     case C
-    /// The musical note Db.
-    case Db
-    public static let Cs = Db
-    /// The musical note D.
+    /// The note C♯.
+    case C_sharp
+    /// The note D♭.
+    case D_flat
+    /// The note D.
     case D
-    /// The musical note Eb.
-    case Eb
-    public static let Ds = Eb
-    /// The musical note E.
+    /// The note D♯
+    case D_sharp
+    /// The note E♭.
+    case E_flat
+    /// The note E.
     case E
-    /// The musical note F.
+    /// The note F.
     case F
-    /// The musical note Gb.
-    case Gb
-    public static let Fs = Gb
-    /// The musical note G.
+    /// The note F♯.
+    case F_sharp
+    /// The note G♭.
+    case G_flat
+    /// The note G.
     case G
-    /// The musical note Ab.
-    case Ab
-    public static let Gs = Ab
-    /// The musical note A.
+    /// The note G♯.
+    case G_sharp
+    /// The note A♭.
+    case A_flat
+    /// The note A.
     case A
-    /// The musical note Bb.
-    case Bb
-    public static let As = Bb
-    /// The musical note B.
+    /// The note A♯.
+    case A_sharp
+    /// The note B♭.
+    case B_flat
+    /// The note B.
     case B
-    // For helping note arithemetics.
-    private init?(_ num: Int) {
-        guard let note = intToNote[num] else { return nil }
-        self = note
+}
+
+extension Note : LosslessStringConvertible {
+    /// Initialize a note from its name.
+    public init?(_ description: String) {
+        switch description {
+        case "C":       self = .C
+        case "C#":      self = .C_sharp
+        case "Db":      self = .D_flat
+        case "D":       self = .D
+        case "D#":      self = .D_sharp
+        case "Eb":      self = .E_flat
+        case "E":       self = .E
+        case "F":       self = .F
+        case "F#":      self = .F_sharp
+        case "Gb":      self = .G_flat
+        case "G":       self = .G
+        case "G#":      self = .G_sharp
+        case "Ab":      self = .A_flat
+        case "A":       self = .A
+        case "A#":      self = .A_sharp
+        case "Bb":      self = .B_flat
+        case "B":       self = .B
+        default:        return nil
+        }
+    }
+    // Name of the note.
+    public var description: String {
+        switch self {
+        case .C:            return "C"
+        case .C_sharp:      return "C#"
+        case .D_flat:       return "Db"
+        case .D:            return "D"
+        case .D_sharp:      return "D#"
+        case .E_flat:       return "Eb"
+        case .E:            return "E"
+        case .F:            return "F"
+        case .F_sharp:      return "F#"
+        case .G_flat:       return "Gb"
+        case .G:            return "G"
+        case .G_sharp:      return "G#"
+        case .A_flat:       return "Ab"
+        case .A:            return "A"
+        case .A_sharp:      return "A#"
+        case .B_flat:       return "Bb"
+        case .B:            return "B"
+        }
     }
 }
 
+extension Note {
+    /// Initialize a note from its absolute position in an octave.
+    init?(_ absolutePosition: Int) {
+        switch absolutePosition {
+        case 1  :  self = .C
+        case 2  :  self = .C_sharp
+        case 3  :  self = .D
+        case 4  :  self = .D_sharp
+        case 5  :  self = .E
+        case 6  :  self = .F
+        case 7  :  self = .F_sharp
+        case 8  :  self = .G
+        case 9  :  self = .G_sharp
+        case 10 :  self = .A
+        case 11 :  self = .A_sharp
+        case 12 :  self = .B
+        default :  return nil
+        }
+    }
+    /// Absolute position of the note.
+    public var absolutePosition: Int {
+        switch self {
+        case .C:            return 1
+        case .C_sharp:      return 2
+        case .D_flat:       return 2
+        case .D:            return 3
+        case .D_sharp:      return 4
+        case .E_flat:       return 4
+        case .E:            return 5
+        case .F:            return 6
+        case .F_sharp:      return 7
+        case .G_flat:       return 7
+        case .G:            return 8
+        case .G_sharp:      return 9
+        case .A_flat:       return 9
+        case .A:            return 10
+        case .A_sharp:      return 11
+        case .B_flat:       return 11
+        case .B:            return 12
+        }
+    }
+}
+
+extension Note : Equatable {
+    public static func == (lhs: Note, rhs: Note) -> Bool {
+        lhs.absolutePosition == rhs.absolutePosition
+    }
+}
 
 extension Note {
     /// Check if this note is in a specific scale.
@@ -66,7 +162,7 @@ extension Note {
     ///   - rhs: Interval above the base note.
     /// - Returns: The note a specified interval above the base note.
     public static func + (_ lhs: Note, _ rhs: Interval) -> Note {
-        let sum = noteToInt[lhs]! + IntervalToInt[rhs]!
+        let sum = lhs.absolutePosition + IntervalToInt[rhs]!
         return Note(sum <= 12 ? sum : sum - 12)!
     }
     /// Compute the note a certain Interval below it.
@@ -76,7 +172,7 @@ extension Note {
     ///   - rhs: Interval below the base note.
     /// - Returns: The note a specified interval below the base note.
     public static func - (_ lhs: Note, _ rhs: Interval) -> Note {
-        let difference = noteToInt[lhs]! - IntervalToInt[rhs]!
+        let difference = lhs.absolutePosition - IntervalToInt[rhs]!
         return Note(difference > 0 ? difference : difference + 12)!
     }
     /// Compute the Interval between two notes within an octave.
@@ -90,7 +186,7 @@ extension Note {
     ///   - rhs: The lower note.
     /// - Returns: The interval between the two notes.
     public static func - (_ lhs: Note, _ rhs: Note) -> Interval {
-        let difference = noteToInt[lhs]! - noteToInt[rhs]!
+        let difference = lhs.absolutePosition - rhs.absolutePosition
         return Interval(semitone: difference > 0 ? difference : difference + 12)!
     }
 }

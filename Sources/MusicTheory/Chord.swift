@@ -46,22 +46,22 @@ public struct Chord {
             rootAndQuality.removeFirst()
         }
         
-        let quality = rootAndQuality.qualityDescribed
+        let quality = Quality(rootAndQuality)
         let slash = splitedName.count == 2 ? splitedName[1] : nil
         
-        guard let root = Note(rawValue: root) else { return nil }
+        guard let root = Note(root) else { return nil }
         guard let intervals = quality?.intervalsFormed else { return nil }
         if let slash = slash {
-            guard Note(rawValue: slash) != nil else { return nil }
+            guard Note(slash) != nil else { return nil }
         }
         let notes = intervals.map{ root + $0 }
         
         let doNotCreateSlash =
             slash == nil
-            || Note(rawValue: slash!) == root
+            || Note(slash!)?.absolutePosition == root.absolutePosition
         self.notes = Set(notes)
         self.root = root
-        self.slash = doNotCreateSlash ? nil : Note(rawValue: slash!)!
+        self.slash = doNotCreateSlash ? nil : Note(slash!)!
     }
     /// Create a chord by specifying root, notes, and slash.
     public init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
@@ -99,8 +99,8 @@ extension Chord {
     public var name: String {
         if let quality = self.quality?.description {
             return slash != nil && slash != root
-            ? root.rawValue + quality + "/" + slash!.rawValue
-            : root.rawValue + quality
+            ? root.description + quality + "/" + slash!.description
+            : root.description + quality
         } else {
             return "Not Identified"
         }
@@ -109,8 +109,8 @@ extension Chord {
     public var description: String {
         if quality != nil {
             let ifSlashDescription = slash != nil && slash != root ? " slash" : ""
-            let slashDescription = slash != nil && slash != root ? " over \(slash!.rawValue)" : ""
-            let notesDescription = intervals.map{ (root + $0).rawValue }.joined(separator: ", ")
+            let slashDescription = slash != nil && slash != root ? " over \(slash!.description)" : ""
+            let notesDescription = intervals.map{ (root + $0).description }.joined(separator: ", ")
             let intervalsDescription = intervals.map{ $0.description }.joined(separator: ", ")
             return 
                 "This is a\(ifSlashDescription) chord named \(name)\(slashDescription), "

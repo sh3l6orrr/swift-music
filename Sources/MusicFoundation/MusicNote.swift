@@ -32,10 +32,10 @@ public struct MusicNote {
     /// quarter note and 64 respectively.
     public init?(_ pitch: String, value: Value = ._64) {
         guard pitch.count == 2 else { return nil }
-        guard let note = Note(rawValue: pitch[0]) else { return nil }
+        guard let note = Note(pitch[0]) else { return nil }
         guard let octave = Int(pitch[1]) else { return nil }
         guard octave >= 0 && octave <= 8 else { return nil }
-        if octave == 0 { guard note == .A || note == .Bb || note == .B else { return nil }}
+        if octave == 0 { guard note == .A || note == .B_flat || note == .B else { return nil }}
         if octave == 8 { guard note == .C else { return nil }}
         self.note = note
         self.octave = octave
@@ -47,7 +47,7 @@ public struct MusicNote {
 extension MusicNote {
     /// The frequency of the nore.
     public var frequency: Float {
-        let relative = Float(noteToInt[self.note]! - 10 + 12 * (octave - 4))
+        let relative = Float(self.note.absolutePosition - 10 + 12 * (octave - 4))
         return Float(Float(440) * pow(Float(2),(relative/Float(12))))
     }
 }
