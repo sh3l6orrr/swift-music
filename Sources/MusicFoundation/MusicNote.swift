@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import MusicTheory
 
 /// A note that can be played in a song, which has information of pitch,
 /// value, and velocity.
-public struct MusicNote : MelodyElement {
+public struct MusicNote {
     /// The underlying note.
     let note: Note
     /// The octave this note is in.

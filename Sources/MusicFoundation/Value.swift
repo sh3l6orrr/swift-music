@@ -5,6 +5,8 @@
 //  Created by Jin Zhang on 12/16/21.
 //
 
+import MusicTheory
+
 /// Representation of value of a note in a music context.
 public enum Value {
     /// A hunderd-twenty-eighth note.
@@ -44,3 +46,29 @@ extension Value {
         Value(lhs.beats + rhs.beats)
     }
 }
+
+let valueToBeats: [Value : Double] = [
+    ._128:  0.0078125,
+    ._64:  0.015625,
+    ._32:  0.03125,
+    ._16:  0.0625,
+    ._8:  0.125,
+    ._4:  0.25,
+    ._2:  0.5,
+    ._1:  1,
+    .v_2:  2,
+    .v_4:  4
+]
+
+let beatsToValue: [Double: Value] = [
+    0.0078125: ._128,
+    0.015625: ._64,
+    0.03125: ._32,
+    0.0625: ._16,
+    0.125: ._8,
+    0.25: ._4,
+    0.5: ._2,
+    1: ._1,
+    2: .v_2,
+    4: .v_4
+]

@@ -25,9 +25,6 @@ let package = Package(
             targets: ["MusicPlay"]
         ),
     ],
-    dependencies: [
-        
-    ],
     targets: [
         .target(name: "StringHelper"),
         .target(
@@ -37,28 +34,48 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Songwriting",
+            name: "MusicFoundation",
             dependencies: [
                 .target(name: "MusicTheory")
+            ]
+        ),
+        .target(
+            name: "Songwriting",
+            dependencies: [
+                .target(name: "MusicFoundation")
             ]
         ),
         .target(
             name: "Composition",
             dependencies: [
-                .target(name: "MusicTheory")
+                .target(name: "MusicFoundation")
             ]
         ),
         .target(
             name: "MusicPlay",
             dependencies: [
-                
+                .target(name: "MusicFoundation")
             ]
         ),
         .testTarget(
             name: "MusicTheoryTests",
-            dependencies: [
-                "MusicTheory"
-            ]
+            dependencies: ["MusicTheory"]
+        ),
+        .testTarget(
+            name: "MusicFoundationTests",
+            dependencies: ["MusicFoundation"]
+        ),
+        .testTarget(
+            name: "SongwritingTests",
+            dependencies: ["Songwriting"]
+        ),
+        .testTarget(
+            name: "CompositionTests",
+            dependencies: ["Composition"]
+        ),
+        .testTarget(
+            name: "MusicPlayTests",
+            dependencies: ["MusicPlay"]
         )
     ]
 )

@@ -1,16 +1,16 @@
+////
+////  Instrument.swift
+////  music-play-kit
+////
+////  Created by Jin Zhang on 12/16/21.
+////
 //
-//  Instrument.swift
-//  music-play-kit
+//import MusicFoundation
 //
-//  Created by Jin Zhang on 12/16/21.
+///// Conform to this protocol to play music.
+//public protocol Instrument {}
 //
-
-import MusicTheory
-
-/// Conform to this protocol to play music.
-public protocol Instrument {}
-
-public extension Instrument {
-    /// Play some note.
-    func play(_ musicNote: MusicNote) {}
-}
+//public extension Instrument {
+//    /// Play some note.
+//    func play(_ musicNote: MusicNote) {}
+//}

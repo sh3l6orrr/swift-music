@@ -1,13 +1,20 @@
-# 🎼 MusicTheoryKit
+# 🎼 swift-music
 
-[![CI](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/music-theory-kit/actions/workflows/CI.yml)
+[![CI](https://github.com/sh3l6orrr/swift-music/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/swift-music/actions/workflows/CI.yml)
 
 ## Introduction
 
-MusicTheoryKit is a Swift framework that provides an easy-to-use API for most commonly used music terms.
+swift-music is a swift package that provides an easy-to-use API for music related developments.
+There are four modules:
+- MusicTheory: Notes, chords, scales.
+- Songwriting: Melody and chord progressions.
+- Composition: Tracks.
+- MusicPlay: A tool to play music.
+
+The four modules are demonstrated below.
 
 ```swift
-import MusicTheoryKit
+import MusicTheory
 ```
 ### Interval Arithmetic
 ```swift
@@ -66,11 +73,25 @@ extension MusicNote {
 }
 ```
 
+```swift
+import MusicPlay
+```
+
+### Play Synth
+```swift
+let wave = Wave.sine
+let oscillator = Oscillator(wave: wave)
+let synth = Synth(oscillator: oscillator)
+
+synth.play(MusicNote("C4")!)  // Mac generates sound of 261.63Hz
+```
+
+
 ## Installation
 
 ### Xcode Project
 
-File - Add Packages - https://github.com/sh3l6orrr/music-theory-kit.git
+File - Add Packages - https://github.com/sh3l6orrr/swift-music.git
 
 ### Swift Package Manager 
 
@@ -78,7 +99,7 @@ Inside Package.swift, add the followings:
 
 ```
 dependencies: [
-    .package(url: "https://github.com/sh3l6orrr/music-theory-kit.git", .upToNextMajor(from: "0.2.0"))
+    .package(url: "https://github.com/sh3l6orrr/swift-music.git", .upToNextMajor(from: "0.2.0"))
 ]
 ```
 ```
@@ -86,7 +107,10 @@ targets: [
     .target(
         name: "YourTarget",
         dependencies: [
-            .product(name: "MusicTheoryKit", package: "music-theory-kit")
+            .product(name: "MusicTheory", package: "swift-music"),
+            .product(name: "Songwriting", package: "swift-music"),
+            .product(name: "Composition", package: "swift-music"),
+            .product(name: "MusicPlay", package: "swift-music")
         ]
     )
 ]

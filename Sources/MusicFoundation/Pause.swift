@@ -6,7 +6,7 @@
 //
 
 /// A musical Pause.
-public struct Pause : MelodyElement {
+public struct Pause {
     /// Value of this pause.
     public let value: Value
     /// Create a pause with specified value.

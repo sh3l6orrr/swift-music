@@ -1,20 +1,17 @@
+////
+////  File.swift
+////
+////
+////  Created by Jin Zhang on 12/23/21.
+////
 //
-//  File.swift
-//  
+//import MusicFoundation
 //
-//  Created by Jin Zhang on 12/23/21.
+//public protocol Playable {
 //
-
-import MusicTheory
-
-public protocol Playable {
-    
-}
-
-extension MusicNote : Playable {
-    
-}
-
-extension Melody : Playable {
-    
-}
+//}
+//
+//extension MusicNote : Playable {
+//
+//}
+//
