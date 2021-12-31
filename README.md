@@ -6,13 +6,12 @@
 
 swift-music is a swift package that provides an easy-to-use API for music related developments.
 
-There are four modules included:
+Currently available module:
 - MusicTheory: Notes, chords, scales.
-- Songwriting: Melody and chord progressions.
-- Composition: Tracks.
-- MusicPlay: A tool to play music.
 
-Features of the four modules are demonstrated below.
+<!--- Songwriting: Melody and chord progressions.-->
+<!--- Composition: Tracks.-->
+<!--- MusicPlay: A tool to play music.-->
 
 ### MusicTheory
 ```swift
@@ -47,56 +46,55 @@ Dbm.isIn(scale: B) // true
 - Support for 20+ chord qualities
 - Support for 10+ modes (To be implemented)
 
-### Songwriting
-```swift
-import SongWriting
-```
-#### Compose a Melody
-```swift
-let 🎶 = Melody()
-    .add(MusicNote("E4", value: ._2))
-    .add(MusicNote("D4", value: ._2))
-    .add(Pause(._2))
-    .add(MusicNote("E4", value: ._2))
-    .add(MusicNote("C4", value: ._1))
-
-🎶.length // 3 Beats
-🎶.visualization // To be implemented
-```
-
-#### Compose a Chord Progression
-```swift
-// To be implemented
-```
-
-### Composition
-```swift
-import Composition
-```
-
-#### Compose a Piece of Music
-```swift
-// To be implemented
-```
-
-#### Analyze Music
-```swift
-// To be implemented
-```
-### MusicPlay
-```swift
-import MusicPlay
-```
-
-#### Play Synth
-```swift
-let wave = Wave.sine
-let oscillator = Oscillator(wave: wave)
-let synth = Synth(oscillator: oscillator)
-
-synth.play(MusicNote("C4")!)  // Mac generates sound of 261.63Hz
-```
-
+<!--### Songwriting-->
+<!--```swift-->
+<!--import SongWriting-->
+<!--```-->
+<!--#### Compose a Melody-->
+<!--```swift-->
+<!--let 🎶 = Melody()-->
+<!--    .add(MusicNote("E4", value: ._2))-->
+<!--    .add(MusicNote("D4", value: ._2))-->
+<!--    .add(Pause(._2))-->
+<!--    .add(MusicNote("E4", value: ._2))-->
+<!--    .add(MusicNote("C4", value: ._1))-->
+<!---->
+<!--🎶.length // 3 Beats-->
+<!--🎶.visualization // To be implemented-->
+<!--```-->
+<!---->
+<!--#### Compose a Chord Progression-->
+<!--```swift-->
+<!--// To be implemented-->
+<!--```-->
+<!---->
+<!--### Composition-->
+<!--```swift-->
+<!--import Composition-->
+<!--```-->
+<!---->
+<!--#### Compose a Piece of Music-->
+<!--```swift-->
+<!--// To be implemented-->
+<!--```-->
+<!---->
+<!--#### Analyze Music-->
+<!--```swift-->
+<!--// To be implemented-->
+<!--```-->
+<!--### MusicPlay-->
+<!--```swift-->
+<!--import MusicPlay-->
+<!--```-->
+<!---->
+<!--#### Play Synth-->
+<!--```swift-->
+<!--let wave = Wave.sine-->
+<!--let oscillator = Oscillator(wave: wave)-->
+<!--let synth = Synth(oscillator: oscillator)-->
+<!---->
+<!--synth.play(MusicNote("C4")!)  // Mac generates sound of 261.63Hz-->
+<!--```-->
 
 ## Installation
 
@@ -110,19 +108,14 @@ Inside Package.swift, add the followings:
 
 ```
 dependencies: [
-    .package(url: "https://github.com/sh3l6orrr/swift-music.git", .upToNextMajor(from: "0.2.0"))
+    .package(url: "https://github.com/sh3l6orrr/swift-music.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 ```
 targets: [
     .target(
         name: "YourTarget",
-        dependencies: [
-            .product(name: "MusicTheory", package: "swift-music"),
-            .product(name: "Songwriting", package: "swift-music"),
-            .product(name: "Composition", package: "swift-music"),
-            .product(name: "MusicPlay", package: "swift-music")
-        ]
+        dependencies: [.product(name: "MusicTheory", package: "swift-music")]
     )
 ]
 ```
