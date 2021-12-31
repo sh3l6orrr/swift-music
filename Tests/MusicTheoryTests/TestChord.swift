@@ -8,62 +8,37 @@
 import XCTest
 import MusicTheory
 
-final class TestChord : XCTestCase {}
+final class TestChord: XCTestCase {}
 
 extension TestChord {
-    var chord1: Chord {
-        Chord(.F, Set([.F, .G, .C]))
-    }
-    var chord2: Chord {
-        Chord(.F_sharp, Set([.E, .D_flat, .G_flat, .B]))
-    }
-    var chord3: Chord {
-        Chord(.B, Set([.A, .F, .D, .B]))
-    }
-    var chord4: Chord {
-        Chord(.B, Set([.A, .F, .D, .F, .B]))
-    }
-    var chord5: Chord {
-        Chord(.C, Set([.C, .D, .E, .F, .G, .B_flat]))
-    }
-    var chord6: Chord {
-        Chord(.C, Set([.C, .D, .E, .F, .G, .A_sharp, .A]))
-    }
-    var slashChord1: Chord {
-        Chord(.F, Set([.F, .G, .C]), over: .A_sharp)
-    }
-    var slashChord2: Chord {
-        Chord(.F, Set([.F, .G, .C]), over: .F)
+    func testContainNote() throws {
+        XCTAssertTrue(Chord("Ab")!.contains(note: .C))
+        XCTAssertTrue(Chord("Ab/B")!.contains(note: .C))
     }
     func testChordQuality() throws {
-        XCTAssertEqual(chord1.name, "Fsus2")
-        XCTAssertEqual(chord2.name, "F#7sus4")
-        XCTAssertEqual(chord3.name, "Bm7b5")
-        XCTAssertEqual(chord4.name, "Bm7b5")
-        XCTAssertEqual(chord5.name, "C11")
-        XCTAssertEqual(chord6.name, "C13")
-    }
-    func testSlashChord() throws {
-        XCTAssertEqual(slashChord1.name, "Fsus2/A#")
-        XCTAssertEqual(slashChord2.name, "Fsus2")
-    }
-    func testNameInit() throws {
-        XCTAssertEqual(Chord("C13")?.description, chord6.description)
-        XCTAssertEqual(Chord("Bm7b5")?.description, chord4.description)
-        XCTAssertEqual(Chord("Fsus2/A#")?.description, slashChord1.description)
-        XCTAssertEqual(Chord("Fsus2")?.description, slashChord2.description)
+        XCTAssertEqual(Chord("Fsus2")!.description, "Fsus2")
+        XCTAssertEqual(Chord("F#7sus4")!.description, "F#7sus4")
+        XCTAssertEqual(Chord("E13")!.description, "E13")
+        XCTAssertEqual(Chord("Fsus2/A#")!.description, "Fsus2/A#")
     }
     func testNameInitFailure() throws {
         XCTAssertNil(Chord("/"))
         XCTAssertNil(Chord("5"))
         XCTAssertNil(Chord("C/F/D"))
-        XCTAssertNil(Chord("/Csus2/F/"))
+        XCTAssertNil(Chord("/Bbsus2/F/"))
+        XCTAssertNil(Chord("G/G"))
+        XCTAssertNil(Chord("GAB"))
     }
-    func testDescrition() throws {
-        print("*** Description of chord1. *** \n \(chord1.description) \n *** End of description. ***\n")
-        print("*** Description of chord2. *** \n \(chord2.description) \n *** End of description. ***\n")
-        print("*** Description of slashChord1. *** \n \(slashChord1.description) \n *** End of description. ***\n")
-        print("*** Description of nameChord1. *** \n \(Chord("Cmaj9/G")!.description) \n *** End of description. ***\n")
+    func testInScale() throws {
+        XCTAssertTrue(Chord("Dbm")!.isIn(scale: .init(.B, .ionian)))
+    }
+}
+
+// Need examination in terminal
+extension TestChord {
+    func testSummary() throws {
+        print("*** Description of chord1. *** \n \(Chord("A7")!.summary) \n *** End of description. ***\n")
+        print("*** Description of chord2. *** \n \(Chord("F#m/B")!.summary) \n *** End of description. ***\n")
     }
 }
 

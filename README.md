@@ -12,7 +12,7 @@ There are four modules included:
 - Composition: Tracks.
 - MusicPlay: A tool to play music.
 
-The four modules are demonstrated below.
+Features of the four modules are demonstrated below.
 
 ### MusicTheory
 ```swift
@@ -25,20 +25,27 @@ Note.D - Note.E  // Interval.m7
 
 #### Create a Chord
 ```swift
-let chord = Chord("Cmaj9/G")!
-chord.description
+let chord = Chord("A7")!
+chord.summary
 
-// This is a slash chord named Cmaj9/G over G, with root note C, and component 
-// notes D, E, G, B, which are respectively major second, major third, perfect
-// fifth, major seventh above the root. 
+// This is a chord named A7, with root note A, and component notes C#, E, G, which are 
+// respectively major third, perfect fifth, minor seventh above the root. 
 ```
 
 #### Is this chord in my scale?
 ```swift
-let chord = Chord("Cmaj9/G")!
-let scale = Scale(.Cs, .major) // C♯ Major
-chord.isIn(scale) // True
+let Dbm = Chord("Dbm")!
+let B = Scale(.B, .major)
+Dbm.isIn(scale: B) // true
 ```
+
+#### Other API
+- Consonance and dissonance of interval, notes, or chord
+- Checking if a note in a chord
+- Create chord with both sharps and flats
+- Create slash chords
+- Support for 20+ chord qualities
+- Support for 10+ modes (To be implemented)
 
 ### Songwriting
 ```swift

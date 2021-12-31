@@ -8,9 +8,12 @@
 import XCTest
 import MusicTheory
 
-final class TestNote : XCTestCase {}
+final class TestNote: XCTestCase {}
 
 extension TestNote {
+    func testNoteEquality() throws {
+        XCTAssertEqual(Note.E_flat, Note.D_sharp)
+    }
     func testNoteAddInterval() throws {
         XCTAssertEqual(Note.C + Interval.m2, Note.D_flat)
         XCTAssertEqual(Note.E + Interval.m2, Note.F)
@@ -26,5 +29,23 @@ extension TestNote {
     func testNoteSubtractNote() throws {
         XCTAssertEqual(Note.E - Note.C, Interval.M3)
         XCTAssertEqual(Note.G_sharp - Note.C_sharp, Interval.p5)
+    }
+    func testConsonance() throws {
+        XCTAssertTrue(Note.E.isConsonant(with: .A_flat))
+        XCTAssertTrue(Note.B.isConsonant(with: .G_sharp))
+        XCTAssertFalse(Note.C_sharp.isConsonant(with: .G))
+    }
+    func testInChord() throws {
+        XCTAssertTrue(Note.E.isIn(chord: .init("E/B")!))
+        XCTAssertTrue(Note.D_sharp.isIn(chord: .init("Ab")!))
+        // Don't understand why fail sometimes?
+        XCTAssertTrue(Note.E_flat.isIn(chord: .init("Ab")!))
+        XCTAssertTrue(Note.F.isIn(chord: .init("Db11")!))
+        XCTAssertTrue(Note.A.isIn(chord: .init("F#m")!))
+    }
+    func testInScale() throws {
+        XCTAssertTrue(Note.B.isIn(scale: .init(.B, .major)))
+        XCTAssertTrue(Note.B_flat.isIn(scale: .init(.B, .major)))
+        XCTAssertTrue(Note.B_flat.isIn(scale: .init(.G_sharp, .aeolian)))
     }
 }

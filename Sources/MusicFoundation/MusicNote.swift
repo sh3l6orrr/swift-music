@@ -45,9 +45,9 @@ public struct MusicNote {
 }
 
 extension MusicNote {
-    /// The frequency of the nore.
-    public var frequency: Float {
-        let relative = Float(self.note.absolutePosition - 10 + 12 * (octave - 4))
-        return Float(Float(440) * pow(Float(2),(relative/Float(12))))
-    }
+//    /// The frequency of the nore.
+//    public var frequency: Float {
+//        let relative = Float(self.note.absolutePosition - 10 + 12 * (octave - 4))
+//        return Float(Float(440) * pow(Float(2),(relative/Float(12))))
+//    }
 }

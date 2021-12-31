@@ -5,18 +5,21 @@
 //  Created by Jin Zhang on 12/11/21.
 //
 
-/// A custom  note.
+/// A custom note.
 ///
-/// Create a Note either by using rawValue:
+/// Create a Note either by using its name:
 /// ```swift
-/// Note("E")
+/// Note("D#")  // Note.D_sharp
 /// ```
 /// or by directly using enum cases:
 /// ```swift
-/// Note.Bb
+/// Note.B_flat
 /// ```
-/// > Only flats are currently supported. For example, the note above C is Db, instead of C#.
-public enum Note : CaseIterable {
+/// Flat and sharp versions are equivalent for the same note.
+/// ```swift
+/// Note("C#") == Note("Db")  // true
+/// ```
+public enum Note {
     /// The note C.
     case C
     /// The note C♯.
@@ -53,31 +56,31 @@ public enum Note : CaseIterable {
     case B
 }
 
-extension Note : LosslessStringConvertible {
+extension Note: LosslessStringConvertible {
     /// Initialize a note from its name.
     public init?(_ description: String) {
         switch description {
-        case "C":       self = .C
-        case "C#":      self = .C_sharp
-        case "Db":      self = .D_flat
-        case "D":       self = .D
-        case "D#":      self = .D_sharp
-        case "Eb":      self = .E_flat
-        case "E":       self = .E
-        case "F":       self = .F
-        case "F#":      self = .F_sharp
-        case "Gb":      self = .G_flat
-        case "G":       self = .G
-        case "G#":      self = .G_sharp
-        case "Ab":      self = .A_flat
-        case "A":       self = .A
-        case "A#":      self = .A_sharp
-        case "Bb":      self = .B_flat
-        case "B":       self = .B
-        default:        return nil
+        case "C"    :  self = .C
+        case "C#"   :  self = .C_sharp
+        case "Db"   :  self = .D_flat
+        case "D"    :  self = .D
+        case "D#"   :  self = .D_sharp
+        case "Eb"   :  self = .E_flat
+        case "E"    :  self = .E
+        case "F"    :  self = .F
+        case "F#"   :  self = .F_sharp
+        case "Gb"   :  self = .G_flat
+        case "G"    :  self = .G
+        case "G#"   :  self = .G_sharp
+        case "Ab"   :  self = .A_flat
+        case "A"    :  self = .A
+        case "A#"   :  self = .A_sharp
+        case "Bb"   :  self = .B_flat
+        case "B"    :  self = .B
+        default     :  return nil
         }
     }
-    // Name of the note.
+    /// Name of the note.
     public var description: String {
         switch self {
         case .C:            return "C"
@@ -121,7 +124,7 @@ extension Note {
         }
     }
     /// Absolute position of the note.
-    public var absolutePosition: Int {
+    var absolutePosition: Int {
         switch self {
         case .C:            return 1
         case .C_sharp:      return 2
@@ -144,17 +147,25 @@ extension Note {
     }
 }
 
-extension Note : Equatable {
+extension Note: Equatable {
     public static func == (lhs: Note, rhs: Note) -> Bool {
         lhs.absolutePosition == rhs.absolutePosition
     }
 }
 
 extension Note {
+    /// See if this note is consonant with another.
+    public func isConsonant(with anotherNote: Note) -> Bool {
+        (self - anotherNote).isConsonant
+    }
+    /// Check if this note is in a specific chord.
+    public func isIn(chord: Chord) -> Bool {
+        chord.allNotes.contains(self)
+    }
     /// Check if this note is in a specific scale.
-    public var isIn: (Scale) -> Bool {{ scale in
+    public func isIn(scale: Scale) -> Bool {
         scale.notes.contains(self)
-    }}
+    }
     /// Compute the note a certain Interval above it.
     ///
     /// - Parameters:
@@ -190,4 +201,6 @@ extension Note {
         return Interval(semitone: difference > 0 ? difference : difference + 12)!
     }
 }
+
+
 

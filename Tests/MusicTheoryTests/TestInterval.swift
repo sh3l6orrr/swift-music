@@ -8,7 +8,7 @@
 import XCTest
 import MusicTheory
 
-final class TestInterval : XCTestCase {}
+final class TestInterval: XCTestCase {}
 
 extension TestInterval {
     func testIntervalWholeName() throws {
@@ -18,6 +18,11 @@ extension TestInterval {
     func testCreation() throws {
         XCTAssertNotNil(Interval(semitone: 9031))
         XCTAssertNil(Interval(semitone: -4))
+    }
+    func testConsonance() throws {
+        XCTAssertTrue(Interval.m3.isConsonant)
+        XCTAssertTrue(Interval.p5.isConsonant)
+        XCTAssertTrue(Interval.octave.isConsonant)
     }
 }
 

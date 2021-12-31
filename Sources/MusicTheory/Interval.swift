@@ -6,7 +6,7 @@
 //
 
 /// A custom musical interval.
-public enum Interval : Comparable {
+public enum Interval: Comparable {
     /// A musical interval that contains 0 or 12 semitones.
     case octave
     /// A musical interval that contains 1 semitones.
@@ -33,22 +33,22 @@ public enum Interval : Comparable {
     case M7
 }
 
-extension Interval : CustomStringConvertible {
+extension Interval: CustomStringConvertible {
     /// String representation of the interval.
     public var description: String {
         switch self {
-        case .octave: return "octave"
-        case .m2: return "minor second"
-        case .M2: return "major second"
-        case .m3: return "minor third"
-        case .M3: return "major third"
-        case .p4: return "perfect fourth"
-        case .tritone: return "tritone"
-        case .p5: return "perfect fifth"
-        case .m6: return "minor sixth"
-        case .M6: return "major sixth"
-        case .m7: return "minor seventh"
-        case .M7: return "major seventh"
+        case .octave    :   return "octave"
+        case .m2        :   return "minor second"
+        case .M2        :   return "major second"
+        case .m3        :   return "minor third"
+        case .M3        :   return "major third"
+        case .p4        :   return "perfect fourth"
+        case .tritone   :   return "tritone"
+        case .p5        :   return "perfect fifth"
+        case .m6        :   return "minor sixth"
+        case .M6        :   return "major sixth"
+        case .m7        :   return "minor seventh"
+        case .M7        :   return "major seventh"
         }
     }
 }
@@ -88,6 +88,23 @@ extension Interval {
         case .M6        : return 9
         case .m7        : return 10
         case .M7        : return 11
+        }
+    }
+    
+    public var isConsonant: Bool {
+        switch self {
+        case .octave    : return true
+        case .m2        : return false
+        case .M2        : return false
+        case .m3        : return true
+        case .M3        : return true
+        case .p4        : return true
+        case .tritone   : return false
+        case .p5        : return true
+        case .m6        : return true
+        case .M6        : return true
+        case .m7        : return false
+        case .M7        : return false
         }
     }
 }
