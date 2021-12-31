@@ -9,21 +9,21 @@ let package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .watchOS(.v2), .tvOS(.v10)],
     products: [
         .library(
-            name: "music-theory",
+            name: "MusicTheory",
             targets: ["MusicTheory"]
         ),
-        .library(
-            name: "songwriting",
-            targets: ["Songwriting"]
-        ),
-        .library(
-            name: "composition",
-            targets: ["Composition"]
-        ),
-        .library(
-            name: "music-play",
-            targets: ["MusicPlay"]
-        ),
+//         .library(
+//             name: "Songwriting",
+//             targets: ["Songwriting"]
+//         ),
+//         .library(
+//             name: "Composition",
+//             targets: ["Composition"]
+//         ),
+//         .library(
+//             name: "MusicPlay",
+//             targets: ["MusicPlay"]
+//         ),
     ],
     targets: [
         .target(name: "StringHelper"),
