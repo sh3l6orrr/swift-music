@@ -5,8 +5,6 @@
 //  Created by Jin Zhang on 12/13/21.
 //
 
-import StringHelper
-
 /// A custom musical chord.
 ///
 /// As someone familiar with music theory might expect, a custom chord has its
@@ -109,7 +107,7 @@ extension Chord {
     }
     /// Create a chord directly from it's name.
     ///
-    /// Create a chord by using it's name directly is the most conveinient way!
+    /// Create a chord by using it's name directly.
     /// ```swift
     /// let myChord = try! Chord("Cmaj9/G")
     /// print(myChord.description)

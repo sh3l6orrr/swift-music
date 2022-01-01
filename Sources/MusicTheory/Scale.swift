@@ -12,10 +12,12 @@ public struct Scale {
 }
 
 extension Scale {
+    /// Init a scale by specifying tonic and mode.
     public init(_ tonic: Note, _ mode: Mode) {
         self.tonic = tonic
         self.mode = mode
     }
+    /// All notes in the scale starting from the tonic.
     public var notes: [Note] {
         self.mode.intervalsContained.map { interval in
             self.tonic + interval

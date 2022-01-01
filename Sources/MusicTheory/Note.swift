@@ -148,12 +148,14 @@ extension Note {
 }
 
 extension Note: Equatable {
+    /// Check if two notes are equal or just alias.
     public static func == (lhs: Note, rhs: Note) -> Bool {
         lhs.absolutePosition == rhs.absolutePosition
     }
 }
 
 extension Note: Hashable {
+    /// Hash function.
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.absolutePosition)
     }
