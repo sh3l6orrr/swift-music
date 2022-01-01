@@ -19,6 +19,10 @@ public struct Chord {
 }
 
 extension Chord {
+    /// If this is a currently supported chord.
+    public var isRecognized: Bool {
+        self.quality != nil
+    }
     /// All notes in the chord, including root and slash.
     public var allNotes: Set<Note> {
         var allNotes = self.notes
