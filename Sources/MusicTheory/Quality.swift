@@ -5,7 +5,8 @@
 //  Created by Jin Zhang on 12/25/21.
 //
 
-enum Quality: CaseIterable {
+/// Quality of a chord.
+public enum Quality: CaseIterable {
     /// Known as the power chord.
     case power
     case suspended2ndTriad
@@ -116,7 +117,8 @@ extension Array where Element == Interval {
 }
 
 extension Quality : LosslessStringConvertible {
-    init?(_ description: String) {
+    /// Create a quality from string.
+    public init?(_ description: String) {
         switch description {
         case "5":       self = .power
         case "sus2":    self = .suspended2ndTriad
@@ -150,7 +152,8 @@ extension Quality : LosslessStringConvertible {
         default:        return nil
         }
     }
-    var description: String {
+    /// Name of a quality.
+    public var description: String {
         switch self {
         case .power:                            return "5"
         case .suspended2ndTriad:                return "sus2"

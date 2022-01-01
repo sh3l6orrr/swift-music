@@ -74,7 +74,7 @@ extension Chord: CustomStringConvertible {
     ///
     /// The following code generate a chord with name "Esus4"
     /// ```swift
-    /// let chord = Chord(root: .E, notes: [.E, .A, .B])
+    /// let chord = Chord(root: .E, [.E, .A, .B])
     /// ```
     public var description: String {
         if let quality = self.quality?.description {
@@ -89,10 +89,15 @@ extension Chord: CustomStringConvertible {
 
 extension Chord {
     /// Create a chord by specifying root, notes, and slash.
-    public init(_ root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
+    public init(root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
         self.root = root
         self.notes = notes
         self.slash = root == slash ? nil : slash
+    }
+    /// Create a chord by specifying root, quality, and slash.
+    public init(root: Note, quality: Quality, over slash: Note? = nil) {
+        let notes = Set(quality.intervalsFormed.map{ root + $0 })
+        self.init(root: root, notes, over: slash)
     }
     /// Failures that can occur when creating chord from string literal.
     enum CreationFailures: Error {
@@ -151,6 +156,6 @@ extension Chord {
         }
         
         // Initilize.
-        self.init(root, notes, over: slash)
+        self.init(root: root, notes, over: slash)
     }
 }

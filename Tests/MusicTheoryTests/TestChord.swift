@@ -20,6 +20,7 @@ extension TestChord {
         XCTAssertEqual(try Chord("F#7sus4").description, "F#7sus4")
         XCTAssertEqual(try Chord("E13").description, "E13")
         XCTAssertEqual(try Chord("Fsus2/A#").description, "Fsus2/A#")
+        XCTAssertEqual(Chord(root: .G_sharp, quality: .minorTriad, over: .F_sharp).description, "G#m/F#")
     }
     func testNameInitFailure() throws {
 
