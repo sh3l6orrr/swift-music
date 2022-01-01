@@ -28,7 +28,7 @@ Note.D - Note.E  // Interval.m7
 let Esus4 = Chord(root: .E, [.E, .A, .B]) 
 
 // Create with root and quality.
-let Abm/Gb = Chord(root: .A_flat, quality: .minorTriad, over: .G_flat)
+let Abm = Chord(root: .A_flat, quality: .minorTriad)
 
 // Create with name need to be marked with the try! keyword.
 let A7 = try! Chord("A7") 
