@@ -74,9 +74,7 @@ extension Chord: CustomStringConvertible {
     ///
     /// The following code generate a chord with name "Esus4"
     /// ```swift
-    /// let root: Note = .E
-    /// let notes: Set<Note> = Set([.E, .A, .B])
-    /// let chord = Chord(root: root, notes: notes)?
+    /// let chord = Chord(root: .E, notes: [.E, .A, .B])
     /// ```
     public var description: String {
         if let quality = self.quality?.description {
@@ -96,54 +94,61 @@ extension Chord {
         self.notes = notes
         self.slash = root == slash ? nil : slash
     }
+    /// Failures that can occur when creating chord from string literal.
+    enum CreationFailures: Error {
+        case unrecognizedRoot
+        case unrecognizedSlash
+        case unrecognizedQuality
+        case slashOverlapsRoot
+        case tooManySlashes
+    }
     /// Create a chord directly from it's name.
     ///
     /// Create a chord by using it's name directly is the most conveinient way!
     /// ```swift
-    /// let myChord = Chord("Cmaj9/G")!
+    /// let myChord = try! Chord("Cmaj9/G")
     /// print(myChord.description)
     /// // This is a slash chord named Cmaj9/G over G, with root note C,
     /// // and component notes D, E, G, B, which are respectively major second,
     /// // major third, perfect fifth, major seventh above the root.
     /// ```
+    /// If a chord is failed to create, it will print the error message in terminal.
     /// For full reference of available chords, go to <doc:Chords-Reference>
-    public init?(_ name: String) {
-        // Split name into [0]: custom name, [1]: slash
-        // Return nil if the format is wrong.
-        let splitedName = name.split(separator: "/", omittingEmptySubsequences: false).map(String.init)
-        guard
-            (splitedName.count == 1
-             || splitedName.count == 2)
-                && !splitedName.contains("")
-        else { return nil }
+    public init(_ name: String) throws {
+        // Split name into:
+        var split = name.split(separator: "/", omittingEmptySubsequences: false).map(String.init)
+        // [0]: custom name.
+        var part1 = split.removeFirst()
+        // (optional) [1]: slash
+        let part2 = split.count == 1 ? split.removeFirst() : nil
+        // If there are still elements in string, return nil.
+        guard split.count == 0 else {
+            throw CreationFailures.tooManySlashes
+        }
         
-        // Handling root name.
-        var rootAndQuality = splitedName[0]
-        var root = rootAndQuality[0]
-        rootAndQuality.removeFirst()
-        if rootAndQuality.count >= 1 {
-            switch rootAndQuality[0] {
-            case "b": root += String(rootAndQuality.removeFirst())
-            case "#": root += String(rootAndQuality.removeFirst())
-            default: break
+        // Handling root name and quality.
+        guard let root = part1.parseNote() else {
+            throw CreationFailures.unrecognizedRoot
+        }
+ 
+        guard let quality = Quality(part1) else {
+            throw CreationFailures.unrecognizedQuality
+        }
+        let notes = Set(quality.intervalsFormed.map{ root + $0 })
+        
+        // Handling slash. Throw if slash is not a note or it's same with root.
+        let slash: Note?
+        if var part2 = part2 {
+            slash = part2.parseNote()
+            guard slash != nil else {
+                throw CreationFailures.unrecognizedSlash
             }
+            guard slash != root else {
+                throw CreationFailures.slashOverlapsRoot
+            }
+        } else {
+            slash = nil
         }
-        guard let root = Note(root) else { return nil }
-        
-        // Handling quality.
-        let quality = Quality(rootAndQuality)
-        guard let intervals = quality?.intervalsFormed else { return nil }
-        let notes = Set(intervals.map{ root + $0 })
-        
-        // Handling slash. Return nil if slash is not a note or it's same with root.
-        let slashStr = splitedName.count == 2 ? splitedName[1] : nil
-        if let slashStr = slashStr {
-            guard
-                Note(slashStr) != nil
-                && Note(slashStr) != root
-            else { return nil }
-        }
-        let slash = slashStr == nil ? nil : Note(slashStr!)!
         
         // Initilize.
         self.init(root, notes, over: slash)

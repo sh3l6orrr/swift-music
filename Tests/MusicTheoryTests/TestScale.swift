@@ -18,7 +18,7 @@ extension TestScale {
         XCTAssertTrue(Note.F.isIn(scale: .init(.G, .minor)))
     }
     func testChordInt() throws {
-        XCTAssertTrue(Chord("Gb7")!.isIn(scale: .init(.B, .major)))
-        XCTAssertTrue(Chord("Fm7")!.isIn(scale: .init(.C_sharp, .major)))
+        XCTAssertTrue(try Chord("Gb7").isIn(scale: .init(.B, .major)))
+        XCTAssertTrue(try Chord("Fm7").isIn(scale: .init(.C_sharp, .major)))
     }
 }

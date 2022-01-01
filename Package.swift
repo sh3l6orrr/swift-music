@@ -26,12 +26,8 @@ let package = Package(
 //         ),
     ],
     targets: [
-        .target(name: "StringHelper"),
         .target(
-            name: "MusicTheory",
-            dependencies: [
-                .target(name: "StringHelper")
-            ]
+            name: "MusicTheory"
         ),
         .target(
             name: "MusicFoundation",

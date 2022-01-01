@@ -24,8 +24,12 @@ Note.D - Note.E  // Interval.m7
 
 #### Create a Chord
 ```swift
-let chord = Chord("A7")!
-chord.summary
+// Direct creation.
+let Esus4 = Chord(root: .E, notes: [.E, .A, .B]) 
+// Create with name need to be marked with ``try!``.
+let A7 = try! Chord("A7") 
+
+A7.summary
 
 // This is a chord named A7, with root note A, and component notes C#, E, G, which are 
 // respectively major third, perfect fifth, minor seventh above the root. 
@@ -33,7 +37,7 @@ chord.summary
 
 #### Is this chord in my scale?
 ```swift
-let Dbm = Chord("Dbm")!
+let Dbm = try! Chord("Dbm")
 let B = Scale(.B, .major)
 Dbm.isIn(scale: B) // true
 ```

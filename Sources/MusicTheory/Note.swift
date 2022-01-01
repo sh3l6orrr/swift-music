@@ -19,7 +19,7 @@
 /// ```swift
 /// Note("C#") == Note("Db")  // true
 /// ```
-public enum Note {
+public enum Note: CaseIterable {
     /// The note C.
     case C
     /// The note C♯.
@@ -83,23 +83,23 @@ extension Note: LosslessStringConvertible {
     /// Name of the note.
     public var description: String {
         switch self {
-        case .C:            return "C"
-        case .C_sharp:      return "C#"
-        case .D_flat:       return "Db"
-        case .D:            return "D"
-        case .D_sharp:      return "D#"
-        case .E_flat:       return "Eb"
-        case .E:            return "E"
-        case .F:            return "F"
-        case .F_sharp:      return "F#"
-        case .G_flat:       return "Gb"
-        case .G:            return "G"
-        case .G_sharp:      return "G#"
-        case .A_flat:       return "Ab"
-        case .A:            return "A"
-        case .A_sharp:      return "A#"
-        case .B_flat:       return "Bb"
-        case .B:            return "B"
+        case .C         :   return "C"
+        case .C_sharp   :   return "C#"
+        case .D_flat    :   return "Db"
+        case .D         :   return "D"
+        case .D_sharp   :   return "D#"
+        case .E_flat    :   return "Eb"
+        case .E         :   return "E"
+        case .F         :   return "F"
+        case .F_sharp   :   return "F#"
+        case .G_flat    :   return "Gb"
+        case .G         :   return "G"
+        case .G_sharp   :   return "G#"
+        case .A_flat    :   return "Ab"
+        case .A         :   return "A"
+        case .A_sharp   :   return "A#"
+        case .B_flat    :   return "Bb"
+        case .B         :   return "B"
         }
     }
 }
@@ -150,6 +150,12 @@ extension Note {
 extension Note: Equatable {
     public static func == (lhs: Note, rhs: Note) -> Bool {
         lhs.absolutePosition == rhs.absolutePosition
+    }
+}
+
+extension Note: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.absolutePosition)
     }
 }
 

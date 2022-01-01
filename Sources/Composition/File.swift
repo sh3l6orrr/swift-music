@@ -6,3 +6,4 @@
 //
 
 import Foundation
+struct a {}

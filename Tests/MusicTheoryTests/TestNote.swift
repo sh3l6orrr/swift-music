@@ -36,12 +36,11 @@ extension TestNote {
         XCTAssertFalse(Note.C_sharp.isConsonant(with: .G))
     }
     func testInChord() throws {
-        XCTAssertTrue(Note.E.isIn(chord: .init("E/B")!))
-        XCTAssertTrue(Note.D_sharp.isIn(chord: .init("Ab")!))
-        // Don't understand why fail sometimes?
-        XCTAssertTrue(Note.E_flat.isIn(chord: .init("Ab")!))
-        XCTAssertTrue(Note.F.isIn(chord: .init("Db11")!))
-        XCTAssertTrue(Note.A.isIn(chord: .init("F#m")!))
+        XCTAssertTrue(Note.E.isIn(chord: try .init("E/B")))
+        XCTAssertTrue(Note.D_sharp.isIn(chord: try .init("Ab")))
+        XCTAssertTrue(Note.E_flat.isIn(chord: try .init("Ab")))
+        XCTAssertTrue(Note.F.isIn(chord: try .init("Db11")))
+        XCTAssertTrue(Note.A.isIn(chord: try .init("F#m")))
     }
     func testInScale() throws {
         XCTAssertTrue(Note.B.isIn(scale: .init(.B, .major)))

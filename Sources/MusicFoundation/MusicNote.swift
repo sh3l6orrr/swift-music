@@ -19,29 +19,29 @@ public struct MusicNote {
     let pitch: String
     /// The value of the note.
     public let value: Value
-    /// Create a note by specifying pitch, value, and velocity.
-    ///
-    /// To create a valid Music note, the pitch must be in the range A0 - C8,
-    /// and the velocity must be in the range 0...127.
-    /// For example:
-    /// ```swift
-    /// let note = MusicNote(.C, octave: 8, value: ._4, velocity: 64)! // OK
-    /// let note = MusicNote(.D, octave: 8, value: ._4, velocity: 128)? // Returns nil
-    /// ```
-    /// If no value and velocity is specified, they will be default to
-    /// quarter note and 64 respectively.
-    public init?(_ pitch: String, value: Value = ._64) {
-        guard pitch.count == 2 else { return nil }
-        guard let note = Note(pitch[0]) else { return nil }
-        guard let octave = Int(pitch[1]) else { return nil }
-        guard octave >= 0 && octave <= 8 else { return nil }
-        if octave == 0 { guard note == .A || note == .B_flat || note == .B else { return nil }}
-        if octave == 8 { guard note == .C else { return nil }}
-        self.note = note
-        self.octave = octave
-        self.value = value
-        self.pitch = pitch
-    }
+//    /// Create a note by specifying pitch, value, and velocity.
+//    ///
+//    /// To create a valid Music note, the pitch must be in the range A0 - C8,
+//    /// and the velocity must be in the range 0...127.
+//    /// For example:
+//    /// ```swift
+//    /// let note = MusicNote(.C, octave: 8, value: ._4, velocity: 64)! // OK
+//    /// let note = MusicNote(.D, octave: 8, value: ._4, velocity: 128)? // Returns nil
+//    /// ```
+//    /// If no value and velocity is specified, they will be default to
+//    /// quarter note and 64 respectively.
+//    public init?(_ pitch: String, value: Value = ._64) {
+//        guard pitch.count == 2 else { return nil }
+//        guard let note = Note(pitch[0]) else { return nil }
+//        guard let octave = Int(pitch[1]) else { return nil }
+//        guard octave >= 0 && octave <= 8 else { return nil }
+//        if octave == 0 { guard note == .A || note == .B_flat || note == .B else { return nil }}
+//        if octave == 8 { guard note == .C else { return nil }}
+//        self.note = note
+//        self.octave = octave
+//        self.value = value
+//        self.pitch = pitch
+//    }
 }
 
 extension MusicNote {

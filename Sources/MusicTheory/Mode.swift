@@ -6,7 +6,7 @@
 //
 
 /// A mode that requires a root to form a scale.
-public enum Mode {
+public enum Mode: CaseIterable {
     case ionian
     case major
 //    case dorian
@@ -21,7 +21,7 @@ public enum Mode {
 }
 
 extension Mode {
-    // The intervals contained in this mode.
+    /// The intervals contained in this mode.
     var intervalsContained: [Interval] {
         switch self {
         case .ionian    :   return [.octave, .M2, .M3, .p4, .p5, .M6, .M7]
@@ -33,8 +33,17 @@ extension Mode {
 }
 
 extension Mode: Equatable {
+    /// Check for mode equivalence.
+    ///
+    /// See if two modes are simply alias of each other, for example,
+    /// .major and .ionian are equal.
     public static func == (lhs: Mode, rhs: Mode) -> Bool {
         lhs.intervalsContained == rhs.intervalsContained
     }
 }
 
+extension Mode: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(intervalsContained)
+    }
+}

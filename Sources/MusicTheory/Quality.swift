@@ -5,7 +5,7 @@
 //  Created by Jin Zhang on 12/25/21.
 //
 
-enum Quality {
+enum Quality: CaseIterable {
     /// Known as the power chord.
     case power
     case suspended2ndTriad

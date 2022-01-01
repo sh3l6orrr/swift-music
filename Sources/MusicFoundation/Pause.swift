@@ -15,3 +15,4 @@ public struct Pause {
         self.value = value
     }
 }
+
