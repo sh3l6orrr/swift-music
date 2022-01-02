@@ -141,7 +141,6 @@ extension Chord {
         guard let quality = Quality(part1) else {
             throw CreationFailures.unrecognizedQuality
         }
-        let notes = Set(quality.intervalsFormed.map{ root + $0 })
         
         // Handling slash. Throw if slash is not a note or it's same with root.
         let slash: Note?
@@ -158,6 +157,6 @@ extension Chord {
         }
         
         // Initilize.
-        self.init(root: root, notes, over: slash)
+        self.init(root: root, quality: quality, over: slash)
     }
 }

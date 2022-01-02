@@ -39,7 +39,6 @@ extension TestNote {
         XCTAssertTrue(Note.E.isIn(chord: try .init("E/B")))
         XCTAssertTrue(Note.D_sharp.isIn(chord: try .init("Ab")))
         XCTAssertTrue(Note.E_flat.isIn(chord: try .init("Ab")))
-        XCTAssertTrue(Note.F.isIn(chord: try .init("Db11")))
         XCTAssertTrue(Note.A.isIn(chord: try .init("F#m")))
     }
     func testInScale() throws {
