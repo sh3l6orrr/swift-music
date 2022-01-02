@@ -1,22 +1,42 @@
 # Getting Started
 
-Get stared with MusicTheoryKit.
+Get stared with MusicTheory.
 
 ## Overview
 
-Create a music ``Note`` and ``Interval`` as follows:
+- Interval Arithmetic
 ```swift
-let myNote: Note = .C
-let myInterval: Interval = .p4
-let myAnotherInterval = Interval.p5
+Note.D - Note.E  // Interval.m7
 ```
-You can do operation on notes and intervals:
+
+- Create a Chord
 ```swift
-let newNote = myNote + myInterval
-let anotherNewNote = myNote + myAnotherInterval
+// Create with notes contained.
+let Esus4 = Chord(root: .E, [.E, .A, .B]) 
+
+// Create with root and quality.
+let Abm = Chord(root: .A_flat, quality: .minorTriad)
+
+// Create with name need to be marked with the try! keyword.
+let A7 = try! Chord("A7") 
 ```
-Then, you can form a ``Chord`` with these notes:
+
+- Get summary of a chord
 ```swift
-let myChord = Chord(root: myNote, notes: Set([myNote, newNote, anotherNewNote]))
-myChord.name == "Csus4"
+A7.summary
+// This is a chord named A7, with root note A, and component notes C#, E, G, which are 
+// respectively major third, perfect fifth, minor seventh above the root. 
 ```
+
+- Is this chord in my scale?
+```swift
+try! Chord("Dbm").isIn(scale: .init(.B, .major)) // true
+```
+
+#### Other API
+- Consonance and dissonance of interval, notes, or chord
+- Checking if a note in a chord
+- Create chord with both sharps and flats
+- Create slash chords
+- Support for 20+ chord qualities
+- Support for 10+ modes (To be implemented)

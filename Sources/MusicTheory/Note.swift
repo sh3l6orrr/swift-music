@@ -196,7 +196,7 @@ extension Note {
     }
     /// Compute the Interval between two notes within an octave.
     ///
-    /// The following expression will return ``Interval/m7-1ygiw``.
+    /// The following expression will return ``Interval``.
     /// ```swift
     /// Note.D - Note.E
     /// ```

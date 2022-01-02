@@ -26,7 +26,9 @@ public enum Quality: CaseIterable {
     case minorMajorSeventh
     case augmentedSeventh
     case dominantSeventhWithSuspended4th
+    case minorTriadAdded9th
     case majorTriadAdded9th
+    case minorTriadAdded11th
     case majorTriadAdded11th
     case minorSeventh
     /// The characteristic dominant chord.
@@ -35,12 +37,6 @@ public enum Quality: CaseIterable {
     case minorNinth
     case dominantNinth
     case majorNinth
-    case minorEleventh
-    case dominantEleventh
-    case majorEleventh
-    case minorThirteenth
-    case dominantThirteenth
-    case majorThirteenth
 }
 
 extension Quality {
@@ -61,7 +57,9 @@ extension Quality {
         case .minorMajorSeventh:                return [.m3, .p5, .M7]
         case .augmentedSeventh:                 return [.M3, .m6, .m7]
         case .dominantSeventhWithSuspended4th:  return [.p4, .p5, .m7]
+        case .minorTriadAdded9th:               return [.M2, .m3, .p5]
         case .majorTriadAdded9th:               return [.M2, .M3, .p5]
+        case .minorTriadAdded11th:              return [.m3, .p4, .p5]
         case .majorTriadAdded11th:              return [.M3, .p4, .p5]
         case .minorSeventh:                     return [.m3, .p5, .m7]
         case .dominantSeventh:                  return [.M3, .p5, .m7]
@@ -69,12 +67,6 @@ extension Quality {
         case .minorNinth:                       return [.M2, .m3, .p5, .m7]
         case .dominantNinth:                    return [.M2, .M3, .p5, .m7]
         case .majorNinth:                       return [.M2, .M3, .p5, .M7]
-        case .minorEleventh:                    return [.M2, .m3, .p4, .p5, .m7]
-        case .dominantEleventh:                 return [.M2, .M3, .p4, .p5, .m7]
-        case .majorEleventh:                    return [.M2, .M3, .p4, .p5, .M7]
-        case .minorThirteenth:                  return [.M2, .m3, .p4, .p5, .M6, .m7]
-        case .dominantThirteenth:               return [.M2, .M3, .p4, .p5, .M6, .m7]
-        case .majorThirteenth:                  return [.M2, .M3, .p4, .p5, .M6, .M7]
         }
     }
 }
@@ -97,7 +89,9 @@ extension Array where Element == Interval {
         case [.m3, .p5, .M7]:                   return .minorMajorSeventh
         case [.M3, .m6, .m7]:                   return .augmentedSeventh
         case [.p4, .p5, .m7]:                   return .dominantSeventhWithSuspended4th
+        case [.M2, .m3, .p5]:                   return .minorTriadAdded9th
         case [.M2, .M3, .p5]:                   return .majorTriadAdded9th
+        case [.m3, .p4, .p5]:                   return .minorTriadAdded11th
         case [.M3, .p4, .p5]:                   return .majorTriadAdded11th
         case [.m3, .p5, .m7]:                   return .minorSeventh
         case [.M3, .p5, .m7]:                   return .dominantSeventh
@@ -105,12 +99,6 @@ extension Array where Element == Interval {
         case [.M2, .m3, .p5, .m7]:              return .minorNinth
         case [.M2, .M3, .p5, .m7]:              return .dominantNinth
         case [.M2, .M3, .p5, .M7]:              return .majorNinth
-        case [.M2, .m3, .p4, .p5, .m7]:         return .minorEleventh
-        case [.M2, .M3, .p4, .p5, .m7]:         return .dominantEleventh
-        case [.M2, .M3, .p4, .p5, .M7]:         return .majorEleventh
-        case [.M2, .m3, .p4, .p5, .M6, .m7]:    return .minorThirteenth
-        case [.M2, .M3, .p4, .p5, .M6, .m7]:    return .dominantThirteenth
-        case [.M2, .M3, .p4, .p5, .M6, .M7]:    return .majorThirteenth
         default:                                return nil
         }
     }
@@ -135,7 +123,9 @@ extension Quality : LosslessStringConvertible {
         case "mMaj7":   self = .minorMajorSeventh
         case "aug7":    self = .augmentedSeventh
         case "7sus4":   self = .dominantSeventhWithSuspended4th
+        case "madd9":   self = .minorTriadAdded9th
         case "add9":    self = .majorTriadAdded9th
+        case "madd11":  self = .minorTriadAdded11th
         case "add11":   self = .majorTriadAdded11th
         case "m7":      self = .minorSeventh
         case "7":       self = .dominantSeventh
@@ -143,12 +133,6 @@ extension Quality : LosslessStringConvertible {
         case "m9":      self = .minorNinth
         case "9":       self = .dominantNinth
         case "maj9":    self = .majorNinth
-        case "m11":     self = .minorEleventh
-        case "11":      self = .dominantEleventh
-        case "maj11":   self = .majorEleventh
-        case "m13":     self = .minorThirteenth
-        case "13":      self = .dominantThirteenth
-        case "maj13":   self = .majorThirteenth
         default:        return nil
         }
     }
@@ -170,7 +154,9 @@ extension Quality : LosslessStringConvertible {
         case .minorMajorSeventh:                return "mMaj7"
         case .augmentedSeventh:                 return "aug7"
         case .dominantSeventhWithSuspended4th:  return "7sus4"
+        case .minorTriadAdded9th:               return "madd9"
         case .majorTriadAdded9th:               return "add9"
+        case .minorTriadAdded11th:              return "madd11"
         case .majorTriadAdded11th:              return "add11"
         case .minorSeventh:                     return "m7"
         case .dominantSeventh:                  return "7"
@@ -178,12 +164,6 @@ extension Quality : LosslessStringConvertible {
         case .minorNinth:                       return "m9"
         case .dominantNinth:                    return "9"
         case .majorNinth:                       return "maj9"
-        case .minorEleventh:                    return "m11"
-        case .dominantEleventh:                 return "11"
-        case .majorEleventh:                    return "maj11"
-        case .minorThirteenth:                  return "m13"
-        case .dominantThirteenth:               return "13"
-        case .majorThirteenth:                  return "maj13"
         }
     }
 }
