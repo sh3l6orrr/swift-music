@@ -130,7 +130,7 @@ targets: [
 
 ## Documentation
 
-Documentation can be built in Xcode by 
+Documentation is contructed with DocC. To build, in Xcode:
 
 Product - Build Documentation 
 

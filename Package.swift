@@ -6,7 +6,7 @@ let 🐱 = "Mascot of this package"
 
 let package = Package(
     name: "swift-music",
-    platforms: [.macOS(.v10_15), .iOS(.v13), .watchOS(.v2), .tvOS(.v10)],
+    platforms: [.macOS(.v10_15), .iOS(.v8), .watchOS(.v2), .tvOS(.v10)],
     products: [
         .library(
             name: "MusicTheory",
@@ -30,36 +30,26 @@ let package = Package(
             name: "MusicTheory"
         ),
         .target(
-            name: "MusicFoundation",
+            name: "Songwriting",
             dependencies: [
                 .target(name: "MusicTheory")
             ]
         ),
         .target(
-            name: "Songwriting",
-            dependencies: [
-                .target(name: "MusicFoundation")
-            ]
-        ),
-        .target(
             name: "Composition",
             dependencies: [
-                .target(name: "MusicFoundation")
+                .target(name: "MusicTheory")
             ]
         ),
         .target(
             name: "MusicPlay",
             dependencies: [
-                .target(name: "MusicFoundation")
+                .target(name: "MusicTheory")
             ]
         ),
         .testTarget(
             name: "MusicTheoryTests",
             dependencies: ["MusicTheory"]
-        ),
-        .testTarget(
-            name: "MusicFoundationTests",
-            dependencies: ["MusicFoundation"]
         ),
         .testTarget(
             name: "SongwritingTests",
