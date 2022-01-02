@@ -108,41 +108,43 @@ extension Note {
     /// Initialize a note from its absolute position in an octave.
     init?(_ absolutePosition: Int) {
         switch absolutePosition {
-        case 1  :  self = .C
-        case 2  :  self = .C_sharp
-        case 3  :  self = .D
-        case 4  :  self = .D_sharp
-        case 5  :  self = .E
-        case 6  :  self = .F
-        case 7  :  self = .F_sharp
-        case 8  :  self = .G
-        case 9  :  self = .G_sharp
-        case 10 :  self = .A
-        case 11 :  self = .A_sharp
-        case 12 :  self = .B
+        case 0  :  self = .C
+        case 1  :  self = .C_sharp
+        case 2  :  self = .D
+        case 3  :  self = .D_sharp
+        case 4  :  self = .E
+        case 5  :  self = .F
+        case 6  :  self = .F_sharp
+        case 7  :  self = .G
+        case 8  :  self = .G_sharp
+        case 9  :  self = .A
+        case 10 :  self = .A_sharp
+        case 11 :  self = .B
         default :  return nil
         }
     }
-    /// Absolute position of the note.
-    var absolutePosition: Int {
+    /// Absolute position of the note, for conveience of calulation.
+    ///
+    /// By default, C is 0, C# is 1, ..., B is 11.
+    public var absolutePosition: Int {
         switch self {
-        case .C:            return 1
-        case .C_sharp:      return 2
-        case .D_flat:       return 2
-        case .D:            return 3
-        case .D_sharp:      return 4
-        case .E_flat:       return 4
-        case .E:            return 5
-        case .F:            return 6
-        case .F_sharp:      return 7
-        case .G_flat:       return 7
-        case .G:            return 8
-        case .G_sharp:      return 9
-        case .A_flat:       return 9
-        case .A:            return 10
-        case .A_sharp:      return 11
-        case .B_flat:       return 11
-        case .B:            return 12
+        case .C:            return 0
+        case .C_sharp:      return 1
+        case .D_flat:       return 1
+        case .D:            return 2
+        case .D_sharp:      return 3
+        case .E_flat:       return 3
+        case .E:            return 4
+        case .F:            return 5
+        case .F_sharp:      return 6
+        case .G_flat:       return 6
+        case .G:            return 7
+        case .G_sharp:      return 8
+        case .A_flat:       return 8
+        case .A:            return 9
+        case .A_sharp:      return 10
+        case .B_flat:       return 10
+        case .B:            return 11
         }
     }
 }
@@ -182,7 +184,7 @@ extension Note {
     /// - Returns: The note a specified interval above the base note.
     public static func + (_ lhs: Note, _ rhs: Interval) -> Note {
         let sum = lhs.absolutePosition + rhs.semitones
-        return Note(sum <= 12 ? sum : sum - 12)!
+        return Note(sum < 12 ? sum : sum - 12)!
     }
     /// Compute the note a certain Interval below it.
     ///
@@ -192,7 +194,7 @@ extension Note {
     /// - Returns: The note a specified interval below the base note.
     public static func - (_ lhs: Note, _ rhs: Interval) -> Note {
         let difference = lhs.absolutePosition - rhs.semitones
-        return Note(difference > 0 ? difference : difference + 12)!
+        return Note(difference >= 0 ? difference : difference + 12)!
     }
     /// Compute the Interval between two notes within an octave.
     ///
