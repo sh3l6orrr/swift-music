@@ -18,6 +18,8 @@ public struct Chord {
     let slash: Note?
 }
 
+extension Chord: Equatable {}
+
 extension Chord {
     /// If this is a currently supported chord.
     public var isRecognized: Bool {

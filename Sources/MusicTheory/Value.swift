@@ -58,7 +58,7 @@ extension Value {
         }
     }
     /// Adding two values.
-    public static func + (_ lhs: Value, _ rhs: Value) -> Value? {
-        Value(lhs.beats + rhs.beats)
+    public static func + (_ lhs: Self, _ rhs: Self) -> Self? {
+        .init(lhs.beats + rhs.beats)
     }
 }

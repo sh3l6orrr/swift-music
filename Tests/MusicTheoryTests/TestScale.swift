@@ -21,4 +21,9 @@ extension TestScale {
         XCTAssertTrue(try Chord("Gb7").isIn(scale: .init(.B, .major)))
         XCTAssertTrue(try Chord("Fm7").isIn(scale: .init(.C_sharp, .major)))
     }
+    func testAllTriads() throws {
+        XCTAssertEqual(Scale(.B, .major).triad(at: 6), try Chord("G#m"))
+        XCTAssertEqual(Scale(.B, .major).triad(at: 6), try Chord("Abm"))
+        XCTAssertEqual(Scale(.B_flat, .minor).triad(at: 2), try Chord("Cdim"))
+    }
 }
