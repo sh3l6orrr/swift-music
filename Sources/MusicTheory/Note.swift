@@ -57,8 +57,10 @@ public enum Note {
 }
 
 extension Note: CaseIterable {
-    static let allCasesInFlats: [Note] = [.C, .D_flat, .D, .E_flat, .E, .F, .G_flat, .G, .A_flat, .A, .B_flat, .B]
-    static let allCasesInSharps: [Note] = [.C, .C_sharp, .D, .D_sharp, .E, .F, .F_sharp, .G, .G_sharp, .A, .A_sharp, .B]
+    /// All notes enumerated with flat accidentals.
+    public static let allCasesInFlats: [Note] = [.C, .D_flat, .D, .E_flat, .E, .F, .G_flat, .G, .A_flat, .A, .B_flat, .B]
+    /// All notes enumerated with sharp accidentals.
+    public static let allCasesInSharps: [Note] = [.C, .C_sharp, .D, .D_sharp, .E, .F, .F_sharp, .G, .G_sharp, .A, .A_sharp, .B]
 }
 
 extension Note: LosslessStringConvertible {
