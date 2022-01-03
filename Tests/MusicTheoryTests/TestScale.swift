@@ -27,3 +27,10 @@ extension TestScale {
         XCTAssertEqual(Scale(.B_flat, .minor).triad(at: 2), try Chord("Cdim"))
     }
 }
+
+extension TestScale {
+    func testPrintSharpOrFlatAccordingToTonic() throws {
+        print(Scale(.B, .major).allTriads)
+        print(Scale(.G_flat, .major).allTriads)
+    }
+}

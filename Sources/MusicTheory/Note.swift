@@ -105,8 +105,8 @@ extension Note: LosslessStringConvertible {
 }
 
 extension Note {
-    /// Initialize a note from its absolute position in an octave.
-    init?(_ absolutePosition: Int) {
+    /// Initialize a sharped note from its absolute position in an octave.
+    init?(sharped absolutePosition: Int) {
         switch absolutePosition {
         case 0  :  self = .C
         case 1  :  self = .C_sharp
@@ -123,6 +123,49 @@ extension Note {
         default :  return nil
         }
     }
+    /// Initialize a flat note from its absolute position in an octave.
+    init?(flatted absolutePosition: Int) {
+        switch absolutePosition {
+        case 0  :  self = .C
+        case 1  :  self = .D_flat
+        case 2  :  self = .D
+        case 3  :  self = .E_flat
+        case 4  :  self = .E
+        case 5  :  self = .F
+        case 6  :  self = .G_flat
+        case 7  :  self = .G
+        case 8  :  self = .A_flat
+        case 9  :  self = .A
+        case 10 :  self = .B_flat
+        case 11 :  self = .B
+        default :  return nil
+        }
+    }
+    /// Should this note's related notes be initilizeds by flat or sharp.
+    var initSharp: Bool {
+        switch self {
+        case .C         :   return true
+        case .C_sharp   :   return true
+        case .D_flat    :   return false
+        case .D         :   return true
+        case .D_sharp   :   return true
+        case .E_flat    :   return false
+        case .E         :   return true
+        case .F         :   return false
+        case .F_sharp   :   return true
+        case .G_flat    :   return false
+        case .G         :   return true
+        case .G_sharp   :   return true
+        case .A_flat    :   return false
+        case .A         :   return true
+        case .A_sharp   :   return true
+        case .B_flat    :   return false
+        case .B         :   return true
+        }
+    }
+}
+
+extension Note {
     /// Absolute position of the note, for conveience of calulation.
     ///
     /// By default, C is 0, C# is 1, ..., B is 11.
@@ -182,9 +225,12 @@ extension Note {
     ///   - lhs: Base note.
     ///   - rhs: Interval above the base note.
     /// - Returns: The note a specified interval above the base note.
-    public static func + (_ lhs: Note, _ rhs: Interval) -> Note {
+    public static func + (_ lhs: Self, _ rhs: Interval) -> Self {
         let sum = lhs.absolutePosition + rhs.semitones
-        return Note(sum < 12 ? sum : sum - 12)!
+        return lhs.initSharp
+        ? .init(sharped: sum < 12 ? sum : sum - 12)!
+        : .init(flatted: sum < 12 ? sum : sum - 12)!
+        
     }
     /// Compute the note a certain Interval below it.
     ///
@@ -192,9 +238,11 @@ extension Note {
     ///   - lhs: Base note.
     ///   - rhs: Interval below the base note.
     /// - Returns: The note a specified interval below the base note.
-    public static func - (_ lhs: Note, _ rhs: Interval) -> Note {
+    public static func - (_ lhs: Self, _ rhs: Interval) -> Self {
         let difference = lhs.absolutePosition - rhs.semitones
-        return Note(difference >= 0 ? difference : difference + 12)!
+        return lhs.initSharp
+        ? .init(sharped: difference >= 0 ? difference : difference + 12)!
+        : .init(flatted: difference >= 0 ? difference : difference + 12)!
     }
     /// Compute the Interval between two notes within an octave.
     ///
