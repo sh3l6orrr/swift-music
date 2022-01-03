@@ -33,6 +33,11 @@ A7.summary
 try! Chord("Dbm").isIn(scale: .init(.B, .major)) // true
 ```
 
+- Get triad in a scale
+```swift
+Scale(.B, .major).triad(degree: 6) // G#m
+```
+
 #### Other API
 - Consonance and dissonance of interval, notes, or chord
 - Checking if a note in a chord

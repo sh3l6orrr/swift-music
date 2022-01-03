@@ -35,7 +35,7 @@ extension Scale {
         }
     }
     /// The triad at a degree.
-    public func triad(at degree: Int) -> Chord {
+    public func triad(degree: Int) -> Chord {
         return self.allTriads[degree - 1]
     }
 }
