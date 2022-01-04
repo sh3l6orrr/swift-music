@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicTheory - Scale</title>
+    <link rel="stylesheet" type="text/css" href="/swift-parsing/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swift-parsing/">
+            <strong>
+                MusicTheory
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#scale.init(_:_:)">init(_:​_:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#scale.notes">notes</a></li><li class="variable"><a href="#scale.alltriads">all​Triads</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#scale.triad(degree:)">triad(degree:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Scale</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">Scale</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A scale.</p>
+
+</div>
+<div class="discussion">
+    <p>Note that in this module, scale are specifically constructed from the seven modes.
+If you are looking for other scales, go to Key.</p>
+
+</div>
+
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="scale.init(_:_:)">
+    <h3>
+        <code><a href="#scale.init(_:_:)">init(_:​_:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="keyword">_</span> <span class="variable">tonic</span>: <a href="/swift-parsing/Note"><span class="type">Note</span></a>, <span class="keyword">_</span> <span class="variable">mode</span>: <a href="/swift-parsing/Mode"><span class="type">Mode</span></a>)  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Init a scale by specifying tonic and mode.</p>
+
+</div>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="scale.notes">
+    <h3>
+        <code><a href="#scale.notes">notes</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">notes</span>: [<a href="/swift-parsing/Note"><span class="type">Note</span></a>]  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>All notes in the scale starting from the tonic.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="scale.alltriads">
+    <h3>
+        <code><a href="#scale.alltriads">all​Triads</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">allTriads</span>: [<a href="/swift-parsing/Chord"><span class="type">Chord</span></a>]  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>All triads in the scale ordered from I to VII.</p>
+
+</div>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="scale.triad(degree:)">
+    <h3>
+        <code><a href="#scale.triad(degree:)">triad(degree:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">triad</span>(<span class="variable">degree</span>: <span class="type">Int</span>) -&gt; <a href="/swift-parsing/Chord"><span class="type">Chord</span></a>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>The triad at a degree.</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2022-01-04T10:13:59+0000">January 4, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>
