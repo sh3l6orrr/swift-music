@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Test swift-music",
+            "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+            "args": [
+                ".build/debug/swift-musicPackageTests.xctest"
+            ],
+            "cwd": "${workspaceFolder:swift-music}",
+            "preLaunchTask": "swift: Build All"
+        }
+    ]
+}
