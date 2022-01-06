@@ -10,8 +10,10 @@
 /// Note that in this module, scale are specifically constructed from the seven modes.
 /// If you are looking for other scales, go to Key.
 public struct Scale {
-    let tonic: Note
-    let mode: Mode
+    /// Tonic of the scale.
+    public let tonic: Note
+    /// Mode of the scale.
+    public let mode: Mode
 }
 
 extension Scale {
@@ -31,7 +33,7 @@ extension Scale {
         self.notes.enumerated().map { index, note in
             let secondNote = self.notes[index + 2 > 6 ? index - 5 : index + 2]
             let thirdNote = self.notes[index + 4 > 6 ? index - 3 : index + 4]
-            return Chord(root: note, [secondNote, thirdNote])
+            return Chord(note, notes: [secondNote, thirdNote])
         }
     }
     /// The triad at a degree.

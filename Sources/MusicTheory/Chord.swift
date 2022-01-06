@@ -11,11 +11,11 @@
 /// component notes and a root note. The chord's quality is determined by these notes.
 public struct Chord {
     // The root of this chord.
-    let root: Note
+    public let root: Note
     // Set of notes in the chord.
     let notes: Set<Note>
     // The note this chord is over.
-    let slash: Note?
+    public let slash: Note?
 }
 
 extension Chord: Equatable {}
@@ -93,15 +93,15 @@ extension Chord: CustomStringConvertible {
 
 extension Chord {
     /// Create a chord by specifying root, notes, and slash.
-    public init(root: Note, _ notes: Set<Note>, over slash: Note? = nil) {
+    public init(_ root: Note, notes: Set<Note>, over slash: Note? = nil) {
         self.root = root
         self.notes = notes
         self.slash = root == slash ? nil : slash
     }
     /// Create a chord by specifying root, quality, and slash.
-    public init(root: Note, quality: Quality, over slash: Note? = nil) {
+    public init(_ root: Note, _ quality: Quality, over slash: Note? = nil) {
         let notes = Set(quality.intervalsFormed.map{ root + $0 })
-        self.init(root: root, notes, over: slash)
+        self.init(root, notes: notes, over: slash)
     }
     /// Failures that can occur when creating chord from string literal.
     enum CreationFailures: Error {
@@ -159,6 +159,6 @@ extension Chord {
         }
         
         // Initilize.
-        self.init(root: root, quality: quality, over: slash)
+        self.init(root, quality, over: slash)
     }
 }

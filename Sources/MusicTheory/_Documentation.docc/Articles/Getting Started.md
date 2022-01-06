@@ -12,10 +12,10 @@ Note.D - Note.E  // Interval.m7
 - Create a Chord
 ```swift
 // Create with notes contained.
-let Esus4 = Chord(root: .E, [.E, .A, .B]) 
+let Esus4 = Chord(.E, notes: [.E, .A, .B]) 
 
 // Create with root and quality.
-let Abm = Chord(root: .A_flat, quality: .minorTriad)
+let Abm = Chord(.A_flat, .minorTriad)
 
 // Create with name need to be marked with the try! keyword.
 let A7 = try! Chord("A7") 

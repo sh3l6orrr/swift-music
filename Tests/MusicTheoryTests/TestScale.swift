@@ -25,6 +25,8 @@ extension TestScale {
         XCTAssertEqual(Scale(.B, .major).triad(degree: 6), try Chord("G#m"))
         XCTAssertEqual(Scale(.B, .major).triad(degree: 6), try Chord("Abm"))
         XCTAssertEqual(Scale(.B_flat, .minor).triad(degree: 2), try Chord("Cdim"))
+        XCTAssertEqual(Scale(.A_flat, .minor).triad(degree: 2), try Chord("Bbdim"))
+        XCTAssertEqual(Scale(.G, .ionian).triad(degree: 5), try Chord("D"))
     }
 }
 
@@ -34,3 +36,4 @@ extension TestScale {
         print(Scale(.G_flat, .major).allTriads)
     }
 }
+ 
