@@ -1,7 +1,8 @@
 # 🎼 swift-music
 
 [![CI](https://github.com/sh3l6orrr/swift-music/actions/workflows/CI.yml/badge.svg)](https://github.com/sh3l6orrr/swift-music/actions/workflows/CI.yml)
-
+[![Chords](https://img.shields.io/badge/Reference-Chord-blue)](https://github.com/sh3l6orrr/swift-music/blob/cd183a7740aca10a7b7488c89794b8a17b3c296d/Sources/MusicTheory/_Documentation.docc/Articles/Chords%20Reference.md)
+[![DocMusicTheory](https://img.shields.io/badge/Documentation-MusicTheory-blue)](https://sh3l6orrr.github.io/swift-music/)
 ## Introduction
 
 swift-music is a swift package that provides an easy-to-use API for music related developments.
@@ -135,14 +136,9 @@ targets: [
 
 ## Documentation
 
-Documentation is contructed with DocC. To build, in Xcode:
+Click on the badge in the front of this README, or build in Xcode:
 
 Product - Build Documentation 
-
-## License
-
-This project is published under the Apache License 2.0.
-
 
 
 
