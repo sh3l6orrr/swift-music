@@ -25,7 +25,7 @@
     <nav>
         <div class="wrapper">
             <h2>On This Page</h2>
-            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#chord.init(root:_:over:)">init(root:​_:​over:​)</a></li><li class="initializer"><a href="#chord.init(root:quality:over:)">init(root:​quality:​over:​)</a></li><li class="initializer"><a href="#chord.init(_:)">init(_:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#chord.isrecognized">is​Recognized</a></li><li class="variable"><a href="#chord.allnotes">all​Notes</a></li><li class="variable"><a href="#chord.summary">summary</a></li><li class="variable"><a href="#chord.description">description</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#chord.contains(note:)">contains(note:​)</a></li><li class="function"><a href="#chord.isin(scale:)">is​In(scale:​)</a></li></ul></li></ol>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#chord.init(_:notes:over:)">init(_:​notes:​over:​)</a></li><li class="initializer"><a href="#chord.init(_:_:over:)">init(_:​_:​over:​)</a></li><li class="initializer"><a href="#chord.init(_:)">init(_:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#chord.root">root</a></li><li class="variable"><a href="#chord.slash">slash</a></li><li class="variable"><a href="#chord.isrecognized">is​Recognized</a></li><li class="variable"><a href="#chord.allnotes">all​Notes</a></li><li class="variable"><a href="#chord.summary">summary</a></li><li class="variable"><a href="#chord.description">description</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#chord.contains(note:)">contains(note:​)</a></li><li class="function"><a href="#chord.isin(scale:)">is​In(scale:​)</a></li></ul></li></ol>
         </div>
     </nav>
 
@@ -97,24 +97,24 @@ component notes and a root note. The chord's quality is determined by these note
     <section id="initializers">
         <h2>Initializers</h2>
 
-        <div role="article" class="initializer" id="chord.init(root:_:over:)">
+        <div role="article" class="initializer" id="chord.init(_:notes:over:)">
     <h3>
-        <code><a href="#chord.init(root:_:over:)">init(root:​_:​over:​)</a></code>
+        <code><a href="#chord.init(_:notes:over:)">init(_:​notes:​over:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">root</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>, <span class="keyword">_</span> <span class="variable">notes</span>: <span class="type">Set</span>&lt;<a href="/swift-music/Note"><span class="type">Note</span></a>&gt;, <span class="variable">over</span> <span class="variable">slash</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="keyword">_</span> <span class="variable">root</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>, <span class="variable">notes</span>: <span class="type">Set</span>&lt;<a href="/swift-music/Note"><span class="type">Note</span></a>&gt;, <span class="variable">over</span> <span class="variable">slash</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a chord by specifying root, notes, and slash.</p>
 
 </div>
 </div>
-<div role="article" class="initializer" id="chord.init(root:quality:over:)">
+<div role="article" class="initializer" id="chord.init(_:_:over:)">
     <h3>
-        <code><a href="#chord.init(root:quality:over:)">init(root:​quality:​over:​)</a></code>
+        <code><a href="#chord.init(_:_:over:)">init(_:​_:​over:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">root</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>, <span class="variable">quality</span>: <a href="/swift-music/Quality"><span class="type">Quality</span></a>, <span class="variable">over</span> <span class="variable">slash</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="keyword">_</span> <span class="variable">root</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>, <span class="keyword">_</span> <span class="variable">quality</span>: <a href="/swift-music/Quality"><span class="type">Quality</span></a>, <span class="variable">over</span> <span class="variable">slash</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a chord by specifying root, quality, and slash.</p>
@@ -150,7 +150,23 @@ For full reference of available chords, go to <a href="doc:Chords-Reference">doc
     <section id="properties">
         <h2>Properties</h2>
 
-        <div role="article" class="variable" id="chord.isrecognized">
+        <div role="article" class="variable" id="chord.root">
+    <h3>
+        <code><a href="#chord.root">root</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">root</span>: <a href="/swift-music/Note"><span class="type">Note</span></a></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="chord.slash">
+    <h3>
+        <code><a href="#chord.slash">slash</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">slash</span>: <a href="/swift-music/Note"><span class="type">Note</span></a>? </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="chord.isrecognized">
     <h3>
         <code><a href="#chord.isrecognized">is​Recognized</a></code>
     </h3>
@@ -241,7 +257,7 @@ For full reference of available chords, go to <a href="doc:Chords-Reference">doc
 
     <footer>
         <p>
-    Generated on <time datetime="2022-01-04T10:16:55+0000">January 4, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+    Generated on <time datetime="2022-01-06T02:37:31+0000">January 6, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
 </p>
     </footer>
 </body>
