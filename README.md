@@ -58,7 +58,7 @@ Scale(.B, .major).triad(degree: 6) // G#m
 - Create chord with both sharps and flats
 - Create slash chords
 - Support for 20+ chord qualities
-- Support for 10+ modes (To be implemented)
+- Support for both major and minor mode
 
 <!--### Songwriting-->
 <!--```swift-->

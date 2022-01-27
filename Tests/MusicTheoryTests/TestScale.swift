@@ -12,9 +12,9 @@ final class TestScale: XCTestCase {}
 
 extension TestScale {
     func testNoteIn() throws {
-        XCTAssertTrue(Note.A.isIn(scale: .init(.C, .ionian)))
-        XCTAssertTrue(Note.A_flat.isIn(scale: .init(.B, .ionian)))
-        XCTAssertTrue(Note.F_sharp.isIn(scale: .init(.G, .ionian)))
+        XCTAssertTrue(Note.A.isIn(scale: .init(.C, .major)))
+        XCTAssertTrue(Note.A_flat.isIn(scale: .init(.B, .major)))
+        XCTAssertTrue(Note.F_sharp.isIn(scale: .init(.G, .major)))
         XCTAssertTrue(Note.F.isIn(scale: .init(.G, .minor)))
     }
     func testChordInt() throws {
@@ -26,7 +26,7 @@ extension TestScale {
         XCTAssertEqual(Scale(.B, .major).triad(degree: 6), try Chord("Abm"))
         XCTAssertEqual(Scale(.B_flat, .minor).triad(degree: 2), try Chord("Cdim"))
         XCTAssertEqual(Scale(.A_flat, .minor).triad(degree: 2), try Chord("Bbdim"))
-        XCTAssertEqual(Scale(.G, .ionian).triad(degree: 5), try Chord("D"))
+        XCTAssertEqual(Scale(.G, .major).triad(degree: 5), try Chord("D"))
     }
 }
 
