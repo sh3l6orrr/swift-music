@@ -44,6 +44,6 @@ extension TestNote {
     func testInScale() throws {
         XCTAssertTrue(Note.B.isIn(scale: .init(.B, .major)))
         XCTAssertTrue(Note.B_flat.isIn(scale: .init(.B, .major)))
-        XCTAssertTrue(Note.B_flat.isIn(scale: .init(.G_sharp, .aeolian)))
+        XCTAssertTrue(Note.B_flat.isIn(scale: .init(.G_sharp, .minor)))
     }
 }

@@ -32,7 +32,7 @@ extension TestChord {
         XCTAssertThrowsError(try Chord("Csusm"))
     }
     func testInScale() throws {
-        XCTAssertTrue(try Chord("Dbm").isIn(scale: .init(.B, .ionian)))
+        XCTAssertTrue(try Chord("Dbm").isIn(scale: .init(.B, .major)))
     }
 }
 

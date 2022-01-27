@@ -60,7 +60,7 @@ extension Chord {
         if quality != nil {
             let ifSlash = slash != nil && slash != root ? " slash" : ""
             let slash = slash != nil && slash != root ? " over \(slash!.description)" : ""
-            let notes = intervals.map{ (root + $0).description }.joined(separator: ", ")
+            let notes = self.notes
             let intervals = intervals.map{ $0.description }.joined(separator: ", ")
             return 
                 "This is a\(ifSlash) chord named \(self.description)\(slash), "
