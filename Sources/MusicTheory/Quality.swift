@@ -42,31 +42,31 @@ public enum Quality: CaseIterable {
 extension Quality {
     var intervalsFormed: [Interval] {
         switch self {
-        case .power:                            return [.p5]
-        case .suspended2ndTriad:                return [.M2, .p5]
-        case .diminishedTriad:                  return [.m3, .tritone]
-        case .minorTriad:                       return [.m3, .p5]
-        case .majorTriad:                       return [.M3, .p5]
-        case .augmentedTriad:                   return [.M3, .m6]
-        case .suspended4thTriad:                return [.p4, .p5]
-        case .diminishedSeventh:                return [.m3, .tritone, .M6]
-        case .halfDiminishedSeventh:            return [.m3, .tritone, .m7]
-        case .dominantSeventhWithFlat5th:       return [.M3, .tritone, .m7]
-        case .minorSixth:                       return [.m3, .p5, .M6]
-        case .majorSixth:                       return [.M3, .p5, .M6]
-        case .minorMajorSeventh:                return [.m3, .p5, .M7]
-        case .augmentedSeventh:                 return [.M3, .m6, .m7]
-        case .dominantSeventhWithSuspended4th:  return [.p4, .p5, .m7]
-        case .minorTriadAdded9th:               return [.M2, .m3, .p5]
-        case .majorTriadAdded9th:               return [.M2, .M3, .p5]
-        case .minorTriadAdded11th:              return [.m3, .p4, .p5]
-        case .majorTriadAdded11th:              return [.M3, .p4, .p5]
-        case .minorSeventh:                     return [.m3, .p5, .m7]
-        case .dominantSeventh:                  return [.M3, .p5, .m7]
-        case .majorSeventh:                     return [.M3, .p5, .M7]
-        case .minorNinth:                       return [.M2, .m3, .p5, .m7]
-        case .dominantNinth:                    return [.M2, .M3, .p5, .m7]
-        case .majorNinth:                       return [.M2, .M3, .p5, .M7]
+        case .power:                            return [.octave, .p5]
+        case .suspended2ndTriad:                return [.octave, .M2, .p5]
+        case .diminishedTriad:                  return [.octave, .m3, .tritone]
+        case .minorTriad:                       return [.octave, .m3, .p5]
+        case .majorTriad:                       return [.octave, .M3, .p5]
+        case .augmentedTriad:                   return [.octave, .M3, .m6]
+        case .suspended4thTriad:                return [.octave, .p4, .p5]
+        case .diminishedSeventh:                return [.octave, .m3, .tritone, .M6]
+        case .halfDiminishedSeventh:            return [.octave, .m3, .tritone, .m7]
+        case .dominantSeventhWithFlat5th:       return [.octave, .M3, .tritone, .m7]
+        case .minorSixth:                       return [.octave, .m3, .p5, .M6]
+        case .majorSixth:                       return [.octave, .M3, .p5, .M6]
+        case .minorMajorSeventh:                return [.octave, .m3, .p5, .M7]
+        case .augmentedSeventh:                 return [.octave, .M3, .m6, .m7]
+        case .dominantSeventhWithSuspended4th:  return [.octave, .p4, .p5, .m7]
+        case .minorTriadAdded9th:               return [.octave, .M2, .m3, .p5]
+        case .majorTriadAdded9th:               return [.octave, .M2, .M3, .p5]
+        case .minorTriadAdded11th:              return [.octave, .m3, .p4, .p5]
+        case .majorTriadAdded11th:              return [.octave, .M3, .p4, .p5]
+        case .minorSeventh:                     return [.octave, .m3, .p5, .m7]
+        case .dominantSeventh:                  return [.octave, .M3, .p5, .m7]
+        case .majorSeventh:                     return [.octave, .M3, .p5, .M7]
+        case .minorNinth:                       return [.octave, .M2, .m3, .p5, .m7]
+        case .dominantNinth:                    return [.octave, .M2, .M3, .p5, .m7]
+        case .majorNinth:                       return [.octave, .M2, .M3, .p5, .M7]
         }
     }
 }
@@ -74,31 +74,31 @@ extension Quality {
 extension Array where Element == Interval {
     var qualityFormed: Quality? {
         switch self {
-        case [.p5]:                             return .power
-        case [.M2, .p5]:                        return .suspended2ndTriad
-        case [.m3, .tritone]:                   return .diminishedTriad
-        case [.m3, .p5]:                        return .minorTriad
-        case [.M3, .p5]:                        return .majorTriad
-        case [.M3, .m6]:                        return .augmentedTriad
-        case [.p4, .p5]:                        return .suspended4thTriad
-        case [.m3, .tritone, .M6]:              return .diminishedSeventh
-        case [.m3, .tritone, .m7]:              return .halfDiminishedSeventh
-        case [.M3, .tritone, .m7]:              return .dominantSeventhWithFlat5th
-        case [.m3, .p5, .M6]:                   return .minorSixth
-        case [.M3, .p5, .M6]:                   return .majorSixth
-        case [.m3, .p5, .M7]:                   return .minorMajorSeventh
-        case [.M3, .m6, .m7]:                   return .augmentedSeventh
-        case [.p4, .p5, .m7]:                   return .dominantSeventhWithSuspended4th
-        case [.M2, .m3, .p5]:                   return .minorTriadAdded9th
-        case [.M2, .M3, .p5]:                   return .majorTriadAdded9th
-        case [.m3, .p4, .p5]:                   return .minorTriadAdded11th
-        case [.M3, .p4, .p5]:                   return .majorTriadAdded11th
-        case [.m3, .p5, .m7]:                   return .minorSeventh
-        case [.M3, .p5, .m7]:                   return .dominantSeventh
-        case [.M3, .p5, .M7]:                   return .majorSeventh
-        case [.M2, .m3, .p5, .m7]:              return .minorNinth
-        case [.M2, .M3, .p5, .m7]:              return .dominantNinth
-        case [.M2, .M3, .p5, .M7]:              return .majorNinth
+        case [.octave, .p5]:                             return .power
+        case [.octave, .M2, .p5]:                        return .suspended2ndTriad
+        case [.octave, .m3, .tritone]:                   return .diminishedTriad
+        case [.octave, .m3, .p5]:                        return .minorTriad
+        case [.octave, .M3, .p5]:                        return .majorTriad
+        case [.octave, .M3, .m6]:                        return .augmentedTriad
+        case [.octave, .p4, .p5]:                        return .suspended4thTriad
+        case [.octave, .m3, .tritone, .M6]:              return .diminishedSeventh
+        case [.octave, .m3, .tritone, .m7]:              return .halfDiminishedSeventh
+        case [.octave, .M3, .tritone, .m7]:              return .dominantSeventhWithFlat5th
+        case [.octave, .m3, .p5, .M6]:                   return .minorSixth
+        case [.octave, .M3, .p5, .M6]:                   return .majorSixth
+        case [.octave, .m3, .p5, .M7]:                   return .minorMajorSeventh
+        case [.octave, .M3, .m6, .m7]:                   return .augmentedSeventh
+        case [.octave, .p4, .p5, .m7]:                   return .dominantSeventhWithSuspended4th
+        case [.octave, .M2, .m3, .p5]:                   return .minorTriadAdded9th
+        case [.octave, .M2, .M3, .p5]:                   return .majorTriadAdded9th
+        case [.octave, .m3, .p4, .p5]:                   return .minorTriadAdded11th
+        case [.octave, .M3, .p4, .p5]:                   return .majorTriadAdded11th
+        case [.octave, .m3, .p5, .m7]:                   return .minorSeventh
+        case [.octave, .M3, .p5, .m7]:                   return .dominantSeventh
+        case [.octave, .M3, .p5, .M7]:                   return .majorSeventh
+        case [.octave, .M2, .m3, .p5, .m7]:              return .minorNinth
+        case [.octave, .M2, .M3, .p5, .m7]:              return .dominantNinth
+        case [.octave, .M2, .M3, .p5, .M7]:              return .majorNinth
         default:                                return nil
         }
     }

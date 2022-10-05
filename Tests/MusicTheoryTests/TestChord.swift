@@ -12,35 +12,17 @@ final class TestChord: XCTestCase {}
 
 extension TestChord {
     func testContainNote() throws {
-        XCTAssertTrue(try Chord("Ab").contains(note: .C))
-        XCTAssertTrue(try Chord("Ab/B").contains(note: .C))
+        XCTAssertTrue(Chord(.B, .minorTriadAdded11th).contains(note: .B))
+        XCTAssertTrue(Chord(.B, .minorTriadAdded11th).contains(note: .E))
+        XCTAssertTrue(Chord(.B, .minorTriadAdded11th).contains(note: .D))
     }
-    func testChordQuality() throws {
-        XCTAssertEqual(try Chord("Fsus2").description, "Fsus2")
-        XCTAssertEqual(try Chord("F#7sus4").description, "F#7sus4")
-        XCTAssertEqual(try Chord("Fsus2/A#").description, "Fsus2/A#")
-        XCTAssertEqual(Chord(.G_sharp, .minorTriad, over: .F_sharp).description, "G#m/F#")
-    }
-    func testNameInitFailure() throws {
 
-        XCTAssertThrowsError(try Chord("5"))
-        XCTAssertThrowsError(try Chord("C/F/D"))
-        XCTAssertThrowsError(try Chord("Bb/F/"))
-        XCTAssertThrowsError(try Chord("G/G"))
-        XCTAssertThrowsError(try Chord("GAB"))
-        XCTAssertThrowsError(try Chord("/"))
-        XCTAssertThrowsError(try Chord("Csusm"))
+    func testChordQuality() throws {
+        XCTAssertEqual(Chord(.A, notes: [.A, .C, .D, .A, .E]).quality, .minorTriadAdded11th)
     }
     func testInScale() throws {
-        XCTAssertTrue(try Chord("Dbm").isIn(scale: .init(.B, .major)))
+        XCTAssertTrue(Chord(.DE, .minorTriad).isIn(scale: .init(.B, .major)))
     }
 }
 
-// Need examination in terminal
-extension TestChord {
-    func testSummary() throws {
-        print("*** Description of chord1. *** \n \(try Chord("A7").summary) \n *** End of description. ***\n")
-        print("*** Description of chord2. *** \n \(try Chord("F#m/B").summary) \n *** End of description. ***\n")
-    }
-}
 

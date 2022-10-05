@@ -9,7 +9,7 @@
 ///
 /// Create a Note either by using its name:
 /// ```swift
-/// Note("D#")  // Note.D_sharp
+/// Note("D#")  // Note.DE
 /// ```
 /// or by directly using enum cases:
 /// ```swift
@@ -23,178 +23,69 @@ public enum Note {
     /// The note C.
     case C
     /// The note C♯.
-    case C_sharp
-    /// The note D♭.
-    case D_flat
+    case CD
     /// The note D.
     case D
     /// The note D♯
-    case D_sharp
-    /// The note E♭.
-    case E_flat
+    case DE
     /// The note E.
     case E
     /// The note F.
     case F
     /// The note F♯.
-    case F_sharp
-    /// The note G♭.
-    case G_flat
+    case FG
     /// The note G.
     case G
     /// The note G♯.
-    case G_sharp
-    /// The note A♭.
-    case A_flat
+    case GA
     /// The note A.
     case A
     /// The note A♯.
-    case A_sharp
-    /// The note B♭.
-    case B_flat
+    case AB
     /// The note B.
     case B
 }
 
-extension Note: CaseIterable {
-    /// All notes enumerated with flat accidentals.
-    public static let allCasesInFlats: [Note] = [.C, .D_flat, .D, .E_flat, .E, .F, .G_flat, .G, .A_flat, .A, .B_flat, .B]
-    /// All notes enumerated with sharp accidentals.
-    public static let allCasesInSharps: [Note] = [.C, .C_sharp, .D, .D_sharp, .E, .F, .F_sharp, .G, .G_sharp, .A, .A_sharp, .B]
-}
-
-extension Note: LosslessStringConvertible {
+extension Note {
     /// Initialize a note from its name.
     public init?(_ description: String) {
         switch description {
         case "C"    :  self = .C
-        case "C#"   :  self = .C_sharp
-        case "Db"   :  self = .D_flat
+        case "C#"   :  self = .CD
+        case "Db"   :  self = .CD
         case "D"    :  self = .D
-        case "D#"   :  self = .D_sharp
-        case "Eb"   :  self = .E_flat
+        case "D#"   :  self = .DE
+        case "Eb"   :  self = .DE
         case "E"    :  self = .E
         case "F"    :  self = .F
-        case "F#"   :  self = .F_sharp
-        case "Gb"   :  self = .G_flat
+        case "F#"   :  self = .FG
+        case "Gb"   :  self = .FG
         case "G"    :  self = .G
-        case "G#"   :  self = .G_sharp
-        case "Ab"   :  self = .A_flat
+        case "G#"   :  self = .GA
+        case "Ab"   :  self = .GA
         case "A"    :  self = .A
-        case "A#"   :  self = .A_sharp
-        case "Bb"   :  self = .B_flat
+        case "A#"   :  self = .AB
+        case "Bb"   :  self = .AB
         case "B"    :  self = .B
         default     :  return nil
         }
     }
-    /// Name of the note.
-    public var description: String {
-        switch self {
-        case .C         :   return "C"
-        case .C_sharp   :   return "C#"
-        case .D_flat    :   return "Db"
-        case .D         :   return "D"
-        case .D_sharp   :   return "D#"
-        case .E_flat    :   return "Eb"
-        case .E         :   return "E"
-        case .F         :   return "F"
-        case .F_sharp   :   return "F#"
-        case .G_flat    :   return "Gb"
-        case .G         :   return "G"
-        case .G_sharp   :   return "G#"
-        case .A_flat    :   return "Ab"
-        case .A         :   return "A"
-        case .A_sharp   :   return "A#"
-        case .B_flat    :   return "Bb"
-        case .B         :   return "B"
-        }
-    }
-}
-
-extension Note {
-    /// Initialize a sharped note from its absolute position in an octave.
-    init?(sharped absolutePosition: Int) {
+    /// Initialize a note from its absolute position in an octave.
+    init?(absolutePosition: Int) {
         switch absolutePosition {
         case 0  :  self = .C
-        case 1  :  self = .C_sharp
+        case 1  :  self = .CD
         case 2  :  self = .D
-        case 3  :  self = .D_sharp
+        case 3  :  self = .DE
         case 4  :  self = .E
         case 5  :  self = .F
-        case 6  :  self = .F_sharp
+        case 6  :  self = .FG
         case 7  :  self = .G
-        case 8  :  self = .G_sharp
+        case 8  :  self = .GA
         case 9  :  self = .A
-        case 10 :  self = .A_sharp
+        case 10 :  self = .AB
         case 11 :  self = .B
         default :  return nil
-        }
-    }
-    /// Initialize a flat note from its absolute position in an octave.
-    init?(flatted absolutePosition: Int) {
-        switch absolutePosition {
-        case 0  :  self = .C
-        case 1  :  self = .D_flat
-        case 2  :  self = .D
-        case 3  :  self = .E_flat
-        case 4  :  self = .E
-        case 5  :  self = .F
-        case 6  :  self = .G_flat
-        case 7  :  self = .G
-        case 8  :  self = .A_flat
-        case 9  :  self = .A
-        case 10 :  self = .B_flat
-        case 11 :  self = .B
-        default :  return nil
-        }
-    }
-    /// Should this note's related notes be initilizeds by flat or sharp.
-    var initSharp: Bool {
-        switch self {
-        case .C         :   return true
-        case .C_sharp   :   return true
-        case .D_flat    :   return false
-        case .D         :   return true
-        case .D_sharp   :   return true
-        case .E_flat    :   return false
-        case .E         :   return true
-        case .F         :   return false
-        case .F_sharp   :   return true
-        case .G_flat    :   return false
-        case .G         :   return true
-        case .G_sharp   :   return true
-        case .A_flat    :   return false
-        case .A         :   return true
-        case .A_sharp   :   return true
-        case .B_flat    :   return false
-        case .B         :   return true
-        }
-    }
-}
-
-extension Note {
-    /// Absolute position of the note, for conveience of calulation.
-    ///
-    /// By default, C is 0, C# is 1, ..., B is 11.
-    public var absolutePosition: Int {
-        switch self {
-        case .C:            return 0
-        case .C_sharp:      return 1
-        case .D_flat:       return 1
-        case .D:            return 2
-        case .D_sharp:      return 3
-        case .E_flat:       return 3
-        case .E:            return 4
-        case .F:            return 5
-        case .F_sharp:      return 6
-        case .G_flat:       return 6
-        case .G:            return 7
-        case .G_sharp:      return 8
-        case .A_flat:       return 8
-        case .A:            return 9
-        case .A_sharp:      return 10
-        case .B_flat:       return 10
-        case .B:            return 11
         }
     }
 }
@@ -213,14 +104,52 @@ extension Note: Hashable {
     }
 }
 
+extension Note: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .C:       return "C"
+        case .CD:      return "CD"
+        case .D:       return "D"
+        case .DE:      return "DE"
+        case .E:       return "E"
+        case .F:       return "F"
+        case .FG:      return "FG"
+        case .G:       return "G"
+        case .GA:      return "GA"
+        case .A:       return "A"
+        case .AB:      return "AB"
+        case .B:       return "B"
+        }
+    }
+}
+
 extension Note {
+    /// Absolute position of the note, for conveience of calulation.
+    ///
+    /// By default, C is 0, C# is 1, ..., B is 11.
+    public var absolutePosition: Int {
+        switch self {
+        case .C:       return 0
+        case .CD:      return 1
+        case .D:       return 2
+        case .DE:      return 3
+        case .E:       return 4
+        case .F:       return 5
+        case .FG:      return 6
+        case .G:       return 7
+        case .GA:      return 8
+        case .A:       return 9
+        case .AB:      return 10
+        case .B:       return 11
+        }
+    }
     /// See if this note is consonant with another.
     public func isConsonant(with anotherNote: Note) -> Bool {
         (self - anotherNote).isConsonant
     }
     /// Check if this note is in a specific chord.
     public func isIn(chord: Chord) -> Bool {
-        chord.allNotes.contains(self)
+        chord.content.contains(self)
     }
     /// Check if this note is in a specific scale.
     public func isIn(scale: Scale) -> Bool {
@@ -234,9 +163,7 @@ extension Note {
     /// - Returns: The note a specified interval above the base note.
     public static func + (_ lhs: Self, _ rhs: Interval) -> Self {
         let sum = lhs.absolutePosition + rhs.semitones
-        return lhs.initSharp
-        ? .init(sharped: sum < 12 ? sum : sum - 12)!
-        : .init(flatted: sum < 12 ? sum : sum - 12)!
+        return .init(absolutePosition: sum < 12 ? sum : sum - 12)!
         
     }
     /// Compute the note a certain Interval below it.
@@ -247,9 +174,8 @@ extension Note {
     /// - Returns: The note a specified interval below the base note.
     public static func - (_ lhs: Self, _ rhs: Interval) -> Self {
         let difference = lhs.absolutePosition - rhs.semitones
-        return lhs.initSharp
-        ? .init(sharped: difference >= 0 ? difference : difference + 12)!
-        : .init(flatted: difference >= 0 ? difference : difference + 12)!
+        return .init(absolutePosition: difference >= 0 ? difference : difference + 12)!
+
     }
     /// Compute the Interval between two notes within an octave.
     ///

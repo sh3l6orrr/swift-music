@@ -11,57 +11,15 @@ let package = Package(
         .library(
             name: "MusicTheory",
             targets: ["MusicTheory"]
-        ),
-//         .library(
-//             name: "Songwriting",
-//             targets: ["Songwriting"]
-//         ),
-//         .library(
-//             name: "Composition",
-//             targets: ["Composition"]
-//         ),
-//         .library(
-//             name: "MusicPlay",
-//             targets: ["MusicPlay"]
-//         ),
+        )
     ],
     targets: [
         .target(
             name: "MusicTheory"
         ),
-        .target(
-            name: "Songwriting",
-            dependencies: [
-                .target(name: "MusicTheory")
-            ]
-        ),
-        .target(
-            name: "Composition",
-            dependencies: [
-                .target(name: "MusicTheory")
-            ]
-        ),
-        .target(
-            name: "MusicPlay",
-            dependencies: [
-                .target(name: "MusicTheory")
-            ]
-        ),
         .testTarget(
             name: "MusicTheoryTests",
             dependencies: ["MusicTheory"]
-        ),
-        .testTarget(
-            name: "SongwritingTests",
-            dependencies: ["Songwriting"]
-        ),
-        .testTarget(
-            name: "CompositionTests",
-            dependencies: ["Composition"]
-        ),
-        .testTarget(
-            name: "MusicPlayTests",
-            dependencies: ["MusicPlay"]
         )
     ]
 )
