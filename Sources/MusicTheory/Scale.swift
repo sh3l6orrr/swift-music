@@ -1,10 +1,3 @@
-//
-//  Scale.swift
-//  
-//
-//  Created by Jin Zhang on 12/24/21.
-//
-
 /// A scale.
 ///
 /// Note that in this module, scale are specifically constructed from the seven modes.
@@ -14,9 +7,6 @@ public struct Scale {
     public let tonic: Note
     /// Mode of the scale.
     public let mode: Mode
-}
-
-extension Scale {
     /// Init a scale by specifying tonic and mode.
     public init(_ tonic: Note, _ mode: Mode) {
         self.tonic = tonic
@@ -24,9 +14,7 @@ extension Scale {
     }
     /// All notes in the scale starting from the tonic.
     public var notes: [Note] {
-        self.mode.intervalsContained.map { interval in
-            self.tonic + interval
-        }
+        self.mode.intervalsContained.map { self.tonic + $0 }
     }
     /// All triads in the scale ordered from I to VII.
     public var allTriads: [Chord] {
@@ -41,4 +29,3 @@ extension Scale {
         return self.allTriads[degree - 1]
     }
 }
-

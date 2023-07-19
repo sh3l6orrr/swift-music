@@ -1,16 +1,7 @@
-//
-//  TestScale.swift
-//  MusicTheory
-//
-//  Created by Jin Zhang on 12/13/25.
-//
-
 import XCTest
 import MusicTheory
 
-final class TestScale: XCTestCase {}
-
-extension TestScale {
+class TestScale: XCTestCase {
     func testNoteIn() throws {
         XCTAssertTrue(Note.A.isIn(scale: .init(.C, .major)))
         XCTAssertTrue(Note.GA.isIn(scale: .init(.B, .major)))

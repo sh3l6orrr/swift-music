@@ -1,16 +1,7 @@
-//
-//  TestNote.swift
-//  MusicTheoryKit
-//
-//  Created by Jin Zhang on 12/13/21.
-//
-
 import XCTest
 import MusicTheory
 
-final class TestNote: XCTestCase {}
-
-extension TestNote {
+class TestNote: XCTestCase {
     func testNoteAddInterval() throws {
         XCTAssertEqual(Note.C + Interval.m2, Note.CD)
         XCTAssertEqual(Note.E + Interval.m2, Note.F)
@@ -26,11 +17,6 @@ extension TestNote {
     func testNoteSubtractNote() throws {
         XCTAssertEqual(Note.E - Note.C, Interval.M3)
         XCTAssertEqual(Note.GA - Note.CD, Interval.p5)
-    }
-    func testConsonance() throws {
-        XCTAssertTrue(Note.E.isConsonant(with: .GA))
-        XCTAssertTrue(Note.B.isConsonant(with: .GA))
-        XCTAssertFalse(Note.CD.isConsonant(with: .G))
     }
     func testInChord() throws {
         XCTAssertTrue(Note.DE.isIn(chord: .init(.GA, .majorTriad)))

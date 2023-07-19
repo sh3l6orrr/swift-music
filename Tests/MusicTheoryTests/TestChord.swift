@@ -1,16 +1,7 @@
-//
-//  TestChord.swift
-//  MusicTheoryKit
-//
-//  Created by Jin Zhang on 12/13/21.
-//
-
 import XCTest
 import MusicTheory
 
-final class TestChord: XCTestCase {}
-
-extension TestChord {
+class TestChord: XCTestCase {
     func testContainNote() throws {
         XCTAssertTrue(Chord(.B, .minorTriadAdded11th).contains(note: .B))
         XCTAssertTrue(Chord(.B, .minorTriadAdded11th).contains(note: .E))
